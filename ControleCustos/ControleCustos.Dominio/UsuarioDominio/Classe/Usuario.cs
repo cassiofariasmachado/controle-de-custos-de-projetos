@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ControleCustos.Dominio.UsuarioDominio.Enum;
 
-namespace ControleCustos.Dominio.Usuario
+namespace ControleCustos.Dominio.UsuarioDominio.Classe
 {
     public class Usuario
     {

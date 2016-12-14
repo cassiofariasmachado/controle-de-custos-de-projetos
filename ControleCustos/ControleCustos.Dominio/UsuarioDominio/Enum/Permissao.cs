@@ -1,5 +1,4 @@
-﻿
-namespace ControleCustos.Dominio.Usuario
+﻿namespace ControleCustos.Dominio.UsuarioDominio.Enum
 {
     public enum Permissao
     {

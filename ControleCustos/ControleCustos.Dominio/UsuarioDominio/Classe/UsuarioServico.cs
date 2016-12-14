@@ -1,7 +1,7 @@
 ﻿using ControleCustos.Dominio.Criptografia.Interface;
-using ControleCustos.Dominio.Usuario.Interface;
+using ControleCustos.Dominio.UsuarioDominio.Interface;
 
-namespace ControleCustos.Dominio.Usuario.Classe
+namespace ControleCustos.Dominio.UsuarioDominio.Classe
 {
     public class UsuarioServico
     {
