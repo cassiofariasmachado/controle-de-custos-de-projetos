@@ -22,3 +22,17 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.projetos-link-panel {
+	float: right;
+	padding: 0px;
+}
+
+.projetos-title-panel {
+	float: left;
+	padding-top: 2px;
+}
+
+.img-logo{
+   background-size: 20px;
+}
