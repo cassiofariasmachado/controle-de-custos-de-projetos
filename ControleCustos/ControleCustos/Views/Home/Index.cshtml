@@ -3,27 +3,86 @@
 }
 
 <div class="jumbotron">
-   
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="clearfix">
+                    <h1 class="panel-title projetos-title-panel">
+                        Pesquisa de Projetos
+                    </h1>
+                    <a class="btn btn-link projetos-link-panel"
+                       href="/projetos/novo">Cadastrar Novo Projeto</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form method="GET" class="form-horizontal" action="/projetos">
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input class="form-control"
+                                       placeholder="Qual projeto você está procurando?"
+                                       autofocus="autofocus" /><span class="input-group-btn">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-left col-md-1">#</th>
+                                <th class="text-left col-md-2">Nome</th>
+                                <th class="col-md-1"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-left">1</td>
+                                <td class="text-left">Fantrolada</td>
+                                <td class="text-center">
+                                    <a class="btn btn-link btn-xs"
+                                       href="/projetos/editar/1"
+                                       title="Editar" rel="tooltip" data-placement="top">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">2</td>
+                                <td class="text-left">Unimed</td>
+                                <td class="text-center">
+                                    <a class="btn btn-link btn-xs"
+                                       href="/projetos/editar/1"
+                                       title="Editar" rel="tooltip" data-placement="top">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">3</td>
+                                <td class="text-left">Renner</td>
+                                <td class="text-center">
+                                    <a class="btn btn-link btn-xs"
+                                       href="/projetos/editar/1"
+                                       title="Editar" rel="tooltip" data-placement="top">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
 </div>
