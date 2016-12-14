@@ -10,8 +10,8 @@
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
+       will truncate terms that are too long to fit in the left column 
+    */
 .dl-horizontal dt {
     white-space: normal;
 }
@@ -24,15 +24,15 @@ textarea {
 }
 
 .projetos-link-panel {
-	float: right;
-	padding: 0px;
+    float: right;
+    padding: 0px;
 }
 
 .projetos-title-panel {
-	float: left;
-	padding-top: 2px;
+    float: left;
+    padding-top: 2px;
 }
 
-.img-logo{
-   background-size: 20px;
+.img-logo {
+    margin-top: -4px;
 }
