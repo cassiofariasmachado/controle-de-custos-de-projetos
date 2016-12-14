@@ -41,13 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Criptografia\Interface\IServicoDeCriptografia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Usuario\Classe\UsuarioServico.cs" />
     <Compile Include="Usuario\Enum\Permissao.cs" />
     <Compile Include="Usuario\Classe\Usuario.cs" />
+    <Compile Include="Usuario\Interface\IUsuarioRepositorio.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Usuario\Interface\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
