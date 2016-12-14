@@ -51,7 +51,20 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuarioTeste\Mock\UsuarioRepositorioMock.cs" />
+    <Compile Include="UsuarioTeste\Teste\UsuarioServiceTest.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ControleCustos.Dominio\ControleCustos.Dominio.csproj">
+      <Project>{26674271-67BE-4598-A033-4D6941CE49D1}</Project>
+      <Name>ControleCustos.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ControleCustos.Infraestrutura\ControleCustos.Infraestrutura.csproj">
+      <Project>{fbe720cd-5e8e-469b-8388-80712eaec832}</Project>
+      <Name>ControleCustos.Infraestrutura</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
