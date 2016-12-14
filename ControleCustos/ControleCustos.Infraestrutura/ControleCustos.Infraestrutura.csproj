@@ -43,6 +43,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicoDeCriptografia.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ControleCustos.Dominio\ControleCustos.Dominio.csproj">
+      <Project>{26674271-67BE-4598-A033-4D6941CE49D1}</Project>
+      <Name>ControleCustos.Dominio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ControleCustos.Dominio.Criptografia.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -7,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace ControleCustos.Infraestrutura
 {
-    public class ServicoDeCriptografia
+    public class ServicoDeCriptografia : IServicoDeCriptografia
     {
-        public static string ConverterParaMD5(string texto)
+        public string Criptografar(string senha)
         {
             using (MD5 md5Hash = MD5.Create())
             {
                 // Convert the input string to a byte array and compute the hash.
-                byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(texto));
+                byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(senha));
 
                 // Create a new Stringbuilder to collect the bytes
                 // and create a string.
