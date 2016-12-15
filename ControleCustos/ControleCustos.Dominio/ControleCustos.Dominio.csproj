@@ -50,6 +50,8 @@
     <Compile Include="Recurso\Enum\Situacao.cs" />
     <Compile Include="Recurso\Enum\TipoRecurso.cs" />
     <Compile Include="Recurso\Enum\TipoServico.cs" />
+    <Compile Include="Recurso\Interface\IRecursoRepositorio.cs" />
+    <Compile Include="Recurso\Servico\RecursoServico.cs" />
     <Compile Include="UsuarioDominio\Classe\Usuario.cs" />
     <Compile Include="UsuarioDominio\Classe\UsuarioServico.cs" />
     <Compile Include="UsuarioDominio\Enum\Permissao.cs" />
