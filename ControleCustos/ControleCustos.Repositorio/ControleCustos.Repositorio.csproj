@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201612151543252_AdicionarProjeto.Designer.cs">
       <DependentUpon>201612151543252_AdicionarProjeto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612151729330_CorrigirCamposRecursosCompartilhados.cs" />
+    <Compile Include="Migrations\201612151729330_CorrigirCamposRecursosCompartilhados.Designer.cs">
+      <DependentUpon>201612151729330_CorrigirCamposRecursosCompartilhados.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProjetoRepositorio\ProjetoRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612151543252_AdicionarProjeto.resx">
       <DependentUpon>201612151543252_AdicionarProjeto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612151729330_CorrigirCamposRecursosCompartilhados.resx">
+      <DependentUpon>201612151729330_CorrigirCamposRecursosCompartilhados.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
