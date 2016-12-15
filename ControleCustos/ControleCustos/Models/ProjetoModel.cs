@@ -1,6 +1,5 @@
-﻿using ControleCustos.Dominio.Projeto.Enum;
+﻿using ControleCustos.Dominio.Enum;
 using ControleCustos.Dominio.UsuarioDominio.Classe;
-using ControleCustos.Dominio.UsuarioDominio.Enum;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
