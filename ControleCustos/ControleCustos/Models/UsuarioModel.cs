@@ -11,5 +11,7 @@ namespace ControleCustos.Models
         }
         public string Email { get; private set; }
         public Permissao Permissao { get; private set; }
+        public long Id { get; private set; }
+        public string Senha { get; private set; }
     }
 }
