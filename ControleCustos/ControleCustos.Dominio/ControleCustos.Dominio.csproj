@@ -43,6 +43,13 @@
   <ItemGroup>
     <Compile Include="Criptografia\Interface\IServicoDeCriptografia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recurso\Classe\Servico.cs" />
+    <Compile Include="Recurso\Classe\Recurso.cs" />
+    <Compile Include="Recurso\Classe\RecursoCompartilhado.cs" />
+    <Compile Include="Recurso\Classe\RecursoVinculadoProfissional.cs" />
+    <Compile Include="Recurso\Enum\Situacao.cs" />
+    <Compile Include="Recurso\Enum\TipoRecurso.cs" />
+    <Compile Include="Recurso\Enum\TipoServico.cs" />
     <Compile Include="UsuarioDominio\Classe\Usuario.cs" />
     <Compile Include="UsuarioDominio\Classe\UsuarioServico.cs" />
     <Compile Include="UsuarioDominio\Enum\Permissao.cs" />
