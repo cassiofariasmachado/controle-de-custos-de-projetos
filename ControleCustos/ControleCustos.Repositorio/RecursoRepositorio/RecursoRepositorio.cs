@@ -1,5 +1,7 @@
 ﻿using ControleCustos.Dominio.Recurso.Interface;
 using ControleCustos.Dominio.Recurso.Classe;
+using System;
+using System.Data.Entity;
 
 namespace ControleCustos.Repositorio.RecursoRepositorio
 {
@@ -10,6 +12,24 @@ namespace ControleCustos.Repositorio.RecursoRepositorio
             using (var context = new DatabaseContext())
             {
                 return context.Recurso.Find(id);
+            }
+        }
+
+        public void Inserir(Recurso recurso)
+        {
+            using (var context = new DatabaseContext())
+            {
+                context.Entry<Recurso>(recurso).State = EntityState.Added;
+                context.SaveChanges();
+            }
+        }
+
+        public void Atualizar(Recurso recurso)
+        {
+            using (var context = new DatabaseContext())
+            {
+                context.Entry<Recurso>(recurso).State = EntityState.Modified;
+                context.SaveChanges();
             }
         }
     }
