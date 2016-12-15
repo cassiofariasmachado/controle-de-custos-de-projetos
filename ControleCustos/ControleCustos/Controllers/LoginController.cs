@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using ControleCustos.Dominio.UsuarioDominio.Classe;
+using ControleCustos.Models;
+using ControleCustos.Servicos;
+using System.Web.Mvc;
 
 namespace ControleCustos.Controllers
 {
@@ -16,19 +16,18 @@ namespace ControleCustos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Logar(string usuario, string senha)
+        public ActionResult Logar(string email, string senha)
         {
-            Usuario usuarioAutenticado = ServicoDeUsuario.BuscarUsuarioAutenticado(
-                    usuario, senha);
+            UsuarioServico usuarioServico = ServicoDeDependencias.MontarUsuarioServico();
 
-            if (usuarioAutenticado != null)
+            Usuario usuarioLogin = usuarioServico.BuscarPorAutenticacao(email, senha);
+
+            if (usuarioLogin != null)
             {
-                ServicoDeAutenticacao.Autenticar(new UsuarioLogadoModel(
-                    usuarioAutenticado.Nome, usuarioAutenticado.Permissoes));
-                return RedirectToAction("Secreta");
+                ServicoDeAutenticacao.Autenticar(new UsuarioModel(usuarioLogin.Email, usuarioLogin.Permissao));
+                return RedirectToAction("Index");
             }
-
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
     }
 }
