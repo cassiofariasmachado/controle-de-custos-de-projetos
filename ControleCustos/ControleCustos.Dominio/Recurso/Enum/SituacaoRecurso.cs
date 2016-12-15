@@ -1,6 +1,6 @@
 ﻿namespace ControleCustos.Dominio.Recurso.Enum
 {
-    public enum Situacao
+    public enum SituacaoRecurso
     {
         Disponivel, Indisponivel
     }
