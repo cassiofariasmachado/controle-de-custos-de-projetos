@@ -11,13 +11,13 @@ namespace ControleCustos.Dominio.Recurso.Classe
         public bool BaseDeDados { get; set; }
 
         [Required]
-        public string EspacoEmDisco { get; set; }
+        public decimal EspacoEmDisco { get; set; }
 
         [Required]
-        public string Processadores { get; set; }
+        public int Processadores { get; set; }
 
         [Required]
-        public string Memoria { get; set; }
+        public decimal Memoria { get; set; }
 
         [Required]
         public bool BackupDiario { get; set; }
