@@ -1,5 +1,6 @@
 namespace ControleCustos.Repositorio.Migrations
 {
+    using Dominio.Recurso.Classe;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +27,12 @@ namespace ControleCustos.Repositorio.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            this.popularRecursos(context);
+        }
+
+        private void popularRecursos(ControleCustos.Repositorio.DatabaseContext context)
+        {
+            context.Recurso.AddOrUpdate(new RecursoVinculadoProfissional { Nome = "VM Interna", TipoRecurso = Dominio.Recurso.Enum.TipoRecurso.Fisico, Modelo = "VM", Marca = "VM", DataCompra = new DateTime(2016, 12, 15), Situacao = Dominio.Recurso.Enum.SituacaoRecurso.Disponivel, TempoDeVidaUtil = 10, ValorCompra = 600, ValorMensal = 100 });
         }
     }
 }
