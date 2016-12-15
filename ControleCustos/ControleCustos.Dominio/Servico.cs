@@ -1,7 +1,7 @@
-﻿using ControleCustos.Dominio.Recurso.Enum;
+﻿using ControleCustos.Dominio.Enum;
 using System.ComponentModel.DataAnnotations;
 
-namespace ControleCustos.Dominio.Recurso.Classe
+namespace ControleCustos.Dominio
 {
     public class Servico : Recurso
     {

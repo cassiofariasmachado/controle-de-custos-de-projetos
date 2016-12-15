@@ -1,8 +1,8 @@
-﻿using ControleCustos.Dominio.Recurso.Enum;
+﻿using ControleCustos.Dominio.Enum;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ControleCustos.Dominio.Recurso.Classe
+namespace ControleCustos.Dominio
 {
     public abstract class Recurso
     {
@@ -22,11 +22,11 @@ namespace ControleCustos.Dominio.Recurso.Classe
         public SituacaoRecurso Situacao { get; set; }
 
         [Required]
-        public ICollection<Projeto.Projeto> Recursos { get; set; }
+        public ICollection<Projeto> Recursos { get; set; }
 
         public Recurso()
         {
-            this.Recursos = new List<Projeto.Projeto>();
+            this.Recursos = new List<Projeto>();
         }
     }
 }

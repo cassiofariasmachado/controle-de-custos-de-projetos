@@ -1,14 +1,10 @@
-﻿using ControleCustos.Dominio.Recurso.Classe;
-using ControleCustos.Dominio.Projeto.Enum;
+﻿using ControleCustos.Dominio.Enum;
 using ControleCustos.Dominio.UsuarioDominio.Classe;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ControleCustos.Dominio.Projeto
+namespace ControleCustos.Dominio
 {
     public class Projeto
     {
@@ -47,11 +43,11 @@ namespace ControleCustos.Dominio.Projeto
         public SituacaoProjeto Situacao { get; set; }
 
         [Required]
-        public ICollection<Recurso.Classe.Recurso> Recursos { get; set; }
+        public ICollection<Recurso> Recursos { get; set; }
 
         public Projeto ()
         {
-            this.Recursos = new List<Recurso.Classe.Recurso>();
+            this.Recursos = new List<Recurso>();
         }
     }
 }

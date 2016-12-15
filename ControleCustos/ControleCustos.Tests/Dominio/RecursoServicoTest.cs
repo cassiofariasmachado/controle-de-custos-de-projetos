@@ -1,17 +1,15 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ControleCustos.Dominio.Recurso;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FakeItEasy;
-using ControleCustos.Dominio.Recurso.Interface;
-using ControleCustos.Dominio.Recurso.Classe;
+using ControleCustos.Dominio.Interface;
+using ControleCustos.Dominio;
 
-namespace ControleCustos.Tests.Dominio.Recurso
+namespace ControleCustos.Tests.Dominio
 {
     [TestClass]
     public class RecursoServicoTest
     {
         [TestMethod]
-        public void BuscarDeveChamarBuscarRepositorio()
+        public void BuscarDeveChamarBuscarDoRepositorio()
         {
             IRecursoRepositorio repositorio = A.Fake<IRecursoRepositorio>();
             RecursoServico servico = new RecursoServico(repositorio);

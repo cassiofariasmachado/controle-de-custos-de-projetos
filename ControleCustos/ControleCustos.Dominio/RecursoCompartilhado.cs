@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ControleCustos.Dominio.Recurso.Classe
+namespace ControleCustos.Dominio
 {
     public class RecursoCompartilhado : Recurso
     {

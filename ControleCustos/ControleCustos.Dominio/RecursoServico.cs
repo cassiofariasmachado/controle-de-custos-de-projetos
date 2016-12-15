@@ -1,11 +1,6 @@
-﻿using ControleCustos.Dominio.Recurso.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ControleCustos.Dominio.Interface;
 
-namespace ControleCustos.Dominio.Recurso
+namespace ControleCustos.Dominio
 {
     public class RecursoServico
     {
@@ -16,12 +11,12 @@ namespace ControleCustos.Dominio.Recurso
             this.recursoRepositorio = recursoRepositorio;
         }
 
-        public Classe.Recurso Buscar(int id)
+        public Recurso Buscar(int id)
         {
             return recursoRepositorio.Buscar(id);
         }
 
-        public void Salvar(Classe.Recurso recurso)
+        public void Salvar(Recurso recurso)
         {
             if (recurso.Id == 0)
             {

@@ -42,20 +42,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Criptografia\Interface\IServicoDeCriptografia.cs" />
-    <Compile Include="Projeto\Enum\SituacaoProjeto.cs" />
-    <Compile Include="Projeto\Interface\IProjetoRepositorio.cs" />
-    <Compile Include="Projeto\Projeto.cs" />
-    <Compile Include="Projeto\ProjetoServico.cs" />
+    <Compile Include="Enum\SituacaoProjeto.cs" />
+    <Compile Include="Interface\IProjetoRepositorio.cs" />
+    <Compile Include="Projeto.cs" />
+    <Compile Include="ProjetoServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Recurso\Classe\Servico.cs" />
-    <Compile Include="Recurso\Classe\Recurso.cs" />
-    <Compile Include="Recurso\Classe\RecursoCompartilhado.cs" />
-    <Compile Include="Recurso\Classe\RecursoVinculadoProfissional.cs" />
-    <Compile Include="Recurso\Enum\SituacaoRecurso.cs" />
-    <Compile Include="Recurso\Enum\TipoRecurso.cs" />
-    <Compile Include="Recurso\Enum\TipoServico.cs" />
-    <Compile Include="Recurso\Interface\IRecursoRepositorio.cs" />
-    <Compile Include="Recurso\Servico\RecursoServico.cs" />
+    <Compile Include="Servico.cs" />
+    <Compile Include="Recurso.cs" />
+    <Compile Include="RecursoCompartilhado.cs" />
+    <Compile Include="RecursoVinculadoProfissional.cs" />
+    <Compile Include="Enum\SituacaoRecurso.cs" />
+    <Compile Include="Enum\TipoRecurso.cs" />
+    <Compile Include="Enum\TipoServico.cs" />
+    <Compile Include="Interface\IRecursoRepositorio.cs" />
+    <Compile Include="RecursoServico.cs" />
     <Compile Include="UsuarioDominio\Classe\Usuario.cs" />
     <Compile Include="UsuarioDominio\Classe\UsuarioServico.cs" />
     <Compile Include="UsuarioDominio\Enum\Permissao.cs" />

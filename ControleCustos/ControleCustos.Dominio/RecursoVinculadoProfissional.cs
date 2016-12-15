@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ControleCustos.Dominio.Recurso.Classe
+namespace ControleCustos.Dominio
 {
     public class RecursoVinculadoProfissional : Recurso
     {

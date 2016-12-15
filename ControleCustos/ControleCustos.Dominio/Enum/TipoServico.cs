@@ -1,4 +1,4 @@
-﻿namespace ControleCustos.Dominio.Recurso.Enum
+﻿namespace ControleCustos.Dominio.Enum
 {
     public enum TipoServico
     { 

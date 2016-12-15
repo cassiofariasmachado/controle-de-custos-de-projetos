@@ -1,7 +1,7 @@
-﻿using ControleCustos.Dominio.Recurso.Interface;
-using ControleCustos.Dominio.Recurso.Classe;
-using System;
+﻿using System;
 using System.Data.Entity;
+using ControleCustos.Dominio;
+using ControleCustos.Dominio.Interface;
 
 namespace ControleCustos.Repositorio.RecursoRepositorio
 {
