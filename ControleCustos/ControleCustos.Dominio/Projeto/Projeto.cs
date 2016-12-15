@@ -1,4 +1,5 @@
-﻿using ControleCustos.Dominio.UsuarioDominio.Classe;
+﻿using ControleCustos.Dominio.Projeto.Enum;
+using ControleCustos.Dominio.UsuarioDominio.Classe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
