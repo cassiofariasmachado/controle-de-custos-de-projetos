@@ -18,16 +18,20 @@ namespace ControleCustos.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Logar(string email, string senha)
         {
-            UsuarioServico usuarioServico = ServicoDeDependencias.MontarUsuarioServico();
-
-            Usuario usuarioLogin = usuarioServico.BuscarPorAutenticacao(email, senha);
-
-            if (usuarioLogin != null)
+            if (ModelState.IsValid)
             {
-                ServicoDeAutenticacao.Autenticar(new UsuarioModel(usuarioLogin.Email, usuarioLogin.Permissao));
-                return RedirectToAction("Index");
+                UsuarioServico usuarioServico = ServicoDeDependencias.MontarUsuarioServico();
+
+                Usuario usuarioLogin = usuarioServico.BuscarPorAutenticacao(email, senha);
+
+                if (usuarioLogin != null)
+                {
+                    ServicoDeAutenticacao.Autenticar(new UsuarioModel(usuarioLogin.Email, usuarioLogin.Permissao));
+                    return RedirectToAction("Index");
+                }
             }
-            return RedirectToAction("Login");
+            ViewBag.MensagemErro = "Login ou senha inválidos.";
+            return View("Login");
         }
     }
 }
