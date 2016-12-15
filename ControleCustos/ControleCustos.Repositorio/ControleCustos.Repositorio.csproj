@@ -59,6 +59,10 @@
     <Compile Include="Migrations\201612150008223_AdicionarHerancaParaRecursos.Designer.cs">
       <DependentUpon>201612150008223_AdicionarHerancaParaRecursos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612150324216_Colocar Required no Usuario.cs" />
+    <Compile Include="Migrations\201612150324216_Colocar Required no Usuario.Designer.cs">
+      <DependentUpon>201612150324216_Colocar Required no Usuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecursoRepositorio\RecursoRepositorio.cs" />
@@ -79,6 +83,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612150008223_AdicionarHerancaParaRecursos.resx">
       <DependentUpon>201612150008223_AdicionarHerancaParaRecursos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612150324216_Colocar Required no Usuario.resx">
+      <DependentUpon>201612150324216_Colocar Required no Usuario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
