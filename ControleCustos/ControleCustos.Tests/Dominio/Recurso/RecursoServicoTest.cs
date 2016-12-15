@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ControleCustos.Dominio.Recurso;
 using FakeItEasy;
 using ControleCustos.Dominio.Recurso.Interface;
+using ControleCustos.Dominio.Recurso.Classe;
 
 namespace ControleCustos.Tests.Dominio.Recurso
 {
@@ -31,6 +32,31 @@ namespace ControleCustos.Tests.Dominio.Recurso
             servico.Buscar(1);
 
             Assert.IsNull(servico.Buscar(1));
+        }
+
+        [TestMethod]
+        public void SalvarDeveAdicionarRecurso()
+        {
+            IRecursoRepositorio repositorio = A.Fake<IRecursoRepositorio>();
+            RecursoServico servico = new RecursoServico(repositorio);
+
+            var recurso = new RecursoCompartilhado();
+            servico.Salvar(recurso);
+
+            A.CallTo(() => repositorio.Inserir(recurso)).MustHaveHappened();
+        }
+
+        [TestMethod]
+        public void SalvarDeveAtualizarRecurso()
+        {
+            IRecursoRepositorio repositorio = A.Fake<IRecursoRepositorio>();
+            RecursoServico servico = new RecursoServico(repositorio);
+
+            var recurso = new RecursoCompartilhado();
+            recurso.Id = 1;
+            servico.Salvar(recurso);
+
+            A.CallTo(() => repositorio.Atualizar(recurso)).MustHaveHappened();
         }
     }
 }

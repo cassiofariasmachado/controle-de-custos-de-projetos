@@ -56,7 +56,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Dominio\Recurso\Teste\RecursoServicoTest.cs" />
+    <Compile Include="Dominio\Recurso\RecursoServicoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dominio\UsuarioTeste\Mock\UsuarioRepositorioMock.cs" />
     <Compile Include="Dominio\UsuarioTeste\Teste\UsuarioServiceTest.cs" />

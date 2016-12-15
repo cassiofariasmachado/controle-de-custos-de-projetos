@@ -20,5 +20,16 @@ namespace ControleCustos.Dominio.Recurso
         {
             return recursoRepositorio.Buscar(id);
         }
+
+        public void Salvar(Classe.Recurso recurso)
+        {
+            if (recurso.Id == 0)
+            {
+                recursoRepositorio.Inserir(recurso);
+            } else
+            {
+                recursoRepositorio.Atualizar(recurso);
+            }
+        }
     }
 }

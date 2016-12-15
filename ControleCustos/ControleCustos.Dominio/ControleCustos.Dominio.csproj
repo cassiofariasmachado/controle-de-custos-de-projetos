@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="Criptografia\Interface\IServicoDeCriptografia.cs" />
     <Compile Include="Projeto\Enum\SituacaoProjeto.cs" />
+    <Compile Include="Projeto\Interface\IProjetoRepositorio.cs" />
     <Compile Include="Projeto\Projeto.cs" />
+    <Compile Include="Projeto\ProjetoServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recurso\Classe\Servico.cs" />
     <Compile Include="Recurso\Classe\Recurso.cs" />
