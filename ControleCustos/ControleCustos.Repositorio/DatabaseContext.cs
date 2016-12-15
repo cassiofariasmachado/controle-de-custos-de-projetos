@@ -1,4 +1,5 @@
-﻿using ControleCustos.Dominio.Recurso.Classe;
+﻿using ControleCustos.Dominio.Projeto;
+using ControleCustos.Dominio.Recurso.Classe;
 using ControleCustos.Dominio.UsuarioDominio.Classe;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -11,6 +12,7 @@ namespace ControleCustos.Repositorio
 
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Recurso> Recurso { get; set; }
+        public DbSet<Projeto> Projeto { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

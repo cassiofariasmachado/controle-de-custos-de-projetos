@@ -1,6 +1,6 @@
 ﻿namespace ControleCustos.Dominio.Projeto.Enum
 {
-    public enum Situacao
+    public enum SituacaoProjeto
     {
         Novo,
         EmAndamento,

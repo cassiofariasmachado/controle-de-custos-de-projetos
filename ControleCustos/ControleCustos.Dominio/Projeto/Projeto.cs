@@ -30,6 +30,7 @@ namespace ControleCustos.Dominio.Projeto
         [Required]
         public DateTime DataInicio { get; set; }
 
+        [Required]
         public DateTime DataFinalPrevista { get; set; }
 
         public DateTime DataFinalRealizada { get; set; }
@@ -43,7 +44,7 @@ namespace ControleCustos.Dominio.Projeto
         public int NumeroDeProfissionais { get; set; }
 
         [Required]
-        public Situacao Situacao { get; set; }
+        public SituacaoProjeto Situacao { get; set; }
 
         [Required]
         public ICollection<Recurso.Classe.Recurso> Recursos { get; set; }
