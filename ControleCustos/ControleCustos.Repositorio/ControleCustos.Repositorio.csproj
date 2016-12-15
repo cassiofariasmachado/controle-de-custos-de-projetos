@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201612151729330_CorrigirCamposRecursosCompartilhados.Designer.cs">
       <DependentUpon>201612151729330_CorrigirCamposRecursosCompartilhados.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612151901367_ModificarFaturamentoParaDecimal.cs" />
+    <Compile Include="Migrations\201612151901367_ModificarFaturamentoParaDecimal.Designer.cs">
+      <DependentUpon>201612151901367_ModificarFaturamentoParaDecimal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProjetoRepositorio\ProjetoRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612151729330_CorrigirCamposRecursosCompartilhados.resx">
       <DependentUpon>201612151729330_CorrigirCamposRecursosCompartilhados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612151901367_ModificarFaturamentoParaDecimal.resx">
+      <DependentUpon>201612151901367_ModificarFaturamentoParaDecimal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
