@@ -27,5 +27,10 @@ namespace ControleCustos.Dominio
 
             return null;
         }
+
+        public Usuario BuscarPorEmail(string email)
+        {
+            return this.usuarioRepositorio.BuscarPorEmail(email);
+        }
     }
 }

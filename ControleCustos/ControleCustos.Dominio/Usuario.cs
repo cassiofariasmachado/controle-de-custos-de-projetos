@@ -15,5 +15,16 @@ namespace ControleCustos.Dominio
         public string Senha { get; set; }
         [Required]
         public Permissao Permissao { get; set; }
+
+        public Usuario()
+        {
+
+        }
+
+        public Usuario(long id, string email)
+        {
+            this.Id = id;
+            this.Email = email;
+        }
     }
 }

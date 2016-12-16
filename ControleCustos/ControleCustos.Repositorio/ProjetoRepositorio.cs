@@ -20,6 +20,10 @@ namespace ControleCustos.Repositorio
             using (var context = new DatabaseContext())
             {
                 context.Entry<Projeto>(projeto).State = EntityState.Added;
+                if (projeto.Gerente != null)
+                {
+                    context.Entry<Usuario>(projeto.Gerente).State = EntityState.Unchanged;
+                }
                 context.SaveChanges();
             }
         }
