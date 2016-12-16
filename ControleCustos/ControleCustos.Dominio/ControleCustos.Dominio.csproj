@@ -50,6 +50,7 @@
     <Compile Include="Interface\IProjetoRepositorio.cs" />
     <Compile Include="Interface\IServicoDeConfiguracao.cs" />
     <Compile Include="Projeto.cs" />
+    <Compile Include="ProjetoException.cs" />
     <Compile Include="ProjetoServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servico.cs" />

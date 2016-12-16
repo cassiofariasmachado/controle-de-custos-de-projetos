@@ -8,22 +8,24 @@ namespace ControleCustos.Models
 {
     public class ProjetoModel
     {
-         
+
         public int? Id { get; set; }
 
         [Required]
         [DisplayName("Nome do projeto")]
-        [StringLength(20, MinimumLength = 1, ErrorMessage = "O nome deve possuir até 30 caracteres")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "O nome deve possuir entre 5 e 50 caracteres")]
         public string Nome { get; set; }
 
         public Usuario Gerente { get; set; }
 
         [Required]
         [DisplayName("Cliente")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "O nome do cliente deve possuir entre 3 e 50 caracteres")]
         public string Cliente { get; set; }
 
         [Required]
         [DisplayName("Principal tecnologia")]
+        [StringLength(50, ErrorMessage = "A tecnologia deve possuir menos de 50 caracteres")]
         public string Tecnologia { get; set; }
 
         [Required]
@@ -43,6 +45,7 @@ namespace ControleCustos.Models
 
         [Required]
         [DisplayName("Número de profissionais")]
+        [Range(1, int.MaxValue, ErrorMessage = "Número de profissionais deve ser maior do que zero")]
         public int NumeroProfissionais { get; set; }
 
         [Required]
@@ -56,7 +59,7 @@ namespace ControleCustos.Models
 
         public ProjetoModel(Projeto projeto)
         {
-            this.Id = 0;
+            this.Id = projeto.Id;
             this.Nome = projeto.Nome;
             this.Gerente = projeto.Gerente;
             this.Cliente = projeto.Cliente;
