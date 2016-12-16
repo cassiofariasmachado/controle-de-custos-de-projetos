@@ -7,6 +7,10 @@ namespace ControleCustos.Controllers
 {
     public class LoginController : Controller
     {
+        /// colocar salt no login
+        /// 
+        /// 
+        /// 
 
         [HttpGet]
         public ActionResult Login()
