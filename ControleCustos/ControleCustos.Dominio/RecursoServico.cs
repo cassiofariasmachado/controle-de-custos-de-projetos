@@ -1,5 +1,6 @@
 ﻿using ControleCustos.Dominio.Configuracao;
 using ControleCustos.Dominio.Interface;
+using System;
 using System.Collections.Generic;
 
 namespace ControleCustos.Dominio
@@ -20,7 +21,7 @@ namespace ControleCustos.Dominio
             return recursoRepositorio.Buscar(id);
         }
 
-        public IList<Recurso> BuscaPaginada(Recurso tipo, int pagina)
+        public IList<Recurso> BuscaPaginada(Type tipo, int pagina)
         {
             int quantidadeDeRecursosPorPagina = this.servicoDeConfiguracao.QuantidadeDeRecursosPorPagina;
 

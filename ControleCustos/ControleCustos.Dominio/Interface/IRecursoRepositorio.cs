@@ -1,4 +1,5 @@
 ﻿using ControleCustos.Dominio.Configuracao;
+using System;
 using System.Collections.Generic;
 
 namespace ControleCustos.Dominio.Interface
@@ -8,6 +9,6 @@ namespace ControleCustos.Dominio.Interface
         Recurso Buscar(int id);
         void Inserir(Recurso recurso);
         void Atualizar(Recurso recurso);
-        IList<Recurso> BuscaPaginada(Recurso tipo, Paginacao paginacao);
+        IList<Recurso> BuscaPaginada(Type tipo, Paginacao paginacao);
     }
 }

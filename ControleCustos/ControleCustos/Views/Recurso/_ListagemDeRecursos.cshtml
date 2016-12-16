@@ -1,0 +1,33 @@
+﻿@model ControleCustos.Models.RecursoListagemViewModel
+@using ControleCustos.Models
+
+@{
+    string ultimaPaginaAttr = Model.UltimaPagina ? "true" : "";
+}
+
+<table class="table table-striped" data-ultima-pagina="@ultimaPaginaAttr" id="@Model.GridId">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Id</th>
+            <th>Nome</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (RecursoParaListaViewModel recurso in Model.Recursos)
+            {
+                <tr>
+                    <td>
+                            @*<a href="/ItemMagico/Editar?id=1">Editar</a>*@
+                            @Html.ActionLink("Editar", "Editar", "ItemMagico", new { id = recurso.Id }, null)
+
+                        <button onclick="itemMagicoIndex.excluir(@recurso.Id)">Excluir</button>
+                    </td>
+                    <td>@recurso.Id</td>
+                    <td>@recurso.Nome</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

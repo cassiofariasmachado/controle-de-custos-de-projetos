@@ -159,11 +159,14 @@
     <Compile Include="Controllers\ProjetoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RecursoController.cs" />
     <Compile Include="Filtro\Autorizador.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ProjetoModel.cs" />
+    <Compile Include="Models\RecursoListagemViewModel.cs" />
+    <Compile Include="Models\RecursoParaListaViewModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicos\ServicoDeAutenticacao.cs" />
@@ -209,6 +212,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Recurso\_ListagemDeRecursos.cshtml" />
+    <Content Include="Views\Recurso\Recurso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
