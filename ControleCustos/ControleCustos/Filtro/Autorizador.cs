@@ -2,7 +2,6 @@
 using ControleCustos.Models;
 using ControleCustos.Servicos;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,12 +16,34 @@ namespace ControleCustos.Filtro
 
             if (usuario == null) return false;
 
-            if(usuario.Permissao == Permissao.Administrador)
+            string[] permissoesRequidas = this.Roles.Split(',')
+                                        .Where(p => !String.IsNullOrEmpty(p))
+                                        .ToArray();
+
+            foreach (string permissao in permissoesRequidas)
             {
-                return true;
+                if (this.TransformaPermissaoParaString(usuario.Permissao).Equals(permissao))
+                {
+                    return true;
+                }
             }
 
             return false;
+        }
+
+        private string TransformaPermissaoParaString(Permissao permissao)
+        {
+            string retorno = null;
+            switch (permissao)
+            {
+                case Permissao.Administrador:
+                    retorno = "Administrador";
+                    break;
+                case Permissao.Gerente:
+                    retorno = "Gerente";
+                    break;
+            }
+            return retorno;
         }
     }
 }
