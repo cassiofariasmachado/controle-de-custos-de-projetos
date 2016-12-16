@@ -1,15 +1,14 @@
-﻿using ControleCustos.Dominio.Criptografia.Interface;
+﻿using ControleCustos.Dominio;
+using ControleCustos.Dominio.Criptografia.Interface;
 using ControleCustos.Dominio.UsuarioDominio.Classe;
 using ControleCustos.Infraestrutura;
-using ControleCustos.Tests.UsuarioTeste.Mock;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ControleCustos.Tests.UsuarioTeste.Teste
+namespace ControleCustos.Tests.Dominio
 {
     [TestClass]
     public class UsuarioServiceTest
     {
-
         private IServicoDeCriptografia servicoDeCriptografia = new ServicoDeCriptografia();
         private UsuarioRepositorioMock usuarioMock = new UsuarioRepositorioMock();
 

@@ -1,7 +1,7 @@
-﻿using ControleCustos.Dominio.UsuarioDominio.Interface;
-using ControleCustos.Dominio.UsuarioDominio.Classe;
+﻿using ControleCustos.Dominio.Interface;
+using ControleCustos.Dominio;
 
-namespace ControleCustos.Tests.UsuarioTeste.Mock
+namespace ControleCustos.Tests.Dominio
 {
     public class UsuarioRepositorioMock : IUsuarioRepositorio
     {
