@@ -2,6 +2,9 @@
 using System.Data.Entity;
 using ControleCustos.Dominio;
 using ControleCustos.Dominio.Interface;
+using System.Linq;
+using System.Collections.Generic;
+using ControleCustos.Dominio.Configuracao;
 
 namespace ControleCustos.Repositorio
 {
@@ -12,6 +15,14 @@ namespace ControleCustos.Repositorio
             using (var context = new DatabaseContext())
             {
                 return context.Recurso.Find(id);
+            }
+        }
+        public IList<Recurso> BuscaPaginada(Recurso tipo, Paginacao paginacao)
+        {
+            using (var context = new DatabaseContext())
+            {
+                IQueryable<Recurso> query = context.Recurso.Where(r => r.GetType().Equals(tipo.GetType())).Skip((paginacao.PaginaDesejada - 1) * paginacao.QuantidadeDeRecursosPorPagina).Take(paginacao.QuantidadeDeRecursosPorPagina); ;
+                return query.ToList();
             }
         }
 
