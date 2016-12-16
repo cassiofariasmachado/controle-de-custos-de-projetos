@@ -17,11 +17,11 @@ namespace ControleCustos.Repositorio
                 return context.Recurso.Find(id);
             }
         }
-        public IList<Recurso> BuscaPaginada(Recurso tipo, Paginacao paginacao)
+        public IList<Recurso> BuscaPaginada(Type tipo, Paginacao paginacao)
         {
             using (var context = new DatabaseContext())
             {
-                IQueryable<Recurso> query = context.Recurso.Where(r => r.GetType().Equals(tipo.GetType())).Skip((paginacao.PaginaDesejada - 1) * paginacao.QuantidadeDeRecursosPorPagina).Take(paginacao.QuantidadeDeRecursosPorPagina); ;
+                IQueryable<Recurso> query = context.Recurso.Where(r => r.GetType().Equals(tipo)).Skip((paginacao.PaginaDesejada - 1) * paginacao.QuantidadeDeRecursosPorPagina).Take(paginacao.QuantidadeDeRecursosPorPagina); ;
                 return query.ToList();
             }
         }
