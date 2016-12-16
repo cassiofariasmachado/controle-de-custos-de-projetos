@@ -35,11 +35,12 @@ namespace ControleCustos.Dominio
 
         }
 
-        public Projeto(int id, string nome, string cliente, string tecnologia, DateTime dataInicio,
+        public Projeto(int id, string nome, Usuario gerente, string cliente, string tecnologia, DateTime dataInicio,
                                     DateTime dataFinalPrevista, decimal faturamentoPrevisto, int numeroProfissionais, SituacaoProjeto situacao)
         {
             this.Id = id;
             this.Nome = nome;
+            this.Gerente = gerente;
             this.Cliente = cliente;
             this.Tecnologia = tecnologia;
             this.DataInicio = dataInicio;
@@ -49,13 +50,14 @@ namespace ControleCustos.Dominio
             this.Situacao = situacao;
         }
 
-        public Projeto(int id, string nome, string cliente, string tecnologia, DateTime dataInicio,
+        public Projeto(int id, string nome, Usuario gerente, string cliente, string tecnologia, DateTime dataInicio,
                                     DateTime dataFinalPrevista, DateTime dataFinalRealizada,
                                     decimal faturamentoPrevisto, decimal faturamentoRealizado,
                                     int numeroProfissionais, SituacaoProjeto situacao)
         {
             this.Id = id;
             this.Nome = nome;
+            this.Gerente = gerente;
             this.Cliente = cliente;
             this.Tecnologia = tecnologia;
             this.DataInicio = dataInicio;

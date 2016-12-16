@@ -17,16 +17,14 @@ namespace ControleCustos.Servicos
             return usuarioServico;
         }
 
-        public static RecursoServico MontarRecursoServico()
+        public static IProjetoRepositorio MontarProjetoRepositorio()
         {
-            return new RecursoServico(new RecursoRepositorio(), CriarServicoDeConfiguracao());
+            return new ProjetoRepositorio();
         }
 
-        public static ProjetoServico MontarProjetoServico()
+        public static IRecursoRepositorio MontarRecursoRepositorio()
         {
-            ProjetoServico projetoServico =
-                new ProjetoServico(new ProjetoRepositorio());
-            return projetoServico;
+            return new RecursoRepositorio();
         }
 
         public static IServicoDeConfiguracao CriarServicoDeConfiguracao()

@@ -84,6 +84,10 @@
     <Compile Include="Migrations\201612160238345_AdicionarControleRecurso.Designer.cs">
       <DependentUpon>201612160238345_AdicionarControleRecurso.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612161935570_RefatorarEntidades.cs" />
+    <Compile Include="Migrations\201612161935570_RefatorarEntidades.Designer.cs">
+      <DependentUpon>201612161935570_RefatorarEntidades.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProjetoRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -123,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612160238345_AdicionarControleRecurso.resx">
       <DependentUpon>201612160238345_AdicionarControleRecurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612161935570_RefatorarEntidades.resx">
+      <DependentUpon>201612161935570_RefatorarEntidades.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

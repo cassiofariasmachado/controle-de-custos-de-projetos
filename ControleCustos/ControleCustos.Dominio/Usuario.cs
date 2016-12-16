@@ -1,30 +1,31 @@
 ﻿using ControleCustos.Dominio.Enum;
-using System.ComponentModel.DataAnnotations;
 
 namespace ControleCustos.Dominio
 {
     public class Usuario
     {
-        [Required]
-        public long Id { get; set; }
-        [Required]
-        public string Nome { get; set; }
-        [Required]
-        public string Email { get; set; }
-        [Required]
-        public string Senha { get; set; }
-        [Required]
-        public Permissao Permissao { get; set; }
+        public long Id { get; private set; }
+
+        public string Nome { get; private set; }
+
+        public string Email { get; private set; }
+
+        public string Senha { get; private set; }
+
+        public Permissao Permissao { get; private set; }
 
         public Usuario()
         {
 
         }
 
-        public Usuario(long id, string email)
+        public Usuario(long id, string nome, string email, string senha, Permissao permissao)
         {
             this.Id = id;
+            this.Nome = nome;
             this.Email = email;
+            this.Senha = senha;
+            this.Permissao = permissao;
         }
     }
 }

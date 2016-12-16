@@ -13,12 +13,12 @@ namespace ControleCustos.Controllers
     public class RecursoController : Controller
     {
 
-        private RecursoServico recursoServico;
+        private IRecursoRepositorio recursoRepositorio;
         private IServicoDeConfiguracao servicoDeConfiguracao;
 
         public RecursoController()
         {
-            this.recursoServico = ServicoDeDependencias.MontarRecursoServico();
+            this.recursoRepositorio = ServicoDeDependencias.MontarRecursoRepositorio();
             this.servicoDeConfiguracao = ServicoDeDependencias.CriarServicoDeConfiguracao();
         }
 
@@ -29,10 +29,10 @@ namespace ControleCustos.Controllers
 
         public PartialViewResult CarregarListaDeRecursos(int pagina)
         {
-            IList<Recurso> todosOsItens = this.recursoServico.BuscaPaginada(new RecursoCompartilhado().GetType(), pagina);
-            RecursoListagemViewModel model = CriarRecursoListagemViewModel(todosOsItens, pagina);
+            // IList<Recurso> todosOsItens = this.recursoRepositorio.BuscaPaginada(new Compartilhado().GetType(), pagina);
+            //RecursoListagemViewModel model = CriarRecursoListagemViewModel(todosOsItens, pagina);
 
-            return PartialView("_ListagemDeRecursos", model);
+            return null;//PartialView("_ListagemDeRecursos", model);
         }
 
         private RecursoListagemViewModel CriarRecursoListagemViewModel(IList<Recurso> recursos, int? pagina = null)

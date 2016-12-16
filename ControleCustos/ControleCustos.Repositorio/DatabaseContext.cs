@@ -17,8 +17,8 @@ namespace ControleCustos.Repositorio
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            modelBuilder.Entity<RecursoCompartilhado>().ToTable("RecursoCompartilhado");
-            modelBuilder.Entity<RecursoVinculadoProfissional>().ToTable("RecursoVinculadoProfissional");
+            modelBuilder.Entity<Compartilhado>().ToTable("RecursoCompartilhado");
+            modelBuilder.Entity<Patrimonio>().ToTable("RecursoVinculadoProfissional");
             modelBuilder.Entity<Servico>().ToTable("Servico");
             base.OnModelCreating(modelBuilder);
         }
