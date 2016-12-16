@@ -71,6 +71,10 @@
       <Project>{fbe720cd-5e8e-469b-8388-80712eaec832}</Project>
       <Name>ControleCustos.Infraestrutura</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ControleCustos\ControleCustos.Web.csproj">
+      <Project>{C23FA406-9054-4C35-B178-955597EDA563}</Project>
+      <Name>ControleCustos.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -2,6 +2,7 @@
 using FakeItEasy;
 using ControleCustos.Dominio.Interface;
 using ControleCustos.Dominio;
+using ControleCustos.Servicos;
 
 namespace ControleCustos.Tests.Dominio
 {
@@ -12,7 +13,7 @@ namespace ControleCustos.Tests.Dominio
         public void BuscarDeveChamarBuscarDoRepositorio()
         {
             IRecursoRepositorio repositorio = A.Fake<IRecursoRepositorio>();
-            RecursoServico servico = new RecursoServico(repositorio);
+            RecursoServico servico = new RecursoServico(repositorio, new ServicoDeConfiguracao());
 
             servico.Buscar(1);
 
@@ -23,7 +24,7 @@ namespace ControleCustos.Tests.Dominio
         public void BuscarDeveRetornarNullQuandoNaoEncontrar()
         {
             IRecursoRepositorio repositorio = A.Fake<IRecursoRepositorio>();
-            RecursoServico servico = new RecursoServico(repositorio);
+            RecursoServico servico = new RecursoServico(repositorio, new ServicoDeConfiguracao());
 
             A.CallTo(() => repositorio.Buscar(1)).Returns(null);
 
@@ -36,7 +37,7 @@ namespace ControleCustos.Tests.Dominio
         public void SalvarDeveAdicionarRecurso()
         {
             IRecursoRepositorio repositorio = A.Fake<IRecursoRepositorio>();
-            RecursoServico servico = new RecursoServico(repositorio);
+            RecursoServico servico = new RecursoServico(repositorio, new ServicoDeConfiguracao());
 
             var recurso = new RecursoCompartilhado();
             servico.Salvar(recurso);
@@ -48,7 +49,7 @@ namespace ControleCustos.Tests.Dominio
         public void SalvarDeveAtualizarRecurso()
         {
             IRecursoRepositorio repositorio = A.Fake<IRecursoRepositorio>();
-            RecursoServico servico = new RecursoServico(repositorio);
+            RecursoServico servico = new RecursoServico(repositorio, new ServicoDeConfiguracao());
 
             var recurso = new RecursoCompartilhado();
             recurso.Id = 1;
