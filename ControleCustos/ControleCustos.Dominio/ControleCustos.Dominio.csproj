@@ -41,12 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuracao\Paginacao.cs" />
     <Compile Include="ControleRecurso.cs" />
     <Compile Include="ControleRecursoServico.cs" />
     <Compile Include="Criptografia\Interface\IServicoDeCriptografia.cs" />
     <Compile Include="Enum\SituacaoProjeto.cs" />
     <Compile Include="Interface\IControleRecursoRepositorio.cs" />
     <Compile Include="Interface\IProjetoRepositorio.cs" />
+    <Compile Include="Interface\IServicoDeConfiguracao.cs" />
     <Compile Include="Projeto.cs" />
     <Compile Include="ProjetoServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
