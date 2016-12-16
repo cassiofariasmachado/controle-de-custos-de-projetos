@@ -23,6 +23,9 @@ namespace ControleCustos
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/listagemRecursos").Include(
+            "~/Scripts/app/listagemRecursos.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/site.css"));
