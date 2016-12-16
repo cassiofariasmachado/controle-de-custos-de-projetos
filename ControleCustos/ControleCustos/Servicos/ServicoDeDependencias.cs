@@ -1,5 +1,7 @@
-﻿using ControleCustos.Dominio.UsuarioDominio.Classe;
+﻿using ControleCustos.Dominio;
+using ControleCustos.Dominio.UsuarioDominio.Classe;
 using ControleCustos.Infraestrutura;
+using ControleCustos.Repositorio.ProjetoRepositorio;
 using ControleCustos.Repositorio.UsuarioRepositorio;
 
 namespace ControleCustos.Servicos
@@ -14,6 +16,13 @@ namespace ControleCustos.Servicos
                     new ServicoDeCriptografia());
 
             return usuarioServico;
+        }
+
+        public static ProjetoServico MontarProjetoServico()
+        {
+            ProjetoServico projetoServico =
+                new ProjetoServico(new ProjetoRepositorio());
+            return projetoServico;
         }
     }
 }
