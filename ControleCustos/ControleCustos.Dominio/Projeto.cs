@@ -6,44 +6,53 @@ namespace ControleCustos.Dominio
 {
     public class Projeto
     {
-        [Required]
-        public int Id { get; set; }
+        public int Id { get; private set; }
 
-        [Required]
-        public string Nome { get; set; }
+        public string Nome { get; private set; }
 
-        [Required]
-        public Usuario Gerente { get; set; }
+        public Usuario Gerente { get; private set; }
 
-        [Required]
-        public string Cliente { get; set; }
+        public string Cliente { get; private set; }
 
-        [Required]
-        public string Tecnologia { get; set; }
+        public string Tecnologia { get; private set; }
 
-        [Required]
-        public DateTime DataInicio { get; set; }
+        public DateTime DataInicio { get; private set; }
 
-        [Required]
-        public DateTime DataFinalPrevista { get; set; }
+        public DateTime DataFinalPrevista { get; private set; }
 
-        public DateTime? DataFinalRealizada { get; set; }
+        public DateTime? DataFinalRealizada { get; private set; }
 
-        [Required]
-        public decimal FaturamentoPrevisto { get; set; }
+        public decimal FaturamentoPrevisto { get; private set; }
 
-        public decimal FaturamentoRealizado { get; set; }
+        public decimal? FaturamentoRealizado { get; private set; }
 
-        [Required]
-        public int NumeroDeProfissionais { get; set; }
+        public int NumeroDeProfissionais { get; private set; }
 
-        [Required]
-        public SituacaoProjeto Situacao { get; set; }
+        public SituacaoProjeto Situacao { get; private set; }
 
-        public Projeto() { }
+        public Projeto()
+        {
+
+        }
 
         public Projeto(int id, string nome, string cliente, string tecnologia, DateTime dataInicio,
-                                    DateTime dataFinalPrevista, DateTime dataFinalRealizada, decimal faturamentoPrevisto, int numeroProfissionais, SituacaoProjeto situacao)
+                                    DateTime dataFinalPrevista, decimal faturamentoPrevisto, int numeroProfissionais, SituacaoProjeto situacao)
+        {
+            this.Id = id;
+            this.Nome = nome;
+            this.Cliente = cliente;
+            this.Tecnologia = tecnologia;
+            this.DataInicio = dataInicio;
+            this.DataFinalPrevista = dataFinalPrevista;
+            this.FaturamentoPrevisto = faturamentoPrevisto;
+            this.NumeroDeProfissionais = numeroProfissionais;
+            this.Situacao = situacao;
+        }
+
+        public Projeto(int id, string nome, string cliente, string tecnologia, DateTime dataInicio,
+                                    DateTime dataFinalPrevista, DateTime dataFinalRealizada,
+                                    decimal faturamentoPrevisto, decimal faturamentoRealizado,
+                                    int numeroProfissionais, SituacaoProjeto situacao)
         {
             this.Id = id;
             this.Nome = nome;
@@ -53,6 +62,7 @@ namespace ControleCustos.Dominio
             this.DataFinalPrevista = dataFinalPrevista;
             this.DataFinalRealizada = dataFinalRealizada;
             this.FaturamentoPrevisto = faturamentoPrevisto;
+            this.FaturamentoRealizado = faturamentoRealizado;
             this.NumeroDeProfissionais = numeroProfissionais;
             this.Situacao = situacao;
         }
