@@ -19,9 +19,8 @@ namespace ControleCustos.Repositorio
         {
             using (var context = new DatabaseContext())
             {
-                IQueryable<Recurso> query = from b in context.Recurso.OfType<Recurso>()
-                                                select b;
-                return query.ToList();
+                IQueryable<Recurso> query = from b in context.Recurso.OfType<Recurso>() select b;
+                return query.Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
             }
         }
 
