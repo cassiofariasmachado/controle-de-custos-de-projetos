@@ -29,12 +29,12 @@ namespace ControleCustos.Dominio
         [Required]
         public DateTime DataFinalPrevista { get; set; }
 
-        public DateTime DataFinalRealizada { get; set; }
+        public DateTime? DataFinalRealizada { get; set; }
 
         [Required]
-        public double FaturamentoPrevisto { get; set; }
+        public decimal FaturamentoPrevisto { get; set; }
 
-        public double FaturamentoRealizado { get; set; }
+        public decimal FaturamentoRealizado { get; set; }
 
         [Required]
         public int NumeroDeProfissionais { get; set; }
@@ -42,11 +42,26 @@ namespace ControleCustos.Dominio
         [Required]
         public SituacaoProjeto Situacao { get; set; }
 
-        [Required]
         public ICollection<Recurso> Recursos { get; set; }
 
         public Projeto ()
         {
+            this.Recursos = new List<Recurso>();
+        }
+
+        public Projeto(int id, string nome, string cliente, string tecnologia, DateTime dataInicio,
+                                    DateTime dataFinalPrevista, DateTime dataFinalRealizada, decimal faturamentoPrevisto, int numeroProfissionais, SituacaoProjeto situacao)
+        {
+            this.Id = id;
+            this.Nome = nome;
+            this.Cliente = cliente;
+            this.Tecnologia = tecnologia;
+            this.DataInicio = dataInicio;
+            this.DataFinalPrevista = dataFinalPrevista;
+            this.DataFinalRealizada = dataFinalRealizada;
+            this.FaturamentoPrevisto = faturamentoPrevisto;
+            this.NumeroDeProfissionais = numeroProfissionais;
+            this.Situacao = situacao;
             this.Recursos = new List<Recurso>();
         }
     }

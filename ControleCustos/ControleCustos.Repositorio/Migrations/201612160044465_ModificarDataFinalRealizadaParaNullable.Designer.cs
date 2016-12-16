@@ -7,13 +7,13 @@ namespace ControleCustos.Repositorio.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ModificarFaturamentoParaDecimal : IMigrationMetadata
+    public sealed partial class ModificarDataFinalRealizadaParaNullable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ModificarFaturamentoParaDecimal));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ModificarDataFinalRealizadaParaNullable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201612151901367_ModificarFaturamentoParaDecimal"; }
+            get { return "201612160044465_ModificarDataFinalRealizadaParaNullable"; }
         }
         
         string IMigrationMetadata.Source

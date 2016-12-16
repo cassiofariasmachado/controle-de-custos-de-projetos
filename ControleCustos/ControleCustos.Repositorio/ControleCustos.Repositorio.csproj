@@ -71,9 +71,13 @@
     <Compile Include="Migrations\201612151729330_CorrigirCamposRecursosCompartilhados.Designer.cs">
       <DependentUpon>201612151729330_CorrigirCamposRecursosCompartilhados.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612151901367_ModificarFaturamentoParaDecimal.cs" />
-    <Compile Include="Migrations\201612151901367_ModificarFaturamentoParaDecimal.Designer.cs">
-      <DependentUpon>201612151901367_ModificarFaturamentoParaDecimal.cs</DependentUpon>
+    <Compile Include="Migrations\201612152301483_ModificarFaturamentoParaDecimal.cs" />
+    <Compile Include="Migrations\201612152301483_ModificarFaturamentoParaDecimal.Designer.cs">
+      <DependentUpon>201612152301483_ModificarFaturamentoParaDecimal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612160044465_ModificarDataFinalRealizadaParaNullable.cs" />
+    <Compile Include="Migrations\201612160044465_ModificarDataFinalRealizadaParaNullable.Designer.cs">
+      <DependentUpon>201612160044465_ModificarDataFinalRealizadaParaNullable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProjetoRepositorio\ProjetoRepositorio.cs" />
@@ -106,8 +110,11 @@
     <EmbeddedResource Include="Migrations\201612151729330_CorrigirCamposRecursosCompartilhados.resx">
       <DependentUpon>201612151729330_CorrigirCamposRecursosCompartilhados.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612151901367_ModificarFaturamentoParaDecimal.resx">
-      <DependentUpon>201612151901367_ModificarFaturamentoParaDecimal.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612152301483_ModificarFaturamentoParaDecimal.resx">
+      <DependentUpon>201612152301483_ModificarFaturamentoParaDecimal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612160044465_ModificarDataFinalRealizadaParaNullable.resx">
+      <DependentUpon>201612160044465_ModificarDataFinalRealizadaParaNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
