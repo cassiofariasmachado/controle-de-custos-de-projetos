@@ -2,16 +2,12 @@
 using ControleCustos.Models;
 using ControleCustos.Servicos;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace ControleCustos.Controllers
 {
-    public class LoginController : Controller
+    public class AcessoController : Controller
     {
-        /// colocar salt no login
-        /// 
-        /// 
-        /// 
-
         [HttpGet]
         public ActionResult Login()
         {
@@ -31,10 +27,18 @@ namespace ControleCustos.Controllers
                 if (usuarioLogin != null)
                 {
                     ServicoDeAutenticacao.Autenticar(new UsuarioModel(usuarioLogin.Email, usuarioLogin.Permissao));
-                    return RedirectToAction("Index");
+                    return RedirectToAction("ProjetoLista");
                 }
             }
             ViewBag.MensagemErro = "Login ou senha inválidos.";
+            return View("Login");
+        }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon(); 
             return View("Login");
         }
     }
