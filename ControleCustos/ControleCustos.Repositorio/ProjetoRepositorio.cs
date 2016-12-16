@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using ControleCustos.Dominio;
 using ControleCustos.Dominio.Interface;
+using System.Collections;
 
 namespace ControleCustos.Repositorio
 {
