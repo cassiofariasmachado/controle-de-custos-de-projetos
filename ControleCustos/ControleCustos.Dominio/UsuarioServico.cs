@@ -18,7 +18,7 @@ namespace ControleCustos.Dominio
         {
             Usuario usuarioEncontrado = this.usuarioRepositorio.BuscarPorEmail(email);
 
-            string senhaCriptografada = this.servicoDeCriptografia.Criptografar(senha);
+            string senhaCriptografada = this.servicoDeCriptografia.Criptografar($"$_${senha}$_$");
 
             if (usuarioEncontrado != null && usuarioEncontrado.Senha.Equals(senhaCriptografada))
             {
