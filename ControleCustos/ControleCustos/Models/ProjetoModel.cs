@@ -1,4 +1,5 @@
-﻿using ControleCustos.Dominio.Enum;
+﻿using ControleCustos.Dominio;
+using ControleCustos.Dominio.Enum;
 using ControleCustos.Dominio.UsuarioDominio.Classe;
 using System;
 using System.ComponentModel;
@@ -8,10 +9,7 @@ namespace ControleCustos.Models
 {
     public class ProjetoModel
     {
-        public ProjetoModel()
-        {
-
-        }
+         
         public int? Id { get; set; }
 
         [Required]
@@ -37,6 +35,9 @@ namespace ControleCustos.Models
         [DisplayName("Data final prevista")]
         public DateTime DataFinalPrevista { get; set; }
 
+        [DisplayName("Data final realizada")]
+        public DateTime? DataFinalRealizada { get; set; }
+
         [Required]
         [DisplayName("Faturamento previsto")]
         public decimal FaturamentoPrevisto { get; set; }
@@ -48,5 +49,25 @@ namespace ControleCustos.Models
         [Required]
         [DisplayName("Situação")]
         public SituacaoProjeto Situacao { get; set; }
+
+        public ProjetoModel()
+        {
+
+        }
+
+        public ProjetoModel(Projeto projeto)
+        {
+            this.Id = 0;
+            this.Nome = projeto.Nome;
+            this.Gerente = projeto.Gerente;
+            this.Cliente = projeto.Cliente;
+            this.Tecnologia = projeto.Tecnologia;
+            this.DataInicio = projeto.DataInicio;
+            this.DataFinalPrevista = projeto.DataFinalPrevista;
+            this.DataFinalRealizada = projeto.DataFinalRealizada;
+            this.FaturamentoPrevisto = projeto.FaturamentoPrevisto;
+            this.NumeroProfissionais = projeto.NumeroDeProfissionais;
+            this.Situacao = projeto.Situacao;
+        }
     }
 }
