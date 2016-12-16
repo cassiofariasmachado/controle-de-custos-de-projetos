@@ -9,19 +9,14 @@ namespace ControleCustos.Dominio
 {
     public class ControleRecurso
     {
-        [Required]
         public int Id { get; set; }
 
-        [Required]
-        public Projeto Projeto { get; set; }
+        public Projeto Projeto { get; private set; }
 
-        [Required]
-        public Recurso Recurso { get; set; }
+        public Recurso Recurso { get; private set; }
 
-        [Required]
-        public DateTime DataInicio { get; set; }
+        public DateTime DataInicio { get; private set; }
 
-        [Required]
-        public DateTime DataFim { get; set; }
+        public DateTime DataFim { get; private set; }
     }
 }

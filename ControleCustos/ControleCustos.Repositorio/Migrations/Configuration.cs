@@ -31,7 +31,7 @@ namespace ControleCustos.Repositorio.Migrations
 
         private void popularRecursos(ControleCustos.Repositorio.DatabaseContext context)
         {
-            context.Recurso.AddOrUpdate(new RecursoVinculadoProfissional { Nome = "VM Interna", TipoRecurso = TipoRecurso.Fisico, Modelo = "VM", Marca = "VM", DataCompra = new DateTime(2016, 12, 15), Situacao = SituacaoRecurso.Disponivel, TempoDeVidaUtil = 10, ValorCompra = 600, ValorMensal = 100 });
+            context.Recurso.AddOrUpdate(new Patrimonio { Nome = "VM Interna", TipoRecurso = TipoRecurso.Fisico, Modelo = "VM", Marca = "VM", DataCompra = new DateTime(2016, 12, 15), Situacao = SituacaoRecurso.Disponivel, TempoDeVidaUtil = 10, ValorCompra = 600, ValorMensal = 100 });
         }
     }
 }

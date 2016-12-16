@@ -29,7 +29,7 @@ namespace ControleCustos.Controllers
 
         public PartialViewResult CarregarListaDeRecursos(int pagina)
         {
-            IList<Recurso> todosOsItens = this.recursoServico.BuscaPaginada(new RecursoCompartilhado().GetType(), pagina);
+            IList<Recurso> todosOsItens = this.recursoServico.BuscaPaginada(new Compartilhado().GetType(), pagina);
             RecursoListagemViewModel model = CriarRecursoListagemViewModel(todosOsItens, pagina);
 
             return PartialView("_ListagemDeRecursos", model);
