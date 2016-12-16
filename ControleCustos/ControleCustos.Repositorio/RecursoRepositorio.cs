@@ -1,10 +1,8 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using ControleCustos.Dominio;
 using ControleCustos.Dominio.Interface;
 using System.Linq;
 using System.Collections.Generic;
-using ControleCustos.Dominio.Configuracao;
 
 namespace ControleCustos.Repositorio
 {
@@ -17,11 +15,12 @@ namespace ControleCustos.Repositorio
                 return context.Recurso.Find(id);
             }
         }
-        public IList<Recurso> BuscaPaginada(Type tipo, Paginacao paginacao)
+        public IList<Recurso> BuscaPaginada(Recurso tipo, int pagina, int quantidade)
         {
             using (var context = new DatabaseContext())
             {
-                IQueryable<Recurso> query = context.Recurso.Where(r => r.GetType().Equals(tipo)).Skip((paginacao.PaginaDesejada - 1) * paginacao.QuantidadeDeRecursosPorPagina).Take(paginacao.QuantidadeDeRecursosPorPagina); ;
+                IQueryable<Recurso> query = from b in context.Recurso.OfType<Recurso>()
+                                                select b;
                 return query.ToList();
             }
         }
