@@ -3,7 +3,7 @@ using System.Data.Entity;
 using ControleCustos.Dominio;
 using ControleCustos.Dominio.Interface;
 
-namespace ControleCustos.Repositorio.RecursoRepositorio
+namespace ControleCustos.Repositorio
 {
     public class RecursoRepositorio : IRecursoRepositorio
     {

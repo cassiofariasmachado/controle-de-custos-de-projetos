@@ -1,8 +1,8 @@
-﻿using ControleCustos.Dominio.UsuarioDominio.Interface;
+﻿using ControleCustos.Dominio;
+using ControleCustos.Dominio.Interface;
 using System.Linq;
-using ControleCustos.Dominio.UsuarioDominio.Classe;
 
-namespace ControleCustos.Repositorio.UsuarioRepositorio
+namespace ControleCustos.Repositorio
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {

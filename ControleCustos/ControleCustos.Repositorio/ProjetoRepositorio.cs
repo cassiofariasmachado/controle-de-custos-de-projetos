@@ -2,7 +2,7 @@
 using ControleCustos.Dominio;
 using ControleCustos.Dominio.Interface;
 
-namespace ControleCustos.Repositorio.ProjetoRepositorio
+namespace ControleCustos.Repositorio
 {
     public class ProjetoRepositorio : IProjetoRepositorio
     {
