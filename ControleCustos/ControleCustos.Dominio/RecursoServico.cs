@@ -1,14 +1,18 @@
-﻿using ControleCustos.Dominio.Interface;
+﻿using ControleCustos.Dominio.Configuracao;
+using ControleCustos.Dominio.Interface;
+using System.Collections.Generic;
 
 namespace ControleCustos.Dominio
 {
     public class RecursoServico
     {
-        IRecursoRepositorio recursoRepositorio;
+        private IRecursoRepositorio recursoRepositorio;
+        private IServicoDeConfiguracao servicoDeConfiguracao;
 
-        public RecursoServico(IRecursoRepositorio recursoRepositorio)
+        public RecursoServico(IRecursoRepositorio recursoRepositorio, IServicoDeConfiguracao servicoDeConfiguracao)
         {
             this.recursoRepositorio = recursoRepositorio;
+            this.servicoDeConfiguracao = servicoDeConfiguracao;
         }
 
         public Recurso Buscar(int id)
@@ -16,12 +20,26 @@ namespace ControleCustos.Dominio
             return recursoRepositorio.Buscar(id);
         }
 
+        public IList<Recurso> BuscaPaginada(Recurso tipo, int pagina)
+        {
+            int quantidadeDeRecursosPorPagina = this.servicoDeConfiguracao.QuantidadeDeRecursosPorPagina;
+
+            Paginacao paginacao = new Paginacao()
+            {
+                PaginaDesejada = pagina,
+                QuantidadeDeRecursosPorPagina = quantidadeDeRecursosPorPagina
+            };
+
+            return this.recursoRepositorio.BuscaPaginada(tipo, paginacao);
+        }
+
         public void Salvar(Recurso recurso)
         {
             if (recurso.Id == 0)
             {
                 recursoRepositorio.Inserir(recurso);
-            } else
+            }
+            else
             {
                 recursoRepositorio.Atualizar(recurso);
             }
