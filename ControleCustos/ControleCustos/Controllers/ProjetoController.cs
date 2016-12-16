@@ -1,4 +1,5 @@
 ﻿using ControleCustos.Dominio;
+using ControleCustos.Dominio.Interface;
 using ControleCustos.Filtro;
 using ControleCustos.Models;
 using ControleCustos.Servicos;
@@ -9,12 +10,12 @@ namespace ControleCustos.Controllers
 {
     public class ProjetoController : Controller
     {
-        private ProjetoServico projetoServico;
+        private IProjetoRepositorio projetoRepositorio;
         private UsuarioServico usuarioServico;
 
         public ProjetoController()
         {
-            this.projetoServico = ServicoDeDependencias.MontarProjetoServico();
+            this.projetoRepositorio = ServicoDeDependencias.MontarProjetoRepositorio();
             this.usuarioServico = ServicoDeDependencias.MontarUsuarioServico();
         }
 
@@ -28,20 +29,21 @@ namespace ControleCustos.Controllers
         [Autorizador(Roles = "Gerente")]
         public JsonResult Salvar(ProjetoModel model)
         {
-            Console.Write(ServicoDeAutenticacao.UsuarioLogado.Email);
             if (ModelState.IsValid)
             {
-                try
+                model.Gerente = this.usuarioServico.BuscarPorEmail(ServicoDeAutenticacao.UsuarioLogado.Email);
+                Projeto projeto = ConverterModelParaProjeto(model);
+                if (projeto.Id == 0)
                 {
-                    Projeto salvo = ConverterModelParaProjeto(model);
-                    salvo.Gerente = this.usuarioServico.BuscarPorEmail(ServicoDeAutenticacao.UsuarioLogado.Email);
-                    this.projetoServico.Salvar(salvo);
+                    this.projetoRepositorio.Inserir(projeto);
                     return Json(new { Mensagem = "Cadastro efetuado com sucesso." }, JsonRequestBehavior.AllowGet);
                 }
-                catch (ProjetoException e)
+                else
                 {
-                    ModelState.AddModelError("", e.Message);
+                    this.projetoRepositorio.Atualizar(projeto);
+                    return Json(new { Mensagem = "Projeto editado com sucesso." }, JsonRequestBehavior.AllowGet);
                 }
+
             }
             else
             {
@@ -52,13 +54,8 @@ namespace ControleCustos.Controllers
 
         private Projeto ConverterModelParaProjeto(ProjetoModel model)
         {
-            return new Projeto(model.Id.GetValueOrDefault(), model.Nome, model.Cliente, model.Tecnologia, model.DataInicio,
-                                    model.DataFinalPrevista, model.DataFinalRealizada.GetValueOrDefault(), model.FaturamentoPrevisto, model.NumeroProfissionais, model.Situacao);
-        }
-
-        private Usuario ConverterModelParaUsuario(UsuarioModel model)
-        {
-            return new Usuario(model.Id, model.Email);
+            return new Projeto(model.Id.GetValueOrDefault(), model.Nome, model.Gerente, model.Cliente, model.Tecnologia, model.DataInicio,
+                                    model.DataFinalPrevista, model.FaturamentoPrevisto, model.NumeroProfissionais, model.Situacao);
         }
 
         private ProjetoModel CriarProjetoViewModel(Projeto projeto)

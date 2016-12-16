@@ -42,20 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControleRecurso.cs" />
-    <Compile Include="ControleRecursoServico.cs" />
     <Compile Include="Criptografia\Interface\IServicoDeCriptografia.cs" />
     <Compile Include="Enum\SituacaoProjeto.cs" />
     <Compile Include="Interface\IControleRecursoRepositorio.cs" />
     <Compile Include="Interface\IProjetoRepositorio.cs" />
     <Compile Include="Interface\IServicoDeConfiguracao.cs" />
     <Compile Include="Projeto.cs" />
-    <Compile Include="ProjetoException.cs" />
-    <Compile Include="ProjetoServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Servico.cs" />
-    <Compile Include="Recurso.cs" />
-    <Compile Include="Compartilhado.cs" />
-    <Compile Include="Patrimonio.cs" />
+    <Compile Include="Recurso\Servico.cs" />
+    <Compile Include="Recurso\Recurso.cs" />
+    <Compile Include="Recurso\Compartilhado.cs" />
+    <Compile Include="Recurso\Patrimonio.cs" />
     <Compile Include="Enum\SituacaoRecurso.cs" />
     <Compile Include="Enum\TipoRecurso.cs" />
     <Compile Include="Enum\TipoServico.cs" />
