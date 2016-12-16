@@ -20,13 +20,5 @@ namespace ControleCustos.Dominio
 
         [Required]
         public SituacaoRecurso Situacao { get; set; }
-
-        [Required]
-        public ICollection<Projeto> Recursos { get; set; }
-
-        public Recurso()
-        {
-            this.Recursos = new List<Projeto>();
-        }
     }
 }

@@ -42,12 +42,7 @@ namespace ControleCustos.Dominio
         [Required]
         public SituacaoProjeto Situacao { get; set; }
 
-        public ICollection<Recurso> Recursos { get; set; }
-
-        public Projeto ()
-        {
-            this.Recursos = new List<Recurso>();
-        }
+        public Projeto() { }
 
         public Projeto(int id, string nome, string cliente, string tecnologia, DateTime dataInicio,
                                     DateTime dataFinalPrevista, DateTime dataFinalRealizada, decimal faturamentoPrevisto, int numeroProfissionais, SituacaoProjeto situacao)
@@ -62,7 +57,6 @@ namespace ControleCustos.Dominio
             this.FaturamentoPrevisto = faturamentoPrevisto;
             this.NumeroDeProfissionais = numeroProfissionais;
             this.Situacao = situacao;
-            this.Recursos = new List<Recurso>();
         }
     }
 }
