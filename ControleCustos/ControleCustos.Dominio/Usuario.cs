@@ -1,7 +1,7 @@
-﻿using ControleCustos.Dominio.UsuarioDominio.Enum;
+﻿using ControleCustos.Dominio.Enum;
 using System.ComponentModel.DataAnnotations;
 
-namespace ControleCustos.Dominio.UsuarioDominio.Classe
+namespace ControleCustos.Dominio
 {
     public class Usuario
     {

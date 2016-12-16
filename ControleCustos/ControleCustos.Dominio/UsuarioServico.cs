@@ -1,5 +1,5 @@
 ﻿using ControleCustos.Dominio.Criptografia.Interface;
-using ControleCustos.Dominio.UsuarioDominio.Interface;
+using ControleCustos.Dominio.Interface;
 
 namespace ControleCustos.Dominio.UsuarioDominio.Classe
 {

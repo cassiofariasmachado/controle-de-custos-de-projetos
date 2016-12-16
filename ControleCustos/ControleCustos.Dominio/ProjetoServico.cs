@@ -1,6 +1,5 @@
-﻿using ControleCustos.Dominio.Interface;
-using ControleCustos.Dominio.UsuarioDominio.Classe;
-using ControleCustos.Dominio.UsuarioDominio.Enum;
+﻿using ControleCustos.Dominio.Enum;
+using ControleCustos.Dominio.Interface;
 
 namespace ControleCustos.Dominio
 {
