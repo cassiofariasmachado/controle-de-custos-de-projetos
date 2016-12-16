@@ -40,9 +40,20 @@
                         <li><a id="servico">Serviços</a></li>
                     </ul>
                 </div>
+                <button class="btn btn-primary" id="btn-voltar-pagina"><<</button>
+                <button class="btn btn-primary" id="btn-avancar-pagina">>></button>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12" id="recurso-lista">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
+@section scripts {
+    <script>
+        listagemRecursos.iniciar();
+    </script>
+}
 
