@@ -2,6 +2,6 @@
 {
     public interface IServicoDeConfiguracao
     {
-        int QuantidadeDeItensPorPagina { get; }
+        int QuantidadeDeRecursosPorPagina { get; }
     }
 }
