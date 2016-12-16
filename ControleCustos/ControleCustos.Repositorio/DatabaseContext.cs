@@ -1,5 +1,4 @@
 ﻿using ControleCustos.Dominio;
-using ControleCustos.Dominio.UsuarioDominio.Classe;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 

@@ -1,8 +1,6 @@
 ﻿using ControleCustos.Dominio;
-using ControleCustos.Dominio.UsuarioDominio.Classe;
 using ControleCustos.Infraestrutura;
-using ControleCustos.Repositorio.ProjetoRepositorio;
-using ControleCustos.Repositorio.UsuarioRepositorio;
+using ControleCustos.Repositorio;
 
 namespace ControleCustos.Servicos
 {

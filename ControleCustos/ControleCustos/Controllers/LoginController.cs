@@ -1,4 +1,4 @@
-﻿using ControleCustos.Dominio.UsuarioDominio.Classe;
+﻿using ControleCustos.Dominio;
 using ControleCustos.Models;
 using ControleCustos.Servicos;
 using System.Web.Mvc;

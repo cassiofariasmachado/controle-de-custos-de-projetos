@@ -1,4 +1,4 @@
-﻿using ControleCustos.Dominio.UsuarioDominio.Enum;
+﻿using ControleCustos.Dominio.Enum;
 using ControleCustos.Models;
 using ControleCustos.Servicos;
 using System;

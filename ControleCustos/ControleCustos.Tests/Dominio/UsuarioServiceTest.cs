@@ -1,6 +1,5 @@
 ﻿using ControleCustos.Dominio;
 using ControleCustos.Dominio.Criptografia.Interface;
-using ControleCustos.Dominio.UsuarioDominio.Classe;
 using ControleCustos.Infraestrutura;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
