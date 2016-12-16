@@ -6,7 +6,7 @@ namespace ControleCustos.Servicos
 {
     public class ServicoDeConfiguracao : IServicoDeConfiguracao
     {
-        public int QuantidadeDeItensPorPagina
+        public int QuantidadeDeRecursosPorPagina
         {
             get
             {
