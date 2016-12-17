@@ -15,12 +15,30 @@ namespace ControleCustos.Repositorio
                 return context.Recurso.Find(id);
             }
         }
-        public IList<Recurso> BuscaPaginada(Recurso tipo, int pagina, int quantidade)
+        public IList<Recurso> BuscaPaginadaRecursoCompartilhados(int pagina, int quantidade)
         {
             using (var context = new DatabaseContext())
             {
-                IQueryable<Recurso> query = from b in context.Recurso.OfType<Recurso>() select b;
-                return query.Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+                IQueryable<Recurso> query = from b in context.Recurso.OfType<Compartilhado>() select b;
+                return query.OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+            }
+        }
+
+        public IList<Recurso> BuscaPaginadaServicos(int pagina, int quantidade)
+        {
+            using (var context = new DatabaseContext())
+            {
+                IQueryable<Recurso> query = from b in context.Recurso.OfType<Servico>() select b;
+                return query.OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+            }
+        }
+
+        public IList<Recurso> BuscaPaginadaPatrimonios(int pagina, int quantidade)
+        {
+            using (var context = new DatabaseContext())
+            {
+                IQueryable<Recurso> query = from b in context.Recurso.OfType<Patrimonio>() select b;
+                return query.OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
             }
         }
 
