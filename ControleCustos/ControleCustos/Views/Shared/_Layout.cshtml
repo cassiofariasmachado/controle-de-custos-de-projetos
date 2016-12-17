@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using ControleCustos.Servicos
+@{var usuarioLogado = ServicoDeAutenticacao.UsuarioLogado.Email; }
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -16,7 +19,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="/Projeto/ListaProjetos">
                     <img alt="CWI" src="~/Content/logo-horizontal-claro.png" class="img-logo" />
                 </a>
 
@@ -49,6 +52,10 @@
                             <li>@Html.ActionLink("Gráfico de menor custo", "About", "Home")</li>
                         </ul>
                     </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><p class="navbar-text">@usuarioLogado</p></li>
+                    <li>@Html.ActionLink("Sair", "Logout", "Acesso")</li>
                 </ul>
             </div>
         </div>
