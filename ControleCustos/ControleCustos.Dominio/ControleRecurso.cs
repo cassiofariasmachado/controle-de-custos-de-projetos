@@ -18,5 +18,16 @@ namespace ControleCustos.Dominio
         public DateTime DataInicio { get; private set; }
 
         public DateTime DataFim { get; private set; }
+
+        public ControleRecurso() { }
+
+        public ControleRecurso(int id, Projeto projeto, Recurso recurso, DateTime dataInicio, DateTime dataFim)
+        {
+            this.Id = id;
+            this.Projeto = projeto;
+            this.Recurso = recurso;
+            this.DataInicio = dataInicio;
+            this.DataFim = dataFim;
+        }
     }
 }

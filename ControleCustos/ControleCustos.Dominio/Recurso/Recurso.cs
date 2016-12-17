@@ -13,5 +13,16 @@ namespace ControleCustos.Dominio
         public decimal ValorMensal { get; private set; }
 
         public SituacaoRecurso Situacao { get; private set; }
+
+        public Recurso() { }
+
+        public Recurso(int id, string nome, TipoRecurso tipoRecurso, decimal valorMensal, SituacaoRecurso situacao)
+        {
+            this.Id = id;
+            this.Nome = nome;
+            this.TipoRecurso = tipoRecurso;
+            this.ValorMensal = valorMensal;
+            this.Situacao = situacao;
+        }
     }
 }

@@ -19,6 +19,11 @@ namespace ControleCustos.Controllers
             this.usuarioServico = ServicoDeDependencias.MontarUsuarioServico();
         }
 
+        public ActionResult ListaProjetos()
+        {
+            return View();
+        }
+
         [Autorizador(Roles = "Gerente")]
         public ActionResult Cadastro()
         {

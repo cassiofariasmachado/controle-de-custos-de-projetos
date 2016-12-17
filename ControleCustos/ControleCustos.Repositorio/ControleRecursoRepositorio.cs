@@ -19,6 +19,28 @@ namespace ControleCustos.Repositorio
             }
         }
 
+        public IList<ControleRecurso> Listar(Projeto projeto)
+        {
+            using (var context = new DatabaseContext())
+            {
+                IQueryable<ControleRecurso> query = context.ControleRecurso.Where(c => c.Projeto.Equals(projeto));
+                return query.ToList();
+            }
+        }
+
+        public IList<ControleRecurso> Listar(Projeto projeto, DateTime dataInicio, DateTime dataFim)
+        {
+            using (var context = new DatabaseContext())
+            {
+                IQueryable<ControleRecurso> query = context.ControleRecurso.Where(
+                    c => c.Projeto.Equals(projeto)
+                         && dataInicio >= c.DataInicio
+                         && c.DataInicio <= dataFim
+                );
+                return query.ToList();
+            }
+        }
+
         public void Inserir(ControleRecurso controleRecurso)
         {
             using (var context = new DatabaseContext())
