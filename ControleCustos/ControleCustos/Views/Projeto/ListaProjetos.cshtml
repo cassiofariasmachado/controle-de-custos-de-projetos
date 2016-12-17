@@ -1,6 +1,9 @@
 ﻿@{
     ViewBag.Title = "Controle de Custos de Projetos";
 }
+@using ControleCustos.Servicos
+@using ControleCustos.Dominio.Enum
+@{var permissaoUsuario = ServicoDeAutenticacao.UsuarioLogado.Permissao; }
 
 <div class="jumbotron">
 
@@ -11,10 +14,13 @@
                     <h1 class="panel-title projetos-title-panel">
                         Pesquisa de Projetos
                     </h1>
-                    <a class="btn btn-link projetos-link-panel"
-                       href="/projetos/novo">
-                        Cadastrar Novo Projeto
-                    </a>
+                    @if (permissaoUsuario == Permissao.Gerente)
+                    {
+                        <a class="btn btn-link projetos-link-panel"
+                           href="/projetos/novo">
+                            Cadastrar Novo Projeto
+                        </a>
+                    }
                 </div>
             </div>
             <div class="panel-body">
@@ -34,55 +40,12 @@
                         </div>
                     </div>
                 </form>
-
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th class="text-left col-md-1">#</th>
-                                <th class="text-left col-md-2">Nome</th>
-                                <th class="col-md-1"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-left">1</td>
-                                <td class="text-left">Fantrolada</td>
-                                <td class="text-center">
-                                    <a class="btn btn-link btn-xs"
-                                       href="/projetos/editar/1"
-                                       title="Editar" rel="tooltip" data-placement="top">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">2</td>
-                                <td class="text-left">Unimed</td>
-                                <td class="text-center">
-                                    <a class="btn btn-link btn-xs"
-                                       href="/projetos/editar/1"
-                                       title="Editar" rel="tooltip" data-placement="top">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">3</td>
-                                <td class="text-left">Renner</td>
-                                <td class="text-center">
-                                    <a class="btn btn-link btn-xs"
-                                       href="/projetos/editar/1"
-                                       title="Editar" rel="tooltip" data-placement="top">
-                                        <span class="glyphicon glyphicon-pencil"></span>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
+                <div id="projetos-lista" />
             </div>
         </div>
     </div>
-</div>
+    @section scripts {
+        <script>
+        projetos.iniciar();
+        </script>
+    }

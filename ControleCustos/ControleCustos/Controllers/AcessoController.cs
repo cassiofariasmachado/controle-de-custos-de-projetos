@@ -31,7 +31,7 @@ namespace ControleCustos.Controllers
 
                     if (usuarioLogin.Permissao == Permissao.Administrador)
                     {
-                        return RedirectToAction("ListaProjetos", "Projeto");
+                        return RedirectToAction("Lista", "Projeto");
                     }
                     else
                     {

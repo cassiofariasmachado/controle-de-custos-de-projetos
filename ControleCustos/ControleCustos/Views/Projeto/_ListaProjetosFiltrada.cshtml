@@ -1,0 +1,40 @@
+﻿@model IList<ControleCustos.Models.ProjetoModel>
+@using ControleCustos.Models
+
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th class="text-left col-md-1">#</th>
+                <th class="text-left col-md-2">Nome</th>
+                <th class="col-md-1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (ProjetoModel projeto in Model)
+                {
+                    <tr>
+                        <td class="text-left">
+                            @projeto.Id
+                        </td>
+                        <td class="text-left">
+                            @projeto.Nome
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-link btn-xs" href="~/Projeto/Editar/?id=@projeto.Id"
+                               title="Editar" rel="tooltip" data-placement="top">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                            <a class="btn btn-link btn-xs" href="~/Projeto/Remover/?id=@projeto.Id"
+                               title="Excluir" rel="tooltip" data-placement="top">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

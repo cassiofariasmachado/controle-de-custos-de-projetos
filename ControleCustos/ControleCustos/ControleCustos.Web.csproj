@@ -178,6 +178,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\app\listagemRecursos.js" />
+    <Content Include="Scripts\app\projetos.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -212,6 +213,7 @@
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Projeto\_ListagemDeRecursos.cshtml" />
     <Content Include="Views\Projeto\Recurso.cshtml" />
+    <Content Include="Views\Projeto\_ListaProjetosFiltrada.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

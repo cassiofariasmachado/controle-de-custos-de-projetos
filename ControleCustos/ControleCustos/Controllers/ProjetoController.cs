@@ -23,9 +23,19 @@ namespace ControleCustos.Controllers
             this.recursoRepositorio = ServicoDeDependencias.MontarRecursoRepositorio();
         }
 
+        [Autorizador(Roles = "Gerente, Administrador")]
         public ActionResult ListaProjetos()
         {
             return View();
+        }
+
+        public PartialViewResult ListaProjetosFiltrada()
+        {
+            var projetos = projetoRepositorio.ListarPorGerente(this.usuarioServico.BuscarPorEmail(ServicoDeAutenticacao.UsuarioLogado.Email));
+
+            IList<ProjetoModel> model = ConverterEmListagemDeProjetos(projetos);
+
+            return PartialView("_ListaProjetosFiltrada", model); ;
         }
 
         [Autorizador(Roles = "Gerente")]
@@ -106,6 +116,18 @@ namespace ControleCustos.Controllers
             model.PaginaAtual = pagina;
 
             model.QuantidadeDeRecursosPorPagina = quantidadeDeRecursosPorPagina;
+            return model;
+        }
+
+        private IList<ProjetoModel> ConverterEmListagemDeProjetos(IList<Projeto> projetos)
+        {
+            IList<ProjetoModel> model = new List<ProjetoModel>();
+
+            foreach (var projeto in projetos)
+            {
+                model.Add(new ProjetoModel(projeto));
+            }
+
             return model;
         }
 

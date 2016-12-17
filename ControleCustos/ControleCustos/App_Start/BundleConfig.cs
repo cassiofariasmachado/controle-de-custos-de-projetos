@@ -23,6 +23,9 @@ namespace ControleCustos
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                        "~/Scripts/app/projetos.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/listagemRecursos").Include(
             "~/Scripts/app/listagemRecursos.js"));
 
