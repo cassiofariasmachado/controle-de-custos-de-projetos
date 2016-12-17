@@ -36,3 +36,7 @@ textarea {
 .img-logo {
     margin-top: -4px;
 }
+
+.panel > .panel-heading {
+    background-color: #3E3F3A;
+}
