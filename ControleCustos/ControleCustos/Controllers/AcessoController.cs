@@ -1,4 +1,5 @@
 ﻿using ControleCustos.Dominio;
+using ControleCustos.Dominio.Enum;
 using ControleCustos.Models;
 using ControleCustos.Servicos;
 using System.Web.Mvc;
@@ -27,7 +28,15 @@ namespace ControleCustos.Controllers
                 if (usuarioLogin != null)
                 {
                     ServicoDeAutenticacao.Autenticar(new UsuarioModel(usuarioLogin.Email, usuarioLogin.Permissao));
-                    return RedirectToAction("ListaProjetos", "Projeto");
+
+                    if (usuarioLogin.Permissao == Permissao.Administrador)
+                    {
+                        return RedirectToAction("ListaProjetos", "Projeto");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Cadastro", "Projeto");
+                    }
                 }
             }
             ViewBag.MensagemErro = "Login ou senha inválidos.";
@@ -38,7 +47,7 @@ namespace ControleCustos.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            Session.Abandon(); 
+            Session.Abandon();
             return View("Login");
         }
     }

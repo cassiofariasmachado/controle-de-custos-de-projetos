@@ -1,5 +1,7 @@
 ﻿@using ControleCustos.Servicos
+@using ControleCustos.Dominio.Enum
 @{var usuarioLogado = ServicoDeAutenticacao.UsuarioLogado.Email; }
+@{var permissaoUsuario = ServicoDeAutenticacao.UsuarioLogado.Permissao; }
 
 <!DOCTYPE html>
 <html>
@@ -31,27 +33,25 @@
                            data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">Projetos<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Cadastro de Projeto", "Cadastro", "Projeto")</li>
+                            @if (permissaoUsuario == Permissao.Gerente)
+                            {
+                                <li>@Html.ActionLink("Cadastro de Projeto", "Cadastro", "Projeto")</li>
+                            }
                             <li>@Html.ActionLink("Lista de Projetos", "ListaProjetos", "Projeto")</li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle"
-                           data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Recursos<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle"
-                           data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Relatorios<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Gráfico de menor custo", "About", "Home")</li>
-                            <li>@Html.ActionLink("Gráfico de menor custo", "About", "Home")</li>
-                        </ul>
-                    </li>
+                    @if (permissaoUsuario == Permissao.Administrador)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle"
+                               data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false">Relatorios<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Gráfico de menor custo", "About", "Home")</li>
+                                <li>@Html.ActionLink("Gráfico de menor custo", "About", "Home")</li>
+                            </ul>
+                        </li>
+                    }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><p class="navbar-text">@usuarioLogado</p></li>
