@@ -4,6 +4,7 @@ using ControleCustos.Filtro;
 using ControleCustos.Models;
 using ControleCustos.Servicos;
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace ControleCustos.Controllers
@@ -12,11 +13,14 @@ namespace ControleCustos.Controllers
     {
         private IProjetoRepositorio projetoRepositorio;
         private UsuarioServico usuarioServico;
+        private IRecursoRepositorio recursoRepositorio;
+        private const int quantidadeDeRecursosPorPagina = 5;
 
         public ProjetoController()
         {
             this.projetoRepositorio = ServicoDeDependencias.MontarProjetoRepositorio();
             this.usuarioServico = ServicoDeDependencias.MontarUsuarioServico();
+            this.recursoRepositorio = ServicoDeDependencias.MontarRecursoRepositorio();
         }
 
         public ActionResult ListaProjetos()
@@ -66,6 +70,42 @@ namespace ControleCustos.Controllers
         private ProjetoModel CriarProjetoViewModel(Projeto projeto)
         {
             var model = new ProjetoModel(projeto);
+            return model;
+        }
+
+        public ActionResult Recurso()
+        {
+            return View();
+        }
+
+        public PartialViewResult CarregarListaDeRecursosCompartilhados(int pagina)
+        {
+            IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaRecursoCompartilhados(pagina, quantidadeDeRecursosPorPagina);
+            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina);
+            return PartialView("_ListagemDeRecursos", model);
+        }
+
+        public PartialViewResult CarregarListaDePatrimonios(int pagina)
+        {
+            IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaPatrimonios(pagina, quantidadeDeRecursosPorPagina);
+            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina);
+            return PartialView("_ListagemDeRecursos", model);
+        }
+
+        public PartialViewResult CarregarListaDeServicos(int pagina)
+        {
+            IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaServicos(pagina, quantidadeDeRecursosPorPagina);
+            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina);
+            return PartialView("_ListagemDeRecursos", model);
+        }
+
+        private RecursoListagemModel CriarRecursoListagemViewModel(IList<Recurso> recursos, int pagina)
+        {
+            RecursoListagemModel model = new RecursoListagemModel(recursos);
+
+            model.PaginaAtual = pagina;
+
+            model.QuantidadeDeRecursosPorPagina = quantidadeDeRecursosPorPagina;
             return model;
         }
 

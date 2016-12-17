@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ControleCustos.Models
 {
-    public class RecursoListagemViewModel
+    public class RecursoListagemModel
     {
-        public RecursoListagemViewModel(IList<Recurso> recursos)
+        public RecursoListagemModel(IList<Recurso> recursos)
         {
             this.Recursos = this.ConverterEmListagemDeRecursos(recursos);
         }
@@ -21,15 +21,15 @@ namespace ControleCustos.Models
             }
         }
 
-        public IList<RecursoParaListaViewModel> Recursos { get; set; }
+        public IList<RecursoModel> Recursos { get; set; }
 
-        private IList<RecursoParaListaViewModel> ConverterEmListagemDeRecursos(IList<Recurso> recursos)
+        private IList<RecursoModel> ConverterEmListagemDeRecursos(IList<Recurso> recursos)
         {
-            IList<RecursoParaListaViewModel> model = new List<RecursoParaListaViewModel>();
+            IList<RecursoModel> model = new List<RecursoModel>();
 
             foreach (var recurso in recursos)
             {
-                model.Add(new RecursoParaListaViewModel(recurso));
+                model.Add(new RecursoModel(recurso));
             }
 
             return model;

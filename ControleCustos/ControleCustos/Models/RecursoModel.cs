@@ -2,9 +2,9 @@
 
 namespace ControleCustos.Models
 {
-    public class RecursoParaListaViewModel
+    public class RecursoModel
     {
-        public RecursoParaListaViewModel(Recurso recurso)
+        public RecursoModel(Recurso recurso)
         {
             this.Id = recurso.Id;
             this.Nome = recurso.Nome;

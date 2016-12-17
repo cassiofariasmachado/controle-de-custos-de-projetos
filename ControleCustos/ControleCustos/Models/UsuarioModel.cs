@@ -17,5 +17,6 @@ namespace ControleCustos.Models
         public long Id { get; private set; }
         [Required]
         public string Senha { get; private set; }
+        public string Nome { get; private set; }
     }
 }

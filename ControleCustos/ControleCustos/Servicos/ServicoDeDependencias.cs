@@ -26,10 +26,5 @@ namespace ControleCustos.Servicos
         {
             return new RecursoRepositorio();
         }
-
-        public static IServicoDeConfiguracao CriarServicoDeConfiguracao()
-        {
-            return new ServicoDeConfiguracao();
-        }
     }
 }
