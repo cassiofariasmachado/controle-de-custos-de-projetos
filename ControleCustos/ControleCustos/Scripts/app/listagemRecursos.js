@@ -1,50 +1,84 @@
 ﻿let listagemRecursos = {};
 
-listagemRecursos.paginaAtual = 0;
-listagemRecursos.lista = $('recurso-lista');
+listagemRecursos.paginaAtual = 1;
+listagemRecursos.urlRecursosCompartilhados = 'CarregarListaDeRecursosCompartilhados';
+listagemRecursos.urlServicos = 'CarregarListaDeServicos';
+listagemRecursos.urlPatrimonios = 'CarregarListaDePatrimonios';
+listagemRecursos.urlEditarRecurso = 'EditarRecurso';
+listagemRecursos.$lista = $('#recurso-lista');
+listagemRecursos.$selectPatrimonio = $('#patrimonio');
+listagemRecursos.$selectCompartilhado = $('#compartilhado');
+listagemRecursos.$selectServico = $('#servico');
+listagemRecursos.$botaoVoltar;
+listagemRecursos.$botaoAvancar;
 
-listagemRecursos.carregarListaDeRecursos = function () {
-    $.ajax({
-        url: 'CarregarListaDeRecursos',
-        type: 'GET',
-        data: {
-            pagina: listagemRecursos.paginaAtual
-        }
-    })
-    .then(function (resultado) {
-        lista.html(resultado);
-        listagemRecursos.atualizarBotoesDeNavegacao();
-    })
-}
+listagemRecursos.carregarListaDeRecursos = function (url) {
+    $.get(url, { pagina: listagemRecursos.paginaAtual },
+            function (resultado) {
+                listagemRecursos.$lista.html(resultado);
+                listagemRecursos.configurarBotoesDeNavegacao();
+                listagemRecursos.atualizarBotoesDeNavegacao();
+            });
+};
 
 listagemRecursos.voltarPagina = function () {
     if (listagemRecursos.paginaAtual > 0) {
         listagemRecursos.paginaAtual--;
         listagemRecursos.carregarListaDeRecursos();
     }
-}
+};
 
 listagemRecursos.avancarPagina = function () {
     listagemRecursos.paginaAtual++;
     listagemRecursos.carregarListaDeRecursos();
-}
+};
 
 listagemRecursos.atualizarBotoesDeNavegacao = function () {
-    listagemRecursos.$btnVoltarPagina.attr('disabled', listagemRecursos.paginaAtual === 0);
-
-    listagemRecursos.$btnAvancarPagina.attr('disabled', ultimaPagina);
-}
+    listagemRecursos.$botaoVoltar.prop('disabled', listagemRecursos.paginaAtual === 1);
+    var ultimaPagina = !!$('#tabela').data("ultima-pagina");
+    listagemRecursos.$botaoAvancar.attr('disabled', ultimaPagina);
+};
 
 listagemRecursos.configurarBotoesDeNavegacao = function () {
-    listagemRecursos.$btnVoltarPagina.click(listagemRecursos.voltarPagina);
-    listagemRecursos.$btnAvancarPagina.click(listagemRecursos.avancarPagina);
+    listagemRecursos.$botaoVoltar = $('#voltar');
+    listagemRecursos.$botaoAvancar = $('#avancar');
+    listagemRecursos.$botaoVoltar.click(function () {
+        listagemRecursos.voltarPagina();
+    });
+    listagemRecursos.$botaoAvancar.click(function () {
+        listagemRecursos.avancarPagina();
+    });
+};
+
+listagemRecursos.iniciarLista = function (url) {
+    listagemRecursos.carregarListaDeRecursos(url);
+};
+
+listagemRecursos.iniciarEscutaDoSelect = function () {
+    listagemRecursos.$selectCompartilhado.click(function () {
+        listagemRecursos.iniciarLista(listagemRecursos.urlRecursosCompartilhados);
+    });
+    listagemRecursos.$selectPatrimonio.click(function () {
+        listagemRecursos.iniciarLista(listagemRecursos.urlPatrimonios);
+    });
+    listagemRecursos.$selectServico.click(function () {
+        listagemRecursos.iniciarLista(listagemRecursos.urlServicos);
+    });
+};
+
+listagemRecursos.editar = function (id) {
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        let button = $(event.relatedTarget)
+        let recipient = button.data('whatever');
+        let idModal = $('#id-modal');
+        idModal.text(id);
+        let modal = $(this);
+        modal.find('.modal-title').text('New message to ' + recipient);
+        modal.find('.modal-body input').val(recipient);
+    })
 }
+
 
 listagemRecursos.iniciar = function () {
-    listagemRecursos.$btnVoltarPagina = $("#btn-voltar-pagina");
-    listagemRecursos.$btnAvancarPagina = $("#btn-avancar-pagina");
-
-    listagemRecursos.configurarBotoesDeNavegacao();
-
-    listagemRecursos.carregarListaDeRecursos();
-}
+    listagemRecursos.iniciarEscutaDoSelect();
+};
