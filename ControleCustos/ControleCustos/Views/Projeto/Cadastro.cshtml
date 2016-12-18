@@ -26,49 +26,49 @@
                     <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
                     </div>
-                    @Html.ValidationMessageFor(model => model.Nome)
+                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.Cliente, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.Cliente, new { @class = "form-control" })
                     </div>
-                    @Html.ValidationMessageFor(model => model.Cliente)
+                    @Html.ValidationMessageFor(model => model.Cliente, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.Tecnologia, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.Tecnologia, new { @class = "form-control" })
                     </div>
-                    @Html.ValidationMessageFor(model => model.Tecnologia)
+                    @Html.ValidationMessageFor(model => model.Tecnologia, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.DataInicio, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(model => model.DataInicio, new { @class = "form-control" })
+                        @Html.TextBoxFor(model => model.DataInicio,"{0:dd/MM/yyyy}", new { @class = "form-control" })
                     </div>
-                    @Html.ValidationMessageFor(model => model.DataInicio)
+                    @Html.ValidationMessageFor(model => model.DataInicio, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.DataFinalPrevista, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(model => model.DataFinalPrevista, new { @class = "form-control" })
+                        @Html.TextBoxFor(model => model.DataFinalPrevista, "{0:dd/MM/yyyy}", new { @class = "form-control" })
                     </div>
-                    @Html.ValidationMessageFor(model => model.DataFinalPrevista)
+                    @Html.ValidationMessageFor(model => model.DataFinalPrevista, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.FaturamentoPrevisto, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.FaturamentoPrevisto, new { @class = "form-control" })
                     </div>
-                    @Html.ValidationMessageFor(model => model.FaturamentoPrevisto)
+                    @Html.ValidationMessageFor(model => model.FaturamentoPrevisto, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.NumeroProfissionais, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-4">
                         @Html.TextBoxFor(model => model.NumeroProfissionais, new { @class = "form-control" })
                     </div>
-                    @Html.ValidationMessageFor(model => model.NumeroProfissionais)
+                    @Html.ValidationMessageFor(model => model.NumeroProfissionais, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.Situacao, new { @class = "col-sm-2 control-label" })

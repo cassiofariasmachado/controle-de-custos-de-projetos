@@ -55,9 +55,17 @@ namespace ControleCustos.Controllers
             return View();
         }
 
+        [Autorizador(Roles = "Gerente")]
+        public ActionResult Editar(int id)
+        {
+            var projeto = projetoRepositorio.Buscar(id);
+            var model = new ProjetoModel(projeto);
+            return View("Cadastro", model);
+        }
+
         [HttpPost]
         [Autorizador(Roles = "Gerente")]
-        public JsonResult Salvar(ProjetoModel model)
+        public ActionResult Salvar(ProjetoModel model)
         {
             if (ModelState.IsValid)
             {
@@ -66,12 +74,12 @@ namespace ControleCustos.Controllers
                 if (projeto.Id == 0)
                 {
                     this.projetoRepositorio.Inserir(projeto);
-                    return Json(new { Mensagem = "Cadastro efetuado com sucesso." }, JsonRequestBehavior.AllowGet);
+                    return RedirectToAction("ListaProjetos");
                 }
                 else
                 {
                     this.projetoRepositorio.Atualizar(projeto);
-                    return Json(new { Mensagem = "Projeto editado com sucesso." }, JsonRequestBehavior.AllowGet);
+                    return RedirectToAction("ListaProjetos");
                 }
 
             }
@@ -79,7 +87,7 @@ namespace ControleCustos.Controllers
             {
                 ModelState.AddModelError("", "Erro de cadastro! Verifique os campos.");
             }
-            return Json(new { Mensagem = "Erro de cadastro! Verifique os campos." }, JsonRequestBehavior.AllowGet);
+            return View("Cadastro");
         }
 
         private Projeto ConverterModelParaProjeto(ProjetoModel model)
