@@ -1,5 +1,6 @@
 ﻿using ControleCustos.Dominio.Interface;
 using ControleCustos.Dominio;
+using ControleCustos.Dominio.Enum;
 
 namespace ControleCustos.Tests.Dominio
 {
@@ -7,10 +8,10 @@ namespace ControleCustos.Tests.Dominio
     {
         public Usuario BuscarPorEmail(string email)
         {
-            if (email.Equals("usario@hotmail.com"))
+            if (email.Equals("usuario@hotmail.com"))
             {
-                Usuario usuario = new Usuario();
-                //usuario.Senha = "202cb962ac59075b964b07152d234b70";//123
+                //senha = 123
+                Usuario usuario = new Usuario(1, "Usuario", "usuario@hotmail.com", "053523c5278f3bb59e1c56f468d71e2e", Permissao.Administrador);
                 return usuario;
             }
             return null;

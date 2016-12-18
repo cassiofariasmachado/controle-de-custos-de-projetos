@@ -16,7 +16,7 @@ namespace ControleCustos.Tests.Dominio
         {
             UsuarioServico usuarioServico = new UsuarioServico(usuarioMock, servicoDeCriptografia);
 
-            Usuario retorno = usuarioServico.BuscarPorAutenticacao("usario@hotmail.com", "123");
+            Usuario retorno = usuarioServico.BuscarPorAutenticacao("usuario@hotmail.com", "123");
 
             Assert.IsNotNull(retorno);
         }
@@ -26,7 +26,7 @@ namespace ControleCustos.Tests.Dominio
         {
             UsuarioServico usuarioServico = new UsuarioServico(usuarioMock, servicoDeCriptografia);
 
-            Usuario retorno = usuarioServico.BuscarPorAutenticacao("usario@hotmail.com", "1233");
+            Usuario retorno = usuarioServico.BuscarPorAutenticacao("usuario@hotmail.com", "1233");
 
             Assert.IsNull(retorno);
         }
@@ -36,7 +36,7 @@ namespace ControleCustos.Tests.Dominio
         {
             UsuarioServico usuarioServico = new UsuarioServico(usuarioMock, servicoDeCriptografia);
 
-            Usuario retorno = usuarioServico.BuscarPorAutenticacao("usario2@hotmail.com", "123");
+            Usuario retorno = usuarioServico.BuscarPorAutenticacao("abc@hotmail.com", "123");
 
             Assert.IsNull(retorno);
         }
