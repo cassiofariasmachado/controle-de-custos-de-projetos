@@ -1,4 +1,5 @@
 ﻿using ControleCustos.Dominio;
+using ControleCustos.Dominio.Enum;
 using ControleCustos.Dominio.Interface;
 using ControleCustos.Filtro;
 using ControleCustos.Models;
@@ -23,7 +24,8 @@ namespace ControleCustos.Controllers
             this.recursoRepositorio = ServicoDeDependencias.MontarRecursoRepositorio();
         }
 
-        [Autorizador(Roles = "Gerente, Administrador")]
+
+        [Autorizador(Roles = "Administrador,Gerente")]
         public ActionResult ListaProjetos()
         {
             return View();
@@ -31,7 +33,16 @@ namespace ControleCustos.Controllers
 
         public PartialViewResult ListaProjetosFiltrada()
         {
-            var projetos = projetoRepositorio.ListarPorGerente(this.usuarioServico.BuscarPorEmail(ServicoDeAutenticacao.UsuarioLogado.Email));
+            IList<Projeto> projetos = new List<Projeto>();
+
+            if (ServicoDeAutenticacao.UsuarioLogado.Permissao == Permissao.Gerente)
+            {
+                projetos = projetoRepositorio.ListarPorGerente(this.usuarioServico.BuscarPorEmail(ServicoDeAutenticacao.UsuarioLogado.Email));
+            }
+            else
+            {
+                projetos = projetoRepositorio.Listar();
+            }
 
             IList<ProjetoModel> model = ConverterEmListagemDeProjetos(projetos);
 

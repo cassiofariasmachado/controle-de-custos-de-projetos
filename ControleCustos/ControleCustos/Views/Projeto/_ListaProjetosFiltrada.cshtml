@@ -1,5 +1,8 @@
 ﻿@model IList<ControleCustos.Models.ProjetoModel>
 @using ControleCustos.Models
+@using ControleCustos.Servicos
+@using ControleCustos.Dominio.Enum
+@{var permissaoUsuario = ServicoDeAutenticacao.UsuarioLogado.Permissao; }
 
 
 <div class="table-responsive">
@@ -8,7 +11,14 @@
             <tr>
                 <th class="text-left col-md-1">#</th>
                 <th class="text-left col-md-2">Nome</th>
-                <th class="col-md-1"></th>
+                @if (permissaoUsuario == Permissao.Gerente)
+                {
+                    <th class="col-md-1"></th>
+                }
+                @if (permissaoUsuario == Permissao.Administrador)
+                {
+                    <th class="text-left col-md-1">Gerente</th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -22,16 +32,21 @@
                         <td class="text-left">
                             @projeto.Nome
                         </td>
-                        <td class="text-center">
-                            <a class="btn btn-link btn-xs" href="~/Projeto/Editar/?id=@projeto.Id"
-                               title="Editar" rel="tooltip" data-placement="top">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </a>
-                            <a class="btn btn-link btn-xs" href="~/Projeto/Remover/?id=@projeto.Id"
-                               title="Excluir" rel="tooltip" data-placement="top">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </a>
-                        </td>
+                        @if (permissaoUsuario == Permissao.Gerente)
+                        {
+                            <td class="text-center">
+                                <a class="btn btn-link btn-xs" href="~/Projeto/Editar/?id=@projeto.Id"
+                                   title="Editar" rel="tooltip" data-placement="top">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </td>
+                        }
+                        @if (permissaoUsuario == Permissao.Administrador)
+                        {
+                            <td class="text-left">
+                                @projeto.Gerente
+                            </td>
+                        }
                     </tr>
                 }
             }

@@ -29,14 +29,7 @@ namespace ControleCustos.Controllers
                 {
                     ServicoDeAutenticacao.Autenticar(new UsuarioModel(usuarioLogin.Email, usuarioLogin.Permissao));
 
-                    if (usuarioLogin.Permissao == Permissao.Administrador)
-                    {
-                        return RedirectToAction("Lista", "Projeto");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Cadastro", "Projeto");
-                    }
+                    return RedirectToAction("ListaProjetos", "Projeto");
                 }
             }
             ViewBag.MensagemErro = "Login ou senha inválidos.";

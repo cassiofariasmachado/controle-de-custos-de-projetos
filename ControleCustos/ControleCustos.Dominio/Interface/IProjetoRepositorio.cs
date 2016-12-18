@@ -9,5 +9,6 @@ namespace ControleCustos.Dominio.Interface
         void Inserir(Projeto projeto);
         void Atualizar(Projeto projeto);
         IList<Projeto> ListarPorGerente(Usuario gerente);
+        IList<Projeto> Listar();
     }
 }

@@ -4,6 +4,7 @@ using ControleCustos.Dominio.Interface;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace ControleCustos.Repositorio
 {
@@ -46,6 +47,16 @@ namespace ControleCustos.Repositorio
             {
                 context.Entry<Projeto>(projeto).State = EntityState.Modified;
                 context.SaveChanges();
+            }
+        }
+
+        public IList<Projeto> Listar()
+        {
+            using (var context = new DatabaseContext())
+            {
+                IQueryable<Projeto> query = context.Projeto;
+
+                return query.ToList();
             }
         }
     }
