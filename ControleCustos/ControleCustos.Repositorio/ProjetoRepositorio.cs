@@ -22,7 +22,9 @@ namespace ControleCustos.Repositorio
         {
             using (var context = new DatabaseContext())
             {
-                IQueryable<Projeto> query = context.Projeto.Where(p => p.Gerente.Id.Equals(gerente.Id));
+                IQueryable<Projeto> query = context.Projeto
+                    .Where(p => p.Gerente.Id.Equals(gerente.Id))
+                    .Include(p => p.Gerente);
 
                 return query.ToList();
             }
@@ -56,7 +58,7 @@ namespace ControleCustos.Repositorio
             {
                 IQueryable<Projeto> query = context.Projeto;
 
-                return query.ToList();
+                return query.Include(p => p.Gerente).ToList();
             }
         }
     }
