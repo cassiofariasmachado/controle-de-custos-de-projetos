@@ -30,13 +30,18 @@ namespace ControleCustos.Models
 
         [Required]
         [DisplayName("Data de início")]
+        [DataType(DataType.Date, ErrorMessage = "A data deve ser no formato dd/mm/aaaa")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DataInicio { get; set; }
 
         [Required]
         [DisplayName("Data final prevista")]
+        [DataType(DataType.Date, ErrorMessage = "A data deve ser no formato dd/mm/aaaa")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DataFinalPrevista { get; set; }
 
         [DisplayName("Data final realizada")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? DataFinalRealizada { get; set; }
 
         [Required]
