@@ -1,0 +1,66 @@
+﻿@model ControleCustos.Models.RelatorioModel
+@using ControleCustos.Models
+@{
+    ViewBag.Title = "Gráficos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="clearfix">Relatórios</div>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-6">
+                    <div class="graficos" id="grafico-menor-custo"></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="graficos" id="grafico-maior-custo"></div>
+                </div>
+                <div class="table-responsive col-md-12">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Cliente</th>
+                                <th class="text-center">Projeto</th>
+                                <th class="text-center">Gerente</th>
+                                <th class="text-center">Custo total</th>
+                                <th class="text-center">Custo do mês corrente</th>
+                                <th class="text-center">Faturamento previsto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (ProjetoParaRelatorioModel projeto in Model.Projetos)
+                                {
+                                    <tr>
+                                        <td class="text-center">@projeto.Cliente</td>
+                                        <td class="text-center">@projeto.Projeto</td>
+                                        <td class="text-center">@projeto.Gerente</td>
+                                        <td class="text-center">R$ @String.Format("{0:#,##0.00}", projeto.CustoTotal)</td>
+                                        <td class="text-center">R$ @String.Format("{0:#,##0.00}", projeto.CustoMesCorrente)</td>
+                                        <td class="text-center">R$ @String.Format("{0:#,##0.00}", projeto.FaturamentoPrevisto)</td>
+                                    </tr>
+                                }
+                            }
+                            <tr>
+                                <td class="text-center"><strong>Total:</strong></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center">R$ @String.Format("{0:#,##0.00}", Model.TotalCustosTotais)</td>
+                                <td class="text-center">R$ @String.Format("{0:#,##0.00}", Model.TotalCustosMesCorrente)</td>
+                                <td class="text-center">R$ @String.Format("{0:#,##0.00}", Model.TotalFaturamentoPrevisto)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    @Scripts.Render("~/bundles/relatorio")
+}

@@ -17,6 +17,13 @@ namespace ControleCustos.Servicos
             return usuarioServico;
         }
 
+        public static CalculoServico MontarCalculoServico()
+        {
+            CalculoServico calculoServico =
+                new CalculoServico(ServicoDeDependencias.MontarControleRecursoRepositorio());
+            return calculoServico;
+        }
+
         public static IProjetoRepositorio MontarProjetoRepositorio()
         {
             return new ProjetoRepositorio();
@@ -25,6 +32,11 @@ namespace ControleCustos.Servicos
         public static IRecursoRepositorio MontarRecursoRepositorio()
         {
             return new RecursoRepositorio();
+        }
+
+        public static IControleRecursoRepositorio MontarControleRecursoRepositorio()
+        {
+            return new ControleRecursoRepositorio();
         }
     }
 }
