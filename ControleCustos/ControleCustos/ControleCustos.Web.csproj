@@ -182,6 +182,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\app\listagemRecursos.js" />
     <Content Include="Scripts\app\projetos.js" />
+    <Content Include="Scripts\app\relatorio\grafico.js" />
+    <Content Include="Scripts\app\relatorio\relatorios.js" />
+    <Content Include="Scripts\app\relatorio\start.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

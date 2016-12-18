@@ -26,7 +26,8 @@
         data.addRows(dados);
 
         var options = {
-            'title': 'Gráfico de menor custo'
+            title: 'Gráfico de menor custo (percentual da diferença entre custo e faturamento previsto de projetos em andamento)',
+            legend: { position: 'bottom', maxLines: 3 }
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('grafico-menor-custo'));
@@ -41,11 +42,18 @@
         var data = google.visualization.arrayToDataTable(cabecalho.concat(dados));
 
         var options = {
-            title: "Gráfico de maior custo",
+            title: 'Gráfico de maior custo (comparação de custo com valor faturado de projetos já encerrados)',
+            isStacked: true,
             legend: { position: 'bottom', maxLines: 3 },
             colors: ['#516D7C', '#F99100'],
             bar: { groupWidth: '75%' },
-            isStacked: true,
+            hAxis: {
+                title: 'Projeto'
+            },
+            vAxis: {
+                title: 'Valor faturado e custo (em reais)',
+                format: 'R$ '
+            }
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById('grafico-maior-custo'));
