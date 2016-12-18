@@ -9,15 +9,18 @@
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th class="text-left col-md-1">#</th>
-                <th class="text-left col-md-2">Nome</th>
+                <th class="text-left col-md-3">Nome</th>
+                <th class="text-left col-md-2">Cliente</th>
+                <th class="text-left col-md-2">Data de Início</th>
+                <th class="text-left col-md-2">Data Final Prevista</th>
+                @if (permissaoUsuario == Permissao.Administrador)
+                {
+                    <th class="text-left col-md-3">Gerente</th>
+                    <th class="col-md-1"></th>
+                }
                 @if (permissaoUsuario == Permissao.Gerente)
                 {
                     <th class="col-md-1"></th>
-                }
-                @if (permissaoUsuario == Permissao.Administrador)
-                {
-                    <th class="text-left col-md-1">Gerente</th>
                 }
             </tr>
         </thead>
@@ -27,11 +30,29 @@
                 {
                     <tr>
                         <td class="text-left">
-                            @projeto.Id
-                        </td>
-                        <td class="text-left">
                             @projeto.Nome
                         </td>
+                        <td class="text-left">
+                            @projeto.Cliente
+                        </td>
+                        <td class="text-left">
+                            @projeto.DataInicio.ToString("dd/MM/yyyy")
+                        </td>
+                        <td class="text-left">
+                            @projeto.DataFinalPrevista.ToString("dd/MM/yyyy")
+                        </td>
+                        @if (permissaoUsuario == Permissao.Administrador)
+                        {
+                            <td class="text-left">
+                                @projeto.Gerente.Nome
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-link btn-xs" href="~/Projeto/Detalhes/?id=@projeto.Id"
+                                   title="Detalhes" rel="tooltip" data-placement="top">
+                                    <span class="glyphicon glyphicon-zoom-in"></span>
+                                </a>
+                            </td>
+                        }
                         @if (permissaoUsuario == Permissao.Gerente)
                         {
                             <td class="text-center">
@@ -39,12 +60,10 @@
                                    title="Editar" rel="tooltip" data-placement="top">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </a>
-                            </td>
-                        }
-                        @if (permissaoUsuario == Permissao.Administrador)
-                        {
-                            <td class="text-left">
-                                @projeto.Gerente.Nome
+                                <a class="btn btn-link btn-xs" href="~/Projeto/Detalhes/?id=@projeto.Id"
+                                   title="Detalhes" rel="tooltip" data-placement="top">
+                                    <span class="glyphicon glyphicon-zoom-in"></span>
+                                </a>
                             </td>
                         }
                     </tr>
