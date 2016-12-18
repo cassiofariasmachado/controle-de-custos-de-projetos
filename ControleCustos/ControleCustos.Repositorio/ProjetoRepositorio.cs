@@ -2,8 +2,9 @@
 using ControleCustos.Dominio;
 using ControleCustos.Dominio.Interface;
 using System.Collections;
-using System.Collections.Generic;
+using ControleCustos.Dominio.Enum;
 using System.Linq;
+using System.Collections.Generic;
 using System;
 
 namespace ControleCustos.Repositorio
@@ -26,6 +27,27 @@ namespace ControleCustos.Repositorio
                     .Where(p => p.Gerente.Id.Equals(gerente.Id))
                     .Include(p => p.Gerente);
 
+                return query.ToList();
+            }
+        }
+
+        public IList<Projeto> ListarProjetosEmAndamento()
+        {
+            using (var context = new DatabaseContext())
+            {
+                IQueryable<Projeto> query = context.Projeto.Where(p => p.Situacao == SituacaoProjeto.EmAndamento)
+                                                           .Include("Gerente");
+                return query.ToList();
+            }
+        }
+
+        public IList<Projeto> ListarProjetosEncerrados()
+        {
+            using (var context = new DatabaseContext())
+            {
+                IQueryable<Projeto> query = context.Projeto.Where(p => p.Situacao == SituacaoProjeto.Cancelado 
+                                                                       || p.Situacao == SituacaoProjeto.Concluido)
+                                                           .Include("Gerente");
                 return query.ToList();
             }
         }
