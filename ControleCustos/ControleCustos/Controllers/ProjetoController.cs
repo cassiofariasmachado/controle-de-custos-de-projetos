@@ -7,6 +7,7 @@ using ControleCustos.Servicos;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Vereyon.Web;
 
 namespace ControleCustos.Controllers
 {
@@ -59,6 +60,11 @@ namespace ControleCustos.Controllers
         public ActionResult Editar(int id)
         {
             var projeto = projetoRepositorio.Buscar(id);
+            if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            {
+                FlashMessage.Warning("Você não pode editar projetos de outros gerentes.");
+                return RedirectToAction("ListaProjetos");
+            }
             var model = new ProjetoModel(projeto);
             return View("Cadastro", model);
         }

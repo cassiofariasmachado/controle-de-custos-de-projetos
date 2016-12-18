@@ -15,7 +15,7 @@ namespace ControleCustos.Repositorio
         {
             using (var context = new DatabaseContext())
             {
-                return context.Projeto.Find(id);
+                return context.Projeto.Include(p => p.Gerente).FirstOrDefault(p => p.Id == id);
             }
         }
 
