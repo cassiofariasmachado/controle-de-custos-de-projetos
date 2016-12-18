@@ -9,7 +9,7 @@ namespace ControleCustos.Dominio
 {
     public class CalculoServico
     {
-        private static int QUANTIDADE_DIAS_DO_MES = 30;
+        private const int QUANTIDADE_DIAS_DO_MES = 30;
 
         IControleRecursoRepositorio controleRecursoRepositorio;
 
@@ -43,7 +43,7 @@ namespace ControleCustos.Dominio
             decimal custoTotal = 0;
 
             DateTime primeiroDiaDoMes = new DateTime(ano, mes, 1);
-            DateTime ultimoDiaDoMes = primeiroDiaDoMes.AddMonths(1).AddDays(-1);
+            DateTime ultimoDiaDoMes = primeiroDiaDoMes.AddMonths(1).AddDays(-1).AddTicks(-1);
             IList<ControleRecurso> listaControleRecurso = controleRecursoRepositorio.Listar(projeto, primeiroDiaDoMes, ultimoDiaDoMes);
 
             foreach (var controleRecurso in listaControleRecurso)
