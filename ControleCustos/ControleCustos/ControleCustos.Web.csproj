@@ -165,6 +165,7 @@
     </Compile>
     <Compile Include="Models\ProjetoModel.cs" />
     <Compile Include="Models\RecursoListagemModel.cs" />
+    <Compile Include="Models\ControleRecursoModel.cs" />
     <Compile Include="Models\RecursoModel.cs" />
     <Compile Include="Models\ProjetoParaRelatorioModel.cs" />
     <Compile Include="Models\RelatorioModel.cs" />
@@ -221,6 +222,7 @@
     <Content Include="Views\Projeto\_ListaProjetosFiltrada.cshtml" />
     <Content Include="Views\Projeto\_ListagemDeRecursos.cshtml" />
     <Content Include="Views\Projeto\Recurso.cshtml" />
+    <Content Include="Views\Projeto\_ModalRecurso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

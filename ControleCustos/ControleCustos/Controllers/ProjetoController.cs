@@ -16,12 +16,14 @@ namespace ControleCustos.Controllers
         private UsuarioServico usuarioServico;
         private IRecursoRepositorio recursoRepositorio;
         private const int quantidadeDeRecursosPorPagina = 5;
+        private IControleRecursoRepositorio controleRecursoRepositorio;
 
         public ProjetoController()
         {
             this.projetoRepositorio = ServicoDeDependencias.MontarProjetoRepositorio();
             this.usuarioServico = ServicoDeDependencias.MontarUsuarioServico();
             this.recursoRepositorio = ServicoDeDependencias.MontarRecursoRepositorio();
+            this.controleRecursoRepositorio = ServicoDeDependencias.MontarControleRecursoRepositorio();
         }
 
 
@@ -148,6 +150,25 @@ namespace ControleCustos.Controllers
             }
 
             return model;
+        }
+
+        public PartialViewResult CarregarModal(int id)
+        {
+            Recurso recurso = this.recursoRepositorio.Buscar(id);
+            ControleRecursoModel model = new ControleRecursoModel(recurso, new Projeto());
+            return PartialView("_ModalRecurso", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult SalvarModalRecurso(ControleRecursoModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+            }
+            return new JsonResult();
         }
 
     }
