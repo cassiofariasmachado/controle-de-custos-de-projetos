@@ -23,7 +23,9 @@ namespace ControleCustos.Repositorio
         {
             using (var context = new DatabaseContext())
             {
-                IQueryable<ControleRecurso> query = context.ControleRecurso.Where(c => c.Projeto.Equals(projeto));
+                IQueryable<ControleRecurso> query = context.ControleRecurso.Where(c => c.Projeto.Id == projeto.Id)
+                                                                           .Include("Recurso")
+                                                                           .Include("Projeto");
                 return query.ToList();
             }
         }
@@ -32,11 +34,11 @@ namespace ControleCustos.Repositorio
         {
             using (var context = new DatabaseContext())
             {
-                IQueryable<ControleRecurso> query = context.ControleRecurso.Where(
-                    c => c.Projeto.Equals(projeto)
-                         && dataInicio >= c.DataInicio
-                         && c.DataInicio <= dataFim
-                );
+                IQueryable<ControleRecurso> query = context.ControleRecurso.Where(c => c.Projeto.Id == projeto.Id
+                                                                                       && dataInicio >= c.DataInicio
+                                                                                       && c.DataInicio <= dataFim)
+                                                                           .Include("Recurso")
+                                                                           .Include("Projeto");
                 return query.ToList();
             }
         }
