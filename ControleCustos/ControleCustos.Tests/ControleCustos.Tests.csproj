@@ -56,6 +56,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Dominio\CalculoServicoTest.cs" />
+    <Compile Include="Dominio\ControleRecursoRepositorioMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dominio\UsuarioRepositorioMock.cs" />
     <Compile Include="Dominio\UsuarioServiceTest.cs" />
