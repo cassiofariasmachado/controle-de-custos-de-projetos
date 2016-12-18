@@ -1,6 +1,7 @@
 ﻿using ControleCustos.Dominio;
 using ControleCustos.Dominio.Enum;
 using ControleCustos.Dominio.Interface;
+using ControleCustos.Filtro;
 using ControleCustos.Models;
 using ControleCustos.Servicos;
 using System;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 
 namespace ControleCustos.Controllers
 {
+    [Autorizador(Roles = "Administrador")]
     public class RelatorioController : Controller
     {
         IProjetoRepositorio projetoRepositorio = ServicoDeDependencias.MontarProjetoRepositorio();
