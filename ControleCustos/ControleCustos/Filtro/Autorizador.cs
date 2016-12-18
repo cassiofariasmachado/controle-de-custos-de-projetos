@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace ControleCustos.Filtro
 {
@@ -44,6 +45,12 @@ namespace ControleCustos.Filtro
                     break;
             }
             return retorno;
+        }
+
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            filterContext.Controller.TempData["ErroNaoAutorizado"] = "Você não está autorizado a acessar essa página.";
+            filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Acesso", action = "Login" }));
         }
     }
 }
