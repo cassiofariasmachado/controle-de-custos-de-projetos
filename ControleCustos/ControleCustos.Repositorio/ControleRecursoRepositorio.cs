@@ -19,6 +19,14 @@ namespace ControleCustos.Repositorio
             }
         }
 
+        public ControleRecurso BuscarPeloNomeDoProjeto(Projeto projeto)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return context.ControleRecurso.Where(c => c.Projeto.Nome.Equals(projeto.Nome)).FirstOrDefault();
+            }
+        }
+
         public IList<ControleRecurso> Listar(Projeto projeto)
         {
             using (var context = new DatabaseContext())
