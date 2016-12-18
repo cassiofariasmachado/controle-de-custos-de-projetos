@@ -222,9 +222,9 @@
     <Content Include="Views\Projeto\ListaProjetos.cshtml" />
     <Content Include="Views\Acesso\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Projeto\_ListaProjetosFiltrada.cshtml" />
     <Content Include="Views\Projeto\_ListagemDeRecursos.cshtml" />
     <Content Include="Views\Projeto\Recurso.cshtml" />
-    <Content Include="Views\Projeto\_ListaProjetosFiltrada.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
