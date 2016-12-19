@@ -51,6 +51,14 @@ namespace ControleCustos.Controllers
 
             return PartialView("_ListaProjetosFiltrada", model); ;
         }
+        
+        [Autorizador(Roles = "Administrador")]
+        public ActionResult Detalhe(int id)
+        {
+            var projeto = projetoRepositorio.Buscar(id);
+            var model = new ProjetoModel(projeto);
+            return View(model);
+        }
 
         [Autorizador(Roles = "Gerente")]
         public ActionResult Cadastro()
