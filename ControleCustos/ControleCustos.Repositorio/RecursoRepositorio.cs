@@ -3,6 +3,7 @@ using ControleCustos.Dominio;
 using ControleCustos.Dominio.Interface;
 using System.Linq;
 using System.Collections.Generic;
+using ControleCustos.Dominio.Enum;
 
 namespace ControleCustos.Repositorio
 {
@@ -20,7 +21,7 @@ namespace ControleCustos.Repositorio
             using (var context = new DatabaseContext())
             {
                 IQueryable<Recurso> query = from b in context.Recurso.OfType<Compartilhado>() select b;
-                return query.OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+                return query.Where(r => r.Situacao == SituacaoRecurso.Disponivel).OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
             }
         }
 
@@ -29,7 +30,7 @@ namespace ControleCustos.Repositorio
             using (var context = new DatabaseContext())
             {
                 IQueryable<Recurso> query = from b in context.Recurso.OfType<Servico>() select b;
-                return query.OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+                return query.Where(r => r.Situacao == SituacaoRecurso.Disponivel).OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
             }
         }
 
@@ -38,7 +39,7 @@ namespace ControleCustos.Repositorio
             using (var context = new DatabaseContext())
             {
                 IQueryable<Recurso> query = from b in context.Recurso.OfType<Patrimonio>() select b;
-                return query.OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+                return query.Where(r => r.Situacao == SituacaoRecurso.Disponivel).OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
             }
         }
 

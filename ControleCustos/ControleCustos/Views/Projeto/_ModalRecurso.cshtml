@@ -1,0 +1,41 @@
+﻿@model ControleCustos.Models.ControleRecursoModel
+<div class="modal fade" id="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Adicionar Recurso</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <span> <strong>Nome do Projeto: </strong>@Model.NomeProjeto</span>
+                </div>
+                <div class="form-group">
+                    <span> <strong>Nome do Recurso: </strong>@Model.NomeRecurso</span>
+                </div>
+                @using (Html.BeginForm("Salvar", "Projeto", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label for="data-inicio" class="control-label">Data de Inicio:</label>
+                        <input type="datetime" class="form-control" id="data-inicio">
+                    </div>
+                    <div class="form-group">
+                        <label for="data-fim" class="control-label">Data de Fim:</label>
+                        <input type="datetime" class="form-control" id="data-fim">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Adicionar</button>
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+
+
+    </div>
+</div>

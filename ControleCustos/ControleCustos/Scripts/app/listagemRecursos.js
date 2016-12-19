@@ -4,13 +4,15 @@ listagemRecursos.paginaAtual = 1;
 listagemRecursos.urlRecursosCompartilhados = 'CarregarListaDeRecursosCompartilhados';
 listagemRecursos.urlServicos = 'CarregarListaDeServicos';
 listagemRecursos.urlPatrimonios = 'CarregarListaDePatrimonios';
-listagemRecursos.urlEditarRecurso = 'EditarRecurso';
+listagemRecursos.urlCarregarModal = 'CarregarModal';
 listagemRecursos.$lista = $('#recurso-lista');
+listagemRecursos.$recursoModal = $('#recurso-modal');
 listagemRecursos.$selectPatrimonio = $('#patrimonio');
 listagemRecursos.$selectCompartilhado = $('#compartilhado');
 listagemRecursos.$selectServico = $('#servico');
 listagemRecursos.$botaoVoltar;
 listagemRecursos.$botaoAvancar;
+listagemRecursos.urlDeContexto;
 
 listagemRecursos.carregarListaDeRecursos = function (url) {
     $.get(url, { pagina: listagemRecursos.paginaAtual },
@@ -24,13 +26,13 @@ listagemRecursos.carregarListaDeRecursos = function (url) {
 listagemRecursos.voltarPagina = function () {
     if (listagemRecursos.paginaAtual > 0) {
         listagemRecursos.paginaAtual--;
-        listagemRecursos.carregarListaDeRecursos();
+        listagemRecursos.carregarListaDeRecursos(listagemRecursos.urlDeContexto);
     }
 };
 
 listagemRecursos.avancarPagina = function () {
     listagemRecursos.paginaAtual++;
-    listagemRecursos.carregarListaDeRecursos();
+    listagemRecursos.carregarListaDeRecursos(listagemRecursos.urlDeContexto);
 };
 
 listagemRecursos.atualizarBotoesDeNavegacao = function () {
@@ -57,27 +59,24 @@ listagemRecursos.iniciarLista = function (url) {
 listagemRecursos.iniciarEscutaDoSelect = function () {
     listagemRecursos.$selectCompartilhado.click(function () {
         listagemRecursos.iniciarLista(listagemRecursos.urlRecursosCompartilhados);
+        listagemRecursos.urlDeContexto = listagemRecursos.urlRecursosCompartilhados;
     });
     listagemRecursos.$selectPatrimonio.click(function () {
         listagemRecursos.iniciarLista(listagemRecursos.urlPatrimonios);
+        listagemRecursos.urlDeContexto = listagemRecursos.urlPatrimonios;
     });
     listagemRecursos.$selectServico.click(function () {
         listagemRecursos.iniciarLista(listagemRecursos.urlServicos);
+        listagemRecursos.urlDeContexto = listagemRecursos.urlServicos;
     });
 };
 
-listagemRecursos.editar = function (id) {
-    $('#exampleModal').on('show.bs.modal', function (event) {
-        let button = $(event.relatedTarget)
-        let recipient = button.data('whatever');
-        let idModal = $('#id-modal');
-        idModal.text(id);
-        let modal = $(this);
-        modal.find('.modal-title').text('New message to ' + recipient);
-        modal.find('.modal-body input').val(recipient);
-    })
+listagemRecursos.adicionarRecurso = function (id) {
+    $.get(listagemRecursos.urlCarregarModal, { id: id }, function (resultado) {
+        listagemRecursos.$recursoModal.html(resultado)
+        $('#modal').modal();
+    });
 }
-
 
 listagemRecursos.iniciar = function () {
     listagemRecursos.iniciarEscutaDoSelect();
