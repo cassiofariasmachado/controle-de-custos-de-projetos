@@ -45,7 +45,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.DataInicio, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(model => model.DataInicio,"{0:dd/MM/yyyy}", new { @class = "form-control" })
+                        @Html.TextBoxFor(model => model.DataInicio, "{0:dd/MM/yyyy}", new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(model => model.DataInicio, "", new { @class = "text-danger" })
                 </div>
@@ -56,6 +56,16 @@
                     </div>
                     @Html.ValidationMessageFor(model => model.DataFinalPrevista, "", new { @class = "text-danger" })
                 </div>
+                if (Model != null)
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataFinalRealizada, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.DataFinalRealizada, "{0:dd/MM/yyyy}", new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.DataFinalRealizada, "", new { @class = "text-danger" })
+                    </div>
+                }
                 <div class="form-group">
                     @Html.LabelFor(model => model.FaturamentoPrevisto, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-4">
@@ -63,6 +73,16 @@
                     </div>
                     @Html.ValidationMessageFor(model => model.FaturamentoPrevisto, "", new { @class = "text-danger" })
                 </div>
+                if (Model != null)
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FaturamentoRealizado, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-4">
+                            @Html.TextBoxFor(model => model.FaturamentoRealizado, new { @class = "form-control" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.FaturamentoRealizado, "", new { @class = "text-danger" })
+                    </div>
+                }
                 <div class="form-group">
                     @Html.LabelFor(model => model.NumeroProfissionais, new { @class = "col-sm-2 control-label" })
                     <div class="col-sm-4">
