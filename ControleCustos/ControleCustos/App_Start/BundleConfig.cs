@@ -30,9 +30,8 @@ namespace ControleCustos
                       "~/Scripts/app/listagemRecursos.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/relatorio").Include(
-                      "~/Scripts/app/relatorio/grafico.js",
                       "~/Scripts/app/relatorio/relatorios.js",
-                      "~/Scripts/app/relatorio/start.js"));
+                      "~/Scripts/app/relatorio/grafico.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
