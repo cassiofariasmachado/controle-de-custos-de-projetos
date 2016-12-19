@@ -32,6 +32,7 @@
                                 <th class="text-center">Custo total</th>
                                 <th class="text-center">Custo do mês corrente</th>
                                 <th class="text-center">Faturamento previsto</th>
+                                <th class="text-center">Situação</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,6 +46,7 @@
                                         <td class="text-center">R$ @String.Format("{0:#,##0.00}", projeto.CustoTotal)</td>
                                         <td class="text-center">R$ @String.Format("{0:#,##0.00}", projeto.CustoMesCorrente)</td>
                                         <td class="text-center">R$ @String.Format("{0:#,##0.00}", projeto.FaturamentoPrevisto)</td>
+                                        <td class="text-center">@projeto.Situacao</td>
                                     </tr>
                                 }
                             }
