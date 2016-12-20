@@ -178,9 +178,9 @@ namespace ControleCustos.Controllers
             Projeto projeto = this.projetoRepositorio.Buscar(model.IdProjeto);
 
             if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
-            {
                 return Json("Você não pode adicionar recursos a projetos de outros gerentes!", JsonRequestBehavior.AllowGet);
-            }
+            if (!this.EhDataValida(projeto, model))
+                return Json("Erro data inválida!", JsonRequestBehavior.AllowGet);
 
             if (ModelState.IsValid)
             {
@@ -195,7 +195,13 @@ namespace ControleCustos.Controllers
         [Autorizador(Roles = "Gerente")]
         public PartialViewResult CarregarListaDeRecursosDoProjeto(int idProjeto)
         {
-            IList<ControleRecurso> controleRecurso = this.controleRecursoRepositorio.Listar(this.projetoRepositorio.Buscar(idProjeto));
+            Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
+            if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            {
+                FlashMessage.Warning("Você não pode ver recursos de projetos de outros gerentes.");
+                return PartialView("_ListaDeRecursosProjeto", null);
+            }
+            IList<ControleRecurso> controleRecurso = this.controleRecursoRepositorio.Listar(projeto);
             IList<ControleRecursoModel> model = this.ConverterIListControleRecursoParaModel(controleRecurso);
             return PartialView("_ListaDeRecursosProjeto", model);
         }
@@ -207,7 +213,7 @@ namespace ControleCustos.Controllers
         private IList<ControleRecursoModel> ConverterIListControleRecursoParaModel(IList<ControleRecurso> lista)
         {
             IList<ControleRecursoModel> model = new List<ControleRecursoModel>();
-            foreach(ControleRecurso controleRecurso in lista)
+            foreach (ControleRecurso controleRecurso in lista)
             {
                 model.Add(new ControleRecursoModel(controleRecurso.Recurso, controleRecurso.Projeto, controleRecurso.DataInicio, controleRecurso.DataFim));
             }
@@ -252,6 +258,17 @@ namespace ControleCustos.Controllers
         {
             var model = new ProjetoModel(projeto);
             return model;
+        }
+
+        private bool EhDataValida(Projeto projeto, ControleRecursoModel model)
+        {
+            if (DateTime.Compare(model.DataInicio, projeto.DataInicio) < 0)
+                return false;
+            if (DateTime.Compare(model.DataFim, projeto.DataFinalPrevista) > 0)
+                return false;
+            if (DateTime.Compare(model.DataInicio, model.DataFim) > 0)
+                return false;
+            return true;
         }
     }
 }
