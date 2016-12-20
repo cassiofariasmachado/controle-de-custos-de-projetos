@@ -5,31 +5,31 @@
 renderizarGraficos();
 
 function renderizarGraficos() {
-    relatorios.gerarDadosGraficoMenorCusto().then(function (response) {
-        renderizarGrafico(gerarGraficoMenorCusto.bind(this, response.Dados));
+    relatorios.gerarDadosGraficoQuantidadeRecursos().then(function (response) {
+        renderizarGrafico(gerarGraficoQuantidadeRecursos.bind(this, response.Dados));
     });
 
-    relatorios.gerarDadosGraficoMaiorCusto().then(function (response) {
-        renderizarGrafico(gerarGraficoMaiorCusto.bind(this, response.Dados));
+    relatorios.gerarDadosGraficoCustoPorFaturamento().then(function (response) {
+        renderizarGrafico(gerarGraficoCustoPorFaturamento.bind(this, response.Dados));
     });
 };
 
-function gerarGraficoMenorCusto(dados) {
+function gerarGraficoQuantidadeRecursos(dados) {
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Topping');
     data.addColumn('number', 'Slices');
     data.addRows(dados);
 
     var options = {
-        title: 'Gráfico de menor custo \n(percentual da diferença entre custo e faturamento previsto de projetos em andamento)',
+        title: 'Gráfico da quantidade de recursos internos utilizados e não utilizados por projeto',
         legend: { position: 'bottom', maxLines: 3 }
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('grafico-menor-custo'));
+    var chart = new google.visualization.PieChart(document.getElementById('grafico-quantidade-recursos'));
     chart.draw(data, options);
 }
 
-function gerarGraficoMaiorCusto(dados) {
+function gerarGraficoCustoPorFaturamento(dados) {
     var cabecalho = [
           ['Tipos', 'Custo', 'Valor faturado']
     ];
@@ -37,7 +37,7 @@ function gerarGraficoMaiorCusto(dados) {
     var data = google.visualization.arrayToDataTable(cabecalho.concat(dados));
 
     var options = {
-        title: 'Gráfico de maior custo \n(comparação de custo com valor faturado de projetos já encerrados)',
+        title: 'Gráfico de custo por faturamento \n(comparação de custo com valor faturado de projetos já encerrados)',
         isStacked: true,
         legend: { position: 'bottom', maxLines: 3 },
         colors: ['#516D7C', '#F99100'],
@@ -51,7 +51,7 @@ function gerarGraficoMaiorCusto(dados) {
         }
     };
 
-    var chart = new google.visualization.ColumnChart(document.getElementById('grafico-maior-custo'));
+    var chart = new google.visualization.ColumnChart(document.getElementById('grafico-custo-por-faturamento'));
     chart.draw(data, options);
 }
 

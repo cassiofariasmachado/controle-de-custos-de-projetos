@@ -1,9 +1,6 @@
 ﻿using ControleCustos.Dominio.Interface;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ControleCustos.Dominio
 {
@@ -34,8 +31,16 @@ namespace ControleCustos.Dominio
 
         public decimal CalcularCustoPercentual(Projeto projeto, DateTime data)
         {
+            decimal custoTotal = this.CalcularCustoTotalAte(projeto, data);
+            // Se faturamento for zero, retorna zero se não existir custo e 100 se existir
+            if (projeto.FaturamentoPrevisto == 0) {
+                if (custoTotal > 0)
+                    return 100;
+                else
+                    return 0;
+            }
             // custoPercentual = custoTotal * 100 / FaturamentoPrevisto
-            return this.CalcularCustoTotalAte(projeto, data) * 100 / projeto.FaturamentoPrevisto;
+            return custoTotal * 100 / projeto.FaturamentoPrevisto;
         }
 
         public decimal CalcularCustoMensal(Projeto projeto, int mes, int ano)

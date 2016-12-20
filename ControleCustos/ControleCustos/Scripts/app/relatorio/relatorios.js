@@ -1,9 +1,9 @@
 ﻿var relatorios = {}
 
-relatorios.gerarDadosGraficoMenorCusto = function () {
-    return $.get("/relatorio/gerarGraficoMenorCusto");
+relatorios.gerarDadosGraficoQuantidadeRecursos = function () {
+    return $.get("/relatorio/gerarDadosGraficoQuantidadeRecursos");
 }
 
-relatorios.gerarDadosGraficoMaiorCusto = function () {
-    return $.get("/relatorio/gerarGraficoMaiorCusto");
+relatorios.gerarDadosGraficoCustoPorFaturamento = function () {
+    return $.get("/relatorio/gerarDadosGraficoCustoPorFaturamento");
 }

@@ -16,6 +16,7 @@ namespace ControleCustos.Controllers
     public class RelatorioController : Controller
     {
         IProjetoRepositorio projetoRepositorio = ServicoDeDependencias.MontarProjetoRepositorio();
+        IControleRecursoRepositorio controleRecursoRepositorio = ServicoDeDependencias.MontarControleRecursoRepositorio();
         CalculoServico calculoServico = ServicoDeDependencias.MontarCalculoServico();
 
         public ActionResult Index()
@@ -30,7 +31,7 @@ namespace ControleCustos.Controllers
             return View(model);
         }
 
-        public JsonResult GerarGraficoMenorCusto()
+        public JsonResult GerarDadosGraficoQuantidadeRecursos()
         {
             IList<Projeto> projetos = projetoRepositorio.ListarProjetosAtivos();
             IList<List<dynamic>> dados = new List<List<dynamic>>();
@@ -39,14 +40,15 @@ namespace ControleCustos.Controllers
             {
                 dados.Add(new List<dynamic> {
                     projeto.Nome,
-                    calculoServico.CalcularCustoPercentual(projeto, DateTime.Now)
+                    this.controleRecursoRepositorio.QuantidadeDeRecursosInternosPorProjeto(projeto)
                 });
             }
+            dados.Add(new List<dynamic> { "Não utilizados", this.controleRecursoRepositorio.QuantidadeDeRecursosInternosNaoUtilizadosPorProjetosAtivos() });
 
             return Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GerarGraficoMaiorCusto()
+        public JsonResult GerarDadosGraficoCustoPorFaturamento()
         {
             IList<Projeto> projetos = projetoRepositorio.ListarProjetosEncerrados();
             IList<List<dynamic>> dados = new List<List<dynamic>>();

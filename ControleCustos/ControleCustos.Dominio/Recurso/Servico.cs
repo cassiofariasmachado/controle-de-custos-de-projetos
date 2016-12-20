@@ -12,13 +12,12 @@ namespace ControleCustos.Dominio
 
         public Servico(int id,
             string nome,
-            TipoRecurso tipoRecurso,
             decimal valorMensal,
             SituacaoRecurso situacao,
             bool interno,
             string descricao,
             TipoServico tipoServico)
-            : base(id, nome, tipoRecurso, valorMensal, situacao, interno)
+            : base(id, nome, valorMensal, situacao, interno)
         {
             this.Descricao = descricao;
             this.TipoServico = tipoServico;

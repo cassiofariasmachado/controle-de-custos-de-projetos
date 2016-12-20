@@ -13,12 +13,12 @@
             </div>
             <div class="panel-body">
                 <div class="col-md-6">
-                    <div class="graficos" id="grafico-menor-custo">
+                    <div class="graficos" id="grafico-quantidade-recursos">
                         <div class="grafico-loader loader circle-loader-1"></div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="graficos" id="grafico-maior-custo">
+                    <div class="graficos" id="grafico-custo-por-faturamento">
                         <div class="grafico-loader loader circle-loader-1"></div>
                     </div>
                 </div>
@@ -43,15 +43,16 @@
                                         <td class="text-center">@projeto.Cliente</td>
                                         <td class="text-center">@projeto.Projeto</td>
                                         <td class="text-center">@projeto.Gerente</td>
+                                        <td class="text-center">@projeto.Situacao</td>
                                         <td class="text-center">R$ @String.Format("{0:#,##0.00}", projeto.CustoTotal)</td>
                                         <td class="text-center">R$ @String.Format("{0:#,##0.00}", projeto.CustoMesCorrente)</td>
                                         <td class="text-center">R$ @String.Format("{0:#,##0.00}", projeto.FaturamentoPrevisto)</td>
-                                        <td class="text-center">@projeto.Situacao</td>
                                     </tr>
                                 }
                             }
                             <tr>
                                 <td class="text-center"><strong>Total:</strong></td>
+                                <td class="text-center"></td>
                                 <td class="text-center"></td>
                                 <td class="text-center"></td>
                                 <td class="text-center">R$ @String.Format("{0:#,##0.00}", Model.TotalCustosTotais)</td>

@@ -1,6 +1,5 @@
 ﻿using ControleCustos.Dominio.Enum;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace ControleCustos.Dominio
 {
@@ -30,13 +29,18 @@ namespace ControleCustos.Dominio
 
         public SituacaoProjeto Situacao { get; private set; }
 
-        public Projeto()
-        {
+        public Projeto() { }
 
-        }
-
-        public Projeto(int id, string nome, Usuario gerente, string cliente, string tecnologia, DateTime dataInicio,
-                                    DateTime dataFinalPrevista, decimal faturamentoPrevisto, int numeroProfissionais, SituacaoProjeto situacao)
+        public Projeto(int id,
+                       string nome,
+                       Usuario gerente,
+                       string cliente,
+                       string tecnologia,
+                       DateTime dataInicio,
+                       DateTime dataFinalPrevista,
+                       decimal faturamentoPrevisto,
+                       int numeroProfissionais,
+                       SituacaoProjeto situacao)
         {
             this.Id = id;
             this.Nome = nome;
@@ -50,23 +54,22 @@ namespace ControleCustos.Dominio
             this.Situacao = situacao;
         }
 
-        public Projeto(int id, string nome, Usuario gerente, string cliente, string tecnologia, DateTime dataInicio,
-                                    DateTime dataFinalPrevista, DateTime dataFinalRealizada,
-                                    decimal faturamentoPrevisto, decimal faturamentoRealizado,
-                                    int numeroProfissionais, SituacaoProjeto situacao)
+        public Projeto(int id,
+                       string nome,
+                       Usuario gerente,
+                       string cliente,
+                       string tecnologia,
+                       DateTime dataInicio,
+                       DateTime dataFinalPrevista,
+                       DateTime dataFinalRealizada,
+                       decimal faturamentoPrevisto,
+                       decimal faturamentoRealizado,
+                       int numeroProfissionais,
+                       SituacaoProjeto situacao)
+            : this(id, nome, gerente, cliente, tecnologia, dataInicio, dataFinalPrevista, faturamentoPrevisto, numeroProfissionais, situacao)
         {
-            this.Id = id;
-            this.Nome = nome;
-            this.Gerente = gerente;
-            this.Cliente = cliente;
-            this.Tecnologia = tecnologia;
-            this.DataInicio = dataInicio;
-            this.DataFinalPrevista = dataFinalPrevista;
             this.DataFinalRealizada = dataFinalRealizada;
-            this.FaturamentoPrevisto = faturamentoPrevisto;
             this.FaturamentoRealizado = faturamentoRealizado;
-            this.NumeroDeProfissionais = numeroProfissionais;
-            this.Situacao = situacao;
         }
     }
 }

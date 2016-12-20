@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuracao\IServicoDeConfiguracao.cs" />
     <Compile Include="Colaboradores.cs" />
     <Compile Include="ControleRecurso.cs" />
     <Compile Include="Criptografia\Interface\IServicoDeCriptografia.cs" />
