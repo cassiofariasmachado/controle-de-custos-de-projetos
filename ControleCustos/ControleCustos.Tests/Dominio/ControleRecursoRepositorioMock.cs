@@ -90,5 +90,20 @@ namespace ControleCustos.Tests.Dominio
         {
             throw new NotImplementedException();
         }
+
+        public IList<ControleRecurso> ListarPatrimonio(Projeto projeto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<ControleRecurso> ListarCompartilhado(Projeto projeto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<ControleRecurso> ListarServico(Projeto projeto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
