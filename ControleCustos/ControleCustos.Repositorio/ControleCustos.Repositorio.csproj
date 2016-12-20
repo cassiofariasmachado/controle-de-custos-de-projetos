@@ -58,6 +58,14 @@
     <Compile Include="Migrations\201612201904355_Initial.Designer.cs">
       <DependentUpon>201612201904355_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612201940562_Retirar campos nao usados e adicionar Conta em Custo.cs" />
+    <Compile Include="Migrations\201612201940562_Retirar campos nao usados e adicionar Conta em Custo.Designer.cs">
+      <DependentUpon>201612201940562_Retirar campos nao usados e adicionar Conta em Custo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612201942557_Adicionar Valor em Custo.cs" />
+    <Compile Include="Migrations\201612201942557_Adicionar Valor em Custo.Designer.cs">
+      <DependentUpon>201612201942557_Adicionar Valor em Custo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProjetoRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,6 +85,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612201904355_Initial.resx">
       <DependentUpon>201612201904355_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612201940562_Retirar campos nao usados e adicionar Conta em Custo.resx">
+      <DependentUpon>201612201940562_Retirar campos nao usados e adicionar Conta em Custo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612201942557_Adicionar Valor em Custo.resx">
+      <DependentUpon>201612201942557_Adicionar Valor em Custo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
