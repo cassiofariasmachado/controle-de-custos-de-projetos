@@ -26,6 +26,7 @@ namespace ControleCustos.Dominio
             TipoRecurso tipoRecurso, 
             decimal valorMensal,
             SituacaoRecurso situacao,
+            bool interno,
             string enderecoIp,
             bool baseDeDados,
             decimal espacoEmDisco,
@@ -33,7 +34,7 @@ namespace ControleCustos.Dominio
             decimal memoria,
             bool backupDiario,
             bool backupIncremental) : 
-            base(id, nome, tipoRecurso, valorMensal, situacao)
+            base(id, nome, tipoRecurso, valorMensal, situacao, interno)
         {
             this.EnderecoIp = enderecoIp;
             this.BaseDeDados = baseDeDados;

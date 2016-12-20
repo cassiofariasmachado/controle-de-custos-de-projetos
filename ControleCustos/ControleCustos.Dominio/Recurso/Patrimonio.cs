@@ -22,13 +22,14 @@ namespace ControleCustos.Dominio
             string nome, 
             TipoRecurso tipoRecurso, 
             decimal valorMensal, 
-            SituacaoRecurso situacao, 
+            SituacaoRecurso situacao,
+            bool interno,
             string modelo,
             string marca, 
             DateTime dataCompra, 
             decimal valorCompra,
             int tempoVidaUtil)
-            : base(id, nome, tipoRecurso, valorMensal, situacao)
+            : base(id, nome, tipoRecurso, valorMensal, situacao, interno)
         {
             this.Modelo = modelo;
             this.Marca = marca;

@@ -14,15 +14,18 @@ namespace ControleCustos.Dominio
 
         public SituacaoRecurso Situacao { get; private set; }
 
+        public bool Interno { get; private set; }
+
         public Recurso() { }
 
-        public Recurso(int id, string nome, TipoRecurso tipoRecurso, decimal valorMensal, SituacaoRecurso situacao)
+        public Recurso(int id, string nome, TipoRecurso tipoRecurso, decimal valorMensal, SituacaoRecurso situacao, bool interno)
         {
             this.Id = id;
             this.Nome = nome;
             this.TipoRecurso = tipoRecurso;
             this.ValorMensal = valorMensal;
             this.Situacao = situacao;
+            this.Interno = interno;
         }
     }
 }

@@ -15,9 +15,10 @@ namespace ControleCustos.Dominio
             TipoRecurso tipoRecurso,
             decimal valorMensal,
             SituacaoRecurso situacao,
+            bool interno,
             string descricao,
             TipoServico tipoServico)
-            : base(id, nome, tipoRecurso, valorMensal, situacao)
+            : base(id, nome, tipoRecurso, valorMensal, situacao, interno)
         {
             this.Descricao = descricao;
             this.TipoServico = tipoServico;
