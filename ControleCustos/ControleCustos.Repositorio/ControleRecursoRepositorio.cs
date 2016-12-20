@@ -28,6 +28,42 @@ namespace ControleCustos.Repositorio
             }
         }
 
+        public IList<ControleRecurso> ListarPatrimonio(Projeto projeto)
+        {
+            using (var context = new DatabaseContext())
+            {
+                IQueryable<ControleRecurso> query = context.ControleRecurso.Where(
+                    c => c.Projeto.Id == projeto.Id && c.Recurso is Patrimonio)
+                    .Include("Recurso")
+                    .Include("Projeto");
+                return query.ToList();
+            }
+        }
+
+        public IList<ControleRecurso> ListarCompartilhado(Projeto projeto)
+        {
+            using (var context = new DatabaseContext())
+            {
+                IQueryable<ControleRecurso> query = context.ControleRecurso.Where(
+                    c => c.Projeto.Id == projeto.Id && c.Recurso is Compartilhado)
+                    .Include("Recurso")
+                    .Include("Projeto");
+                return query.ToList();
+            }
+        }
+
+        public IList<ControleRecurso> ListarServico(Projeto projeto)
+        {
+            using (var context = new DatabaseContext())
+            {
+                IQueryable<ControleRecurso> query = context.ControleRecurso.Where(
+                    c => c.Projeto.Id == projeto.Id && c.Recurso is Servico)
+                    .Include("Recurso")
+                    .Include("Projeto");
+                return query.ToList();
+            }
+        }
+
         public IList<ControleRecurso> Listar(Projeto projeto, DateTime dataInicio, DateTime dataFim)
         {
             using (var context = new DatabaseContext())

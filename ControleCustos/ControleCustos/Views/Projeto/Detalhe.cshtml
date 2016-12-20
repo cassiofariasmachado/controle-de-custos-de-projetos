@@ -14,52 +14,48 @@
             </div>
         </div>
         <div class="panel-body">
-            <div class="row">
-                <span id="id-projeto" data-id-projeto="@Model.Id"></span>
-                <h4 class="col-xs-offset-1"><strong>@Model.Nome</strong></h4>
-                <div class="col-md-6">
-                    <ul>
-                        <li><strong>Gerente:</strong> @Model.Gerente.Nome</li>
-                        <li><strong>Cliente:</strong> @Model.Cliente</li>
-                        <li><strong>Principal tecnologia:</strong> @Model.Tecnologia</li>
-                        <li><strong>Situação:</strong> @Model.Situacao</li>
-                    </ul>
+            <div class="clearfix">
+                <div class="row">
+                    <span id="id-projeto" data-id-projeto="@Model.Id"></span>
+                    <h3 class="col-xs-offset-1"><strong>@Model.Nome</strong></h3>
+                    <div class="col-md-6">
+                        <ul>
+                            <li><strong>Gerente:</strong> @Model.Gerente.Nome</li>
+                            <li><strong>Cliente:</strong> @Model.Cliente</li>
+                            <li><strong>Principal tecnologia:</strong> @Model.Tecnologia</li>
+                            <li><strong>Situação:</strong> @Model.Situacao.ToString()</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul>
+                            <li><strong>Data início:</strong> @Model.DataInicio.ToString("dd/MM/yyyy")</li>
+                            <li><strong>Data final prevista:</strong> @Model.DataFinalPrevista.ToString("dd/MM/yyyy")</li>
+                            <li><strong>Faturamento previsto:</strong> R$ @String.Format("{0:#,##0.00}", Model.FaturamentoPrevisto)</li>
+                            <li><strong>Numero profissionais:</strong> @Model.NumeroProfissionais</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <ul>
-                        <li><strong>Data início:</strong> @Model.DataInicio.ToString("dd/MM/yyyy")</li>
-                        <li><strong>Data final prevista:</strong> @Model.DataFinalPrevista.ToString("dd/MM/yyyy")</li>
-                        <li><strong>Faturamento previsto:</strong> R$ @String.Format("{0:#,##0.00}", Model.FaturamentoPrevisto)</li>
-                        <li><strong>Numero profissionais:</strong> @Model.NumeroProfissionais</li>
-                    </ul>
+                <hr />
+                <div class="row">
+                    <div class="col-md-4">
+                        Total Patrimônio: R$ 1899,00
+                    </div>
+                    <div class="col-md-4">
+                        Total Compartilhado: R$ 6980,00
+                    </div>
+                    <div class="col-md-4">
+                        Total Serviço: R$ 1350,00
+                    </div>
                 </div>
-            </div>
-            <hr />
-            <div class="row">
-                <div class="col-md-4">
-                    Total Patrimônio: R$ 1899,00
-                </div>
-                <div class="col-md-4">
-                    Total Compartilhado: R$ 6980,00
-                </div>
-                <div class="col-md-4">
-                    Total Serviço: R$ 1350,00
-                </div>
-                <form method="GET" class="form-horizontal">
+                <hr />
+                <form method="GET" class="form-horizontal col-xs-offset-1">
                     <div class="form-group">
-                        <div class="col-sm-4">
-                            <div class="input-group">
-                                <div class="col-sm-2">
-
-                                </div>
-                                <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-default" id="botao-busca">
-                                        <i class="glyphicon glyphicon-search"></i>
-                                    </button>
-                                </span>
-
-                            </div>
-                        </div>
+                        <select class="form-control" id="select-tipo">
+                            <option value="todos" selected>Todos os recursos</option>
+                            <option value="patrimonio">Patrimônios</option>
+                            <option value="compartilhado">Compartilhados</option>
+                            <option value="servico">Serviços</option>
+                        </select>
                     </div>
                 </form>
                 <div class="spinner">
@@ -74,6 +70,7 @@
         </div>
     </div>
 </div>
+
 @section scripts {
     @Scripts.Render("~/bundles/projeto-recursos-lista")
 }
