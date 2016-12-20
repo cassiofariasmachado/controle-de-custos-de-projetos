@@ -51,19 +51,19 @@ namespace ControleCustos.Repositorio.Migrations
                 projeto8);
             context.SaveChanges();
 
-            var patrimonio1 = new Patrimonio(1, "100001", TipoRecurso.Fisico, 300.00M, SituacaoRecurso.Indisponivel, true, "Notebook Inspiron", "Dell", new DateTime(2015, 12, 5), 3000.00M, 10);
-            var patrimonio2 = new Patrimonio(2, "100002", TipoRecurso.Fisico, 450.00M, SituacaoRecurso.Disponivel, true, "Desktop", "Dell", new DateTime(2013, 2, 1), 4500.00M, 10);
-            var patrimonio3 = new Patrimonio(3, "100003", TipoRecurso.Fisico, 100.00M, SituacaoRecurso.Disponivel, true, "Monitor", "Dell", new DateTime(2015, 12, 5), 500.00M, 5);
-            var patrimonio4 = new Patrimonio(4, "100004", TipoRecurso.Fisico, 230.00M, SituacaoRecurso.Disponivel, true, "Notebook Vostro", "Dell", new DateTime(2015, 12, 5), 3500.00M, 15);
-            var compartilhado1 = new Compartilhado(5, "VM Interna", TipoRecurso.Logico, 1500.00M, SituacaoRecurso.Indisponivel, true, "10.10.1.1", true, 1000.00M, 8, 200000.00M, true, true);
-            var compartilhado2 = new Compartilhado(6, "Base de dados", TipoRecurso.Logico, 500.00M, SituacaoRecurso.Disponivel, true, "11.2.150.1", true, 10000.00M, 4, 5000000.00M, true, true);
-            var compartilhado3 = new Compartilhado(7, "Servidor fisico", TipoRecurso.Fisico, 1500.00M, SituacaoRecurso.Indisponivel, true, "128.10.1.1", true, 25000.00M, 8, 3000000.00M, false, false);
-            var servico1 = new Servico(8, "Visual Studio Profissional", TipoRecurso.Logico, 2000.00M, SituacaoRecurso.Indisponivel, true, "Licença profissional do VS.", TipoServico.Licenca);
-            var servico2 = new Servico(9, "TFS", TipoRecurso.Logico, 1500.00M, SituacaoRecurso.Disponivel, true, "Licença TFS.", TipoServico.Licenca);
-            var servico3 = new Servico(10, "Windows Server", TipoRecurso.Logico, 1800.00M, SituacaoRecurso.Disponivel, true, "Licença Windows Server.", TipoServico.Licenca);
-            var servico4 = new Servico(11, "Microsoft Vision", TipoRecurso.Logico, 1350.00M, SituacaoRecurso.Indisponivel, true, "Licença Microsoft Vision.", TipoServico.Licenca);
-            var servico5 = new Servico(12, "VM Amazon", TipoRecurso.Logico, 2000, SituacaoRecurso.Indisponivel, false, "VM Amazon.", TipoServico.Servico);
-            var servico6 = new Servico(13, "VM Azure", TipoRecurso.Logico, 3400.00M, SituacaoRecurso.Disponivel, false, "VM Microsoft Azure.", TipoServico.Servico);
+            var patrimonio1 = new Patrimonio(1, "100001", 300.00M, SituacaoRecurso.Indisponivel, true, "Notebook Inspiron", "Dell", new DateTime(2015, 12, 5), 3000.00M, 10);
+            var patrimonio2 = new Patrimonio(2, "100002", 450.00M, SituacaoRecurso.Disponivel, true, "Desktop", "Dell", new DateTime(2013, 2, 1), 4500.00M, 10);
+            var patrimonio3 = new Patrimonio(3, "100003", 100.00M, SituacaoRecurso.Disponivel, true, "Monitor", "Dell", new DateTime(2015, 12, 5), 500.00M, 5);
+            var patrimonio4 = new Patrimonio(4, "100004", 230.00M, SituacaoRecurso.Disponivel, true, "Notebook Vostro", "Dell", new DateTime(2015, 12, 5), 3500.00M, 15);
+            var compartilhado1 = new Compartilhado(5, "VM Interna", 1500.00M, SituacaoRecurso.Indisponivel, true, "10.10.1.1", true, 1000.00M, 8, 200000.00M, true, true, TipoRecurso.Logico);
+            var compartilhado2 = new Compartilhado(6, "Base de dados", 500.00M, SituacaoRecurso.Disponivel, true, "11.2.150.1", true, 10000.00M, 4, 5000000.00M, true, true, TipoRecurso.Logico);
+            var compartilhado3 = new Compartilhado(7, "Servidor fisico", 1500.00M, SituacaoRecurso.Indisponivel, true, "128.10.1.1", true, 25000.00M, 8, 3000000.00M, false, false, TipoRecurso.Fisico);
+            var servico1 = new Servico(8, "Visual Studio Profissional", 2000.00M, SituacaoRecurso.Indisponivel, true, "Licença profissional do VS.", TipoServico.Licenca);
+            var servico2 = new Servico(9, "TFS", 1500.00M, SituacaoRecurso.Disponivel, true, "Licença TFS.", TipoServico.Licenca);
+            var servico3 = new Servico(10, "Windows Server", 1800.00M, SituacaoRecurso.Disponivel, true, "Licença Windows Server.", TipoServico.Licenca);
+            var servico4 = new Servico(11, "Microsoft Vision", 1350.00M, SituacaoRecurso.Indisponivel, true, "Licença Microsoft Vision.", TipoServico.Licenca);
+            var servico5 = new Servico(12, "VM Amazon", 2000, SituacaoRecurso.Indisponivel, false, "VM Amazon.", TipoServico.Servico);
+            var servico6 = new Servico(13, "VM Azure", 3400.00M, SituacaoRecurso.Disponivel, false, "VM Microsoft Azure.", TipoServico.Servico);
 
             context.Recurso.AddOrUpdate(r => r.Id,
                 patrimonio1,

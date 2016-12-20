@@ -92,6 +92,10 @@
     <Compile Include="Migrations\201612192020171_CorrigirNomeDeTabelasEAdicionarPropriedadeInterno.Designer.cs">
       <DependentUpon>201612192020171_CorrigirNomeDeTabelasEAdicionarPropriedadeInterno.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612201316101_RemoverTipoRecursoDeRecursoEAdicionarApenasEmCompartilhado.cs" />
+    <Compile Include="Migrations\201612201316101_RemoverTipoRecursoDeRecursoEAdicionarApenasEmCompartilhado.Designer.cs">
+      <DependentUpon>201612201316101_RemoverTipoRecursoDeRecursoEAdicionarApenasEmCompartilhado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProjetoRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -137,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612192020171_CorrigirNomeDeTabelasEAdicionarPropriedadeInterno.resx">
       <DependentUpon>201612192020171_CorrigirNomeDeTabelasEAdicionarPropriedadeInterno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612201316101_RemoverTipoRecursoDeRecursoEAdicionarApenasEmCompartilhado.resx">
+      <DependentUpon>201612201316101_RemoverTipoRecursoDeRecursoEAdicionarApenasEmCompartilhado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
