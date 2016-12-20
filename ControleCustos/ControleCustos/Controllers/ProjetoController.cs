@@ -16,7 +16,7 @@ namespace ControleCustos.Controllers
         private IProjetoRepositorio projetoRepositorio;
         private UsuarioServico usuarioServico;
         private IRecursoRepositorio recursoRepositorio;
-        private const int quantidadeDeRecursosPorPagina = 4;
+        private const int quantidadeDeRecursosPorPagina = 5;
         private IControleRecursoRepositorio controleRecursoRepositorio;
 
         public ProjetoController()
@@ -149,6 +149,11 @@ namespace ControleCustos.Controllers
         public ActionResult Recurso(int idProjeto)
         {
             Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
+            if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            {
+                FlashMessage.Warning("Você não pode editar projetos de outros gerentes.");
+                return RedirectToAction("ListaProjetos");
+            }
             ProjetoModel model = new ProjetoModel(projeto);
             return View(model);
         }
@@ -177,8 +182,13 @@ namespace ControleCustos.Controllers
 
         public PartialViewResult CarregarModal(int idRecurso, int idProjeto)
         {
-            Recurso recurso = this.recursoRepositorio.Buscar(idRecurso);
             Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
+            if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            {
+                FlashMessage.Warning("Você não pode adicionar recursos a projetos de outros gerentes.");
+                return PartialView("_ModalRecurso", new ControleRecursoModel());
+            }
+            Recurso recurso = this.recursoRepositorio.Buscar(idRecurso);
             ControleRecursoModel model = new ControleRecursoModel(recurso,projeto, projeto.DataInicio, projeto.DataFinalPrevista);
             return PartialView("_ModalRecurso", model);
         }
@@ -187,7 +197,13 @@ namespace ControleCustos.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult SalvarModalRecurso(ControleRecursoModel model)
         {
-            
+            Projeto projeto = this.projetoRepositorio.Buscar(model.IdProjeto);
+
+            if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            {
+                return Json("Você não pode adicionar recursos a projetos de outros gerentes!", JsonRequestBehavior.AllowGet);
+            }
+
             if (ModelState.IsValid)
             {
                 ControleRecurso controleRecurso = this.ConverterModelParaControleRecurso(model);
