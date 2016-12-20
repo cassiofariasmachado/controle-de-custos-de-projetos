@@ -10,5 +10,8 @@ namespace ControleCustos.Dominio.Interface
         IList<Recurso> BuscaPaginadaRecursoCompartilhados(int pagina, int quantidade);
         IList<Recurso> BuscaPaginadaPatrimonios(int pagina, int quantidade);
         IList<Recurso> BuscaPaginadaServicos(int pagina, int quantidade);
+        int CompartilhadoCount();
+        int ServicoCount();
+        int PatrimonioCount();
     }
 }
