@@ -106,5 +106,29 @@ namespace ControleCustos.Tests.Dominio
 
             Assert.AreEqual(3.3, (double)custoPercentual, 0.1D);
         }
+
+        [TestMethod]
+        public void CalcularCustoPercentualDeveRetornarZeroParaProjetosSemCustosESemFaturamentoPrevisto()
+        {
+            Projeto projeto = new Projeto(3, "Renner", new Usuario(), "Renner", "Java", new DateTime(2016, 11, 1), new DateTime(2016, 12, 5), 0, 5, SituacaoProjeto.EmAndamento);
+
+            CalculoServico calculoServico = new CalculoServico(controleRecursoRepositorio);
+
+            decimal custoPercentual = calculoServico.CalcularCustoPercentual(projeto, new DateTime(2016, 11, 2));
+
+            Assert.AreEqual(0, (double)custoPercentual, 0.1D);
+        }
+
+        [TestMethod]
+        public void CalcularCustoPercentualDeveRetornarCemParaProjetosSemFaturamentoEComCustos()
+        {
+            Projeto projeto = new Projeto(4, "Renner", new Usuario(), "Renner", "Java", new DateTime(2016, 11, 1), new DateTime(2016, 12, 5), 0, 9, SituacaoProjeto.Novo);
+
+            CalculoServico calculoServico = new CalculoServico(controleRecursoRepositorio);
+
+            decimal custoPercentual = calculoServico.CalcularCustoPercentual(projeto, new DateTime(2016, 11, 2));
+
+            Assert.AreEqual(100, (double)custoPercentual, 0.1D);
+        }
     }
 }
