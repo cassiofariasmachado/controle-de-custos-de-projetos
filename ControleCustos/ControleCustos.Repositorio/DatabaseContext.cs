@@ -12,7 +12,9 @@ namespace ControleCustos.Repositorio
         public DbSet<Recurso> Recurso { get; set; }
         public DbSet<Projeto> Projeto { get; set; }
         public DbSet<ControleRecurso> ControleRecurso { get; set; }
-
+        public DbSet<UnidadeTecnica> UnidadeTecnica { get; set; }
+        public DbSet<Custo> Custo { get; set; }
+        public DbSet<Colaboradores> Colaboradores { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
