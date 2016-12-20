@@ -16,7 +16,7 @@ namespace ControleCustos.Controllers
         private IProjetoRepositorio projetoRepositorio;
         private UsuarioServico usuarioServico;
         private IRecursoRepositorio recursoRepositorio;
-        private const int quantidadeDeRecursosPorPagina = 5;
+        private const int quantidadeDeRecursosPorPagina = 4;
         private IControleRecursoRepositorio controleRecursoRepositorio;
 
         public ProjetoController()
@@ -126,36 +126,36 @@ namespace ControleCustos.Controllers
             var model = new ProjetoModel(projeto);
             return model;
         }
-
-        public ActionResult Recurso()
-        {
-            return View();
-        }
-
         public PartialViewResult CarregarListaDeRecursosCompartilhados(int pagina)
         {
             IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaRecursoCompartilhados(pagina, quantidadeDeRecursosPorPagina);
-            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina);
+            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina, this.recursoRepositorio.CompartilhadoCount());
             return PartialView("_ListagemDeRecursos", model);
         }
 
         public PartialViewResult CarregarListaDePatrimonios(int pagina)
         {
             IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaPatrimonios(pagina, quantidadeDeRecursosPorPagina);
-            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina);
+            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina, this.recursoRepositorio.PatrimonioCount());
             return PartialView("_ListagemDeRecursos", model);
         }
 
         public PartialViewResult CarregarListaDeServicos(int pagina)
         {
             IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaServicos(pagina, quantidadeDeRecursosPorPagina);
-            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina);
+            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina, this.recursoRepositorio.ServicoCount());
             return PartialView("_ListagemDeRecursos", model);
         }
-
-        private RecursoListagemModel CriarRecursoListagemViewModel(IList<Recurso> recursos, int pagina)
+        public ActionResult Recurso(int idProjeto)
         {
-            RecursoListagemModel model = new RecursoListagemModel(recursos);
+            Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
+            ProjetoModel model = new ProjetoModel(projeto);
+            return View(model);
+        }
+
+        private RecursoListagemModel CriarRecursoListagemViewModel(IList<Recurso> recursos, int pagina, int quantidadeTotalRecursos)
+        {
+            RecursoListagemModel model = new RecursoListagemModel(recursos, quantidadeTotalRecursos);
 
             model.PaginaAtual = pagina;
 
@@ -175,10 +175,11 @@ namespace ControleCustos.Controllers
             return model;
         }
 
-        public PartialViewResult CarregarModal(int id)
+        public PartialViewResult CarregarModal(int idRecurso, int idProjeto)
         {
-            Recurso recurso = this.recursoRepositorio.Buscar(id);
-            ControleRecursoModel model = new ControleRecursoModel(recurso, new Projeto());
+            Recurso recurso = this.recursoRepositorio.Buscar(idRecurso);
+            Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
+            ControleRecursoModel model = new ControleRecursoModel(recurso,projeto, projeto.DataInicio, projeto.DataFinalPrevista);
             return PartialView("_ModalRecurso", model);
         }
 
@@ -186,12 +187,19 @@ namespace ControleCustos.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult SalvarModalRecurso(ControleRecursoModel model)
         {
-
+            
             if (ModelState.IsValid)
             {
-
+                ControleRecurso controleRecurso = this.ConverterModelParaControleRecurso(model);
+                controleRecursoRepositorio.Inserir(controleRecurso);
+                return Json("Adicionado Com Sucesso.", JsonRequestBehavior.AllowGet);
             }
-            return new JsonResult();
+            return Json("Ok", JsonRequestBehavior.AllowGet);
+        }
+
+        private ControleRecurso ConverterModelParaControleRecurso(ControleRecursoModel model)
+        {
+            return new ControleRecurso(0, this.projetoRepositorio.Buscar(model.IdProjeto), this.recursoRepositorio.Buscar(model.IdRecurso), model.DataInicio, model.DataFim);
         }
 
     }
