@@ -51,11 +51,16 @@ namespace ControleCustos.Controllers
 
             return PartialView("_ListaProjetosFiltrada", model); ;
         }
-        
-        [Autorizador(Roles = "Administrador")]
+
+        [Autorizador(Roles = "Administrador,Gerente")]
         public ActionResult Detalhe(int id)
         {
             var projeto = projetoRepositorio.Buscar(id);
+            if (ServicoDeAutenticacao.UsuarioLogado.Permissao != Permissao.Administrador && projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            {
+                FlashMessage.Danger("Você não pode visualizar projetos de outros gerentes.");
+                return RedirectToAction("ListaProjetos");
+            }
             var model = new ProjetoModel(projeto);
             return View(model);
         }
@@ -72,7 +77,7 @@ namespace ControleCustos.Controllers
             var projeto = projetoRepositorio.Buscar(id);
             if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
             {
-                FlashMessage.Warning("Você não pode editar projetos de outros gerentes.");
+                FlashMessage.Danger("Você não pode editar projetos de outros gerentes.");
                 return RedirectToAction("ListaProjetos");
             }
             var model = new ProjetoModel(projeto);
