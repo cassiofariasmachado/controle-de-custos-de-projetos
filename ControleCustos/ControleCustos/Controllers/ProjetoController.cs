@@ -86,15 +86,18 @@ namespace ControleCustos.Controllers
             if (ModelState.IsValid)
             {
                 model.Gerente = this.usuarioServico.BuscarPorEmail(ServicoDeAutenticacao.UsuarioLogado.Email);
-                Projeto projeto = ConverterModelParaProjeto(model);
-                if (projeto.Id == 0)
+                if (model.Id == null)
                 {
+                    Projeto projeto = ConverterModelParaProjeto(model);
                     this.projetoRepositorio.Inserir(projeto);
+                    FlashMessage.Confirmation("Projeto adicionado com sucesso.");
                     return RedirectToAction("ListaProjetos");
                 }
                 else
                 {
+                    Projeto projeto = ConverterModelEditadaParaProjeto(model);
                     this.projetoRepositorio.Atualizar(projeto);
+                    FlashMessage.Confirmation("Projeto editado com sucesso.");
                     return RedirectToAction("ListaProjetos");
                 }
 
@@ -110,6 +113,12 @@ namespace ControleCustos.Controllers
         {
             return new Projeto(model.Id.GetValueOrDefault(), model.Nome, model.Gerente, model.Cliente, model.Tecnologia, model.DataInicio,
                                     model.DataFinalPrevista, model.FaturamentoPrevisto, model.NumeroProfissionais, model.Situacao);
+        }
+
+        private Projeto ConverterModelEditadaParaProjeto(ProjetoModel model)
+        {
+            return new Projeto(model.Id.GetValueOrDefault(), model.Nome, model.Gerente, model.Cliente, model.Tecnologia, model.DataInicio,
+                                    model.DataFinalPrevista, model.DataFinalRealizada.GetValueOrDefault(), model.FaturamentoPrevisto, model.FaturamentoRealizado, model.NumeroProfissionais, model.Situacao);
         }
 
         private ProjetoModel CriarProjetoViewModel(Projeto projeto)
