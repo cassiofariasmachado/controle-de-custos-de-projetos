@@ -17,6 +17,5 @@ namespace ControleCustos.Repositorio
                 .Sum(u => u.Valor);
             }
         }
-
     }
 }
