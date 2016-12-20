@@ -8,6 +8,10 @@ namespace ControleCustos.Dominio
         public int QuantidadeDeColaboradores { get; private set; }
         public DateTime Periodo { get; private set; }
         public UnidadeTecnica UnidadeTecnica { get; private set; }
+        public Colaboradores()
+        {
+
+        }
         public Colaboradores(int id, int quantidadeDeColaboradores, DateTime periodo, UnidadeTecnica unidadeTecnica)
         {
             this.Id = id;
