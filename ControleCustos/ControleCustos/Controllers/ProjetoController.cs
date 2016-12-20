@@ -86,6 +86,7 @@ namespace ControleCustos.Controllers
 
         [HttpPost]
         [Autorizador(Roles = "Gerente")]
+        [ValidateAntiForgeryToken]
         public ActionResult Salvar(ProjetoModel model)
         {
             if (ModelState.IsValid)
@@ -116,7 +117,7 @@ namespace ControleCustos.Controllers
 
         [HttpGet]
         [Autorizador(Roles = "Gerente")]
-        public PartialViewResult CarregarListaDeRecursosCompartilhados(int pagina)
+        public PartialViewResult CarregarListaDeRecursosCompartilhados(int pagina, Projeto projeto = null)
         {
             IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaRecursoCompartilhados(pagina, quantidadeDeRecursosPorPagina);
             RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina, this.recursoRepositorio.CompartilhadoCount());
@@ -192,7 +193,7 @@ namespace ControleCustos.Controllers
         }
 
         [HttpGet]
-        [Autorizador(Roles = "Gerente")]
+        [Autorizador(Roles = "Gerente, Administrador")]
         public PartialViewResult CarregarListaDeRecursosDoProjeto(int idProjeto)
         {
             Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
@@ -202,6 +203,51 @@ namespace ControleCustos.Controllers
                 return PartialView("_ListaDeRecursosProjeto", null);
             }
             IList<ControleRecurso> controleRecurso = this.controleRecursoRepositorio.Listar(projeto);
+            IList<ControleRecursoModel> model = this.ConverterIListControleRecursoParaModel(controleRecurso);
+            return PartialView("_ListaDeRecursosProjeto", model);
+        }
+
+        [HttpGet]
+        [Autorizador(Roles = "Gerente, Administrador")]
+        public PartialViewResult CarregarListaDePatrimoniosDoProjeto(int idProjeto)
+        {
+            Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
+            if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            {
+                FlashMessage.Warning("Você não pode ver recursos de projetos de outros gerentes.");
+                return PartialView("_ListaDeRecursosProjeto", null);
+            }
+            IList<ControleRecurso> controleRecurso = this.controleRecursoRepositorio.ListarPatrimonio(projeto);
+            IList<ControleRecursoModel> model = this.ConverterIListControleRecursoParaModel(controleRecurso);
+            return PartialView("_ListaDeRecursosProjeto", model);
+        }
+
+        [HttpGet]
+        [Autorizador(Roles = "Gerente, Administrador")]
+        public PartialViewResult CarregarListaDeCompartilhadosDoProjeto(int idProjeto)
+        {
+            Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
+            if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            {
+                FlashMessage.Warning("Você não pode ver recursos de projetos de outros gerentes.");
+                return PartialView("_ListaDeRecursosProjeto", null);
+            }
+            IList<ControleRecurso> controleRecurso = this.controleRecursoRepositorio.ListarCompartilhado(projeto);
+            IList<ControleRecursoModel> model = this.ConverterIListControleRecursoParaModel(controleRecurso);
+            return PartialView("_ListaDeRecursosProjeto", model);
+        }
+
+        [HttpGet]
+        [Autorizador(Roles = "Gerente, Administrador")]
+        public PartialViewResult CarregarListaDeServicosDoProjeto(int idProjeto)
+        {
+            Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
+            if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            {
+                FlashMessage.Warning("Você não pode ver recursos de projetos de outros gerentes.");
+                return PartialView("_ListaDeRecursosProjeto", null);
+            }
+            IList<ControleRecurso> controleRecurso = this.controleRecursoRepositorio.ListarServico(projeto);
             IList<ControleRecursoModel> model = this.ConverterIListControleRecursoParaModel(controleRecurso);
             return PartialView("_ListaDeRecursosProjeto", model);
         }

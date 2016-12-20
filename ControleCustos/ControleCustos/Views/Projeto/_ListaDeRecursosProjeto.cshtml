@@ -3,7 +3,7 @@
 
 @if (Model == null || Model.LongCount() == 0)
 {
-    <h2>Projeto Sem Recursos</h2>
+    <span class="col-sm-offset-1">Nenhum recurso encontrado.</span>
 }
 else
 {
@@ -22,8 +22,8 @@ else
                     {
                         <tr>
                             <td class="text-left">@controleRecurso.NomeRecurso</td>
-                            <td class="text-left">@controleRecurso.DataInicio</td>
-                            <td class="text-left">@controleRecurso.DataFim</td>
+                            <td class="text-left">@controleRecurso.DataInicio.ToString("dd/MM/yyyy")</td>
+                            <td class="text-left">@controleRecurso.DataFim.ToString("dd/MM/yyyy")</td>
                         </tr>
                     }
                 }
