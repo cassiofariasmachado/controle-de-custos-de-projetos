@@ -7,13 +7,13 @@ namespace ControleCustos.Repositorio.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AdicionarHerancaParaRecursos : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AdicionarHerancaParaRecursos));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201612150008223_AdicionarHerancaParaRecursos"; }
+            get { return "201612201904355_Initial"; }
         }
         
         string IMigrationMetadata.Source
