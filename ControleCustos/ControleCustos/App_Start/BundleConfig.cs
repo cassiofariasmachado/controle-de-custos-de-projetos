@@ -26,8 +26,8 @@ namespace ControleCustos
             bundles.Add(new ScriptBundle("~/bundles/lista-projetos").Include(
                         "~/Scripts/app/projeto/lista.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/listagemRecursos").Include(
-                      "~/Scripts/app/listagemRecursos.js"));
+            bundles.Add(new ScriptBundle("~/bundles/recurso").Include(
+                      "~/Scripts/app/projeto/recurso.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/relatorio").Include(
                       "~/Scripts/app/relatorio/relatorios.js",

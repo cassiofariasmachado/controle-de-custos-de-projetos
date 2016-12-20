@@ -5,19 +5,25 @@ namespace ControleCustos.Models
 {
     public class RecursoListagemModel
     {
-        public RecursoListagemModel(IList<Recurso> recursos)
+        public RecursoListagemModel(IList<Recurso> recursos, int quantidadeTotalRecursos)
         {
             this.Recursos = this.ConverterEmListagemDeRecursos(recursos);
+            this.QuantidadeTotalRecursos = quantidadeTotalRecursos;
         }
 
         public int PaginaAtual { get; set; }
         public int QuantidadeDeRecursosPorPagina { get; set; }
+        private int QuantidadeTotalRecursos { get; set; }
 
         public bool UltimaPagina
         {
             get
             {
-                return Recursos.Count < this.QuantidadeDeRecursosPorPagina;
+                if (PaginaAtual >= QuantidadeTotalRecursos / (double)QuantidadeDeRecursosPorPagina)
+                {
+                    return true;
+                }
+                return false;
             }
         }
 
