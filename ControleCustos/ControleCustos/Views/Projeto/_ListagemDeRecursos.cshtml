@@ -8,7 +8,7 @@
     <table class="table table-bordered table-striped" data-ultima-pagina="@ultimaPaginaAttr" id="tabela">
         <thead>
             <tr>
-                <th class="text-center col-md-1">#</th>
+                <th class="text-center col-md-1"></th>
                 <th class="text-left col-md-1">ID</th>
                 <th class="text-left col-md-10">Nome</th>
             </tr>
@@ -18,7 +18,7 @@
                 foreach (RecursoModel recurso in Model.Recursos)
                 {
                     <tr>
-                        <td class="text-center"><button class="btn glyphicon glyphicon-ok btn-xs" onclick="recurso.adicionarRecurso(@recurso.Id)"></button></td>
+                        <td class="text-center"><button class="btn btn-xs" onclick="recurso.adicionarRecurso(@recurso.Id)">Adicionar</button></td>
                         <td class="text-left">@recurso.Id</td>
                         <td class="text-left">@recurso.Nome</td>
                     </tr>
@@ -27,5 +27,5 @@
         </tbody>
     </table>
 </div>
-<button class="btn glyphicon glyphicon-chevron-left" id="voltar"></button>
-<button class="btn glyphicon glyphicon-chevron-right" id="avancar"></button>
+<button class="btn glyphicon glyphicon-chevron-left btn-sm" id="voltar"></button>
+<button class="btn glyphicon glyphicon-chevron-right btn-sm" id="avancar"></button>
