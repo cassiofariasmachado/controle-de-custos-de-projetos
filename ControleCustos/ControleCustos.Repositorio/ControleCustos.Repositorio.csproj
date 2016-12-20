@@ -50,7 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColaboradoresRepositorio.cs" />
     <Compile Include="ControleRecursoRepositorio.cs" />
+    <Compile Include="CustoRepositorio.cs" />
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="Migrations\201612142349398_Initial.cs" />
     <Compile Include="Migrations\201612142349398_Initial.Designer.cs">
@@ -96,6 +98,7 @@
     <Compile Include="ProjetoRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecursoRepositorio.cs" />
+    <Compile Include="UnidadeTecnicaRepositorio.cs" />
     <Compile Include="UsuarioRepositorio.cs" />
   </ItemGroup>
   <ItemGroup>
