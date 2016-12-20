@@ -1,6 +1,6 @@
 ﻿namespace ControleCustos.Dominio.Interface
 {
-    interface ICustoRepositorio
+    public interface ICustoRepositorio
     {
     }
 }
