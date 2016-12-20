@@ -1,0 +1,26 @@
+﻿@model List<ControleCustos.Models.ControleRecursoModel>
+@using ControleCustos.Models
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th class="text-left col-md-6">Nome Do Recuro</th>
+                <th class="text-left col-md-3">Data de Início</th>
+                <th class="text-left col-md-3">Data Fim</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (ControleRecursoModel controleRecurso in Model)
+                {
+                    <tr>
+                        <td class="text-left">@controleRecurso.NomeRecurso</td>
+                        <td class="text-left">@controleRecurso.DataInicio</td>
+                        <td class="text-left">@controleRecurso.DataFim</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

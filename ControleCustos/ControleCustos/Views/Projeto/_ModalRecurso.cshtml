@@ -1,4 +1,5 @@
 ﻿@model ControleCustos.Models.ControleRecursoModel
+@using Vereyon.Web;
 <div class="modal fade" id="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
 
@@ -9,6 +10,8 @@
                 <h4 class="modal-title" id="exampleModalLabel">Adicionar Recurso</h4>
             </div>
             <div class="modal-body">
+                @Html.RenderFlashMessages()
+                <div class="alert alert-danger" role="alert" id="alerta-modal" style="display:none"></div>
                 <div class="form-group">
                     <span> <strong>Projeto: </strong>@Model.NomeProjeto</span>
                 </div>
@@ -19,6 +22,7 @@
                     @Html.AntiForgeryToken()
                     @Html.HiddenFor(model => model.IdProjeto)
                     @Html.HiddenFor(model => model.IdRecurso)
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(model => model.DataInicio, new { @class = "col-sm-2 control-label" })
                         @Html.TextBoxFor(model => model.DataInicio, "{0:dd/MM/yyyy}", new { @class = "form-control" })

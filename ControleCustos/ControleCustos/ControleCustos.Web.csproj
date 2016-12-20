@@ -230,6 +230,7 @@
     <Content Include="Views\Projeto\Recurso.cshtml" />
     <Content Include="Views\Projeto\_ModalRecurso.cshtml" />
     <Content Include="Views\Projeto\Detalhe.cshtml" />
+    <Content Include="Views\Projeto\_ListaDeRecursosProjeto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

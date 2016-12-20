@@ -17,26 +17,24 @@
             <div class="panel-body">
                 <h3>@Model.Nome</h3>
                 <span id="id-projeto" data-id-projeto="@Model.Id"></span>
-                <div class="container">
-                    <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Recusos
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a id="patrimonio">Patrimonio</a></li>
-                            <li><a id="compartilhado">Compartilhados</a></li>
-                            <li><a id="servico">Serviços</a></li>
-                        </ul>
-                    </div>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Recusos
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a id="patrimonio">Patrimônio</a></li>
+                        <li><a id="compartilhado">Compartilhados</a></li>
+                        <li><a id="servico">Serviços</a></li>
+                    </ul>
                 </div>
-                <div class="container">
-                    <div class="alert alert-success" role="alert" id="mensagem" style="display:none">
-                    </div>
+                <div class="alert alert-success" role="alert" id="mensagem" style="display:none">
                 </div>
-                <div class="container">
-                    <div class="" id="recurso-lista">
-                    </div>
+                <h4 id="nome-recurso"></h4>
+                <div class="" id="recurso-lista">
+                </div>
+                <h4>Recursos do projeto</h4>
+                <div class="" id="recurso-lista-projeto">
                 </div>
             </div>
         </div>

@@ -5,7 +5,10 @@ recurso.urlRecursosCompartilhados = '/Projeto/CarregarListaDeRecursosCompartilha
 recurso.urlServicos = '/Projeto/CarregarListaDeServicos';
 recurso.urlPatrimonios = '/Projeto/CarregarListaDePatrimonios';
 recurso.urlCarregarModal = '/Projeto/CarregarModal';
+recurso.urlCarregarListaDeRecursosDoProjeto = '/Projeto/CarregarListaDeRecursosDoProjeto';
 recurso.$lista = $('#recurso-lista');
+recurso.$listaRecursoDoPojeto = $('#recurso-lista-projeto');
+recurso.$nomeRecurso = $('#nome-recurso');
 recurso.$recursoModal = $('#recurso-modal');
 recurso.$selectPatrimonio = $('#patrimonio');
 recurso.$selectCompartilhado = $('#compartilhado');
@@ -17,7 +20,8 @@ recurso.$botaoAvancar;
 recurso.urlDeContexto;
 recurso.modal;
 recurso.formModal;
-recurso.idProjeto;
+recurso.idProjeto = $('#id-projeto').data("id-projeto");
+recurso.$alertaModal;
 
 recurso.carregarListaDeRecursos = function (url) {
     $.get(url, { pagina: recurso.paginaAtual },
@@ -25,6 +29,7 @@ recurso.carregarListaDeRecursos = function (url) {
                 recurso.$lista.html(resultado);
                 recurso.configurarBotoesDeNavegacao();
                 recurso.atualizarBotoesDeNavegacao();
+                recurso.atualizarNomeRecurso();
             });
 };
 
@@ -79,7 +84,12 @@ recurso.escutarBotaoEnviarFormModal = function () {
         $.post('/Projeto/SalvarModalRecurso', recurso.formModal.serialize(), function (dados) {
             recurso.carregarListaDeRecursos(recurso.urlDeContexto);
             recurso.modal.modal('toggle');
+            recurso.carregarListaDeRecursosDoProjeto();
             recurso.mensagem(dados);
+        }).fail(function (erro) {
+            recurso.alertaModal.css('display', 'block');
+            recurso.alertaModal.html("Ocorreu um erro!");
+            console.log(erro);
         });
     });
 };
@@ -91,17 +101,36 @@ recurso.mensagem = function (mensagem) {
 };
 
 recurso.adicionarRecurso = function (idRecurso) {
-    recurso.idProjeto = $('#id-projeto');
-    let idProjeto = recurso.idProjeto.data("id-projeto");
-    $.get(recurso.urlCarregarModal, { idRecurso: idRecurso, idProjeto: idProjeto }, function (resultado) {
+    $.get(recurso.urlCarregarModal, { idRecurso: idRecurso, idProjeto: recurso.idProjeto }, function (resultado) {
         recurso.$recursoModal.html(resultado);
         recurso.modal = $('#modal');
         recurso.modal.modal();
         recurso.formModal = $('#form-modal');
         recurso.escutarBotaoEnviarFormModal();
+        recurso.alertaModal = $('#alerta-modal');
     });
 };
 
+recurso.atualizarNomeRecurso = function () {
+    if (recurso.urlDeContexto === recurso.urlPatrimonios) {
+        recurso.$nomeRecurso.html("Patrimônio");
+    } else if (recurso.urlDeContexto === recurso.urlServicos) {
+        recurso.$nomeRecurso.html("Serviço");
+    } else if (recurso.urlDeContexto === recurso.urlRecursosCompartilhados) {
+        recurso.$nomeRecurso.html("Compartilhado");
+    }
+};
+
+recurso.carregarListaDeRecursosDoProjeto = function () {
+    $.get(recurso.urlCarregarListaDeRecursosDoProjeto, { idProjeto: recurso.idProjeto },
+        function (retorno) {
+            recurso.$listaRecursoDoPojeto.html(retorno);
+        });
+}
+
 recurso.iniciar = function () {
     recurso.iniciarEscutaDoSelect();
+    recurso.carregarListaDeRecursos(recurso.urlPatrimonios);
+    recurso.urlDeContexto = recurso.urlPatrimonios;
+    recurso.carregarListaDeRecursosDoProjeto();
 };

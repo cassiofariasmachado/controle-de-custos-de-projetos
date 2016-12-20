@@ -1,5 +1,6 @@
 ﻿using ControleCustos.Dominio;
 using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace ControleCustos.Models
