@@ -18,6 +18,7 @@ namespace ControleCustos.Controllers
         private IRecursoRepositorio recursoRepositorio;
         private const int quantidadeDeRecursosPorPagina = 5;
         private IControleRecursoRepositorio controleRecursoRepositorio;
+        private CalculoServico calculoServico;
 
         public ProjetoController()
         {
@@ -25,6 +26,7 @@ namespace ControleCustos.Controllers
             this.usuarioServico = ServicoDeDependencias.MontarUsuarioServico();
             this.recursoRepositorio = ServicoDeDependencias.MontarRecursoRepositorio();
             this.controleRecursoRepositorio = ServicoDeDependencias.MontarControleRecursoRepositorio();
+            this.calculoServico = ServicoDeDependencias.MontarCalculoServico();
         }
 
 
@@ -61,7 +63,10 @@ namespace ControleCustos.Controllers
                 FlashMessage.Danger("Você não pode visualizar projetos de outros gerentes.");
                 return RedirectToAction("ListaProjetos");
             }
-            var model = new ProjetoModel(projeto);
+            decimal totalPatrimonio = this.calculoServico.CalcularCustoPatrimonioTotalAte(projeto, DateTime.Now);
+            decimal totalCompartilhado = this.calculoServico.CalcularCustoCompartilhadoTotalAte(projeto, DateTime.Now);
+            decimal totalServico = this.calculoServico.CalcularCustoServicoTotalAte(projeto, DateTime.Now);
+            var model = new ProjetoDetalheModel(projeto, totalPatrimonio, totalCompartilhado, totalServico);
             return View(model);
         }
 

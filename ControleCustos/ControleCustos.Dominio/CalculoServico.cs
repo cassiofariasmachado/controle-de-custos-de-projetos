@@ -29,6 +29,48 @@ namespace ControleCustos.Dominio
             return custoTotal;
         }
 
+        public decimal CalcularCustoPatrimonioTotalAte(Projeto projeto, DateTime data)
+        {
+            decimal custoTotal = 0;
+            IList<ControleRecurso> listaControleRecurso = controleRecursoRepositorio.ListarPatrimonio(projeto);
+            foreach (var controleRecurso in listaControleRecurso)
+            {
+                // Verifica se recurso está nesse período
+                DateTime dataFim = data < controleRecurso.DataFim ? data : controleRecurso.DataFim;
+                if (data < controleRecurso.DataInicio) { continue; }
+                custoTotal += this.CalcularCustoTotalDoRecursoEntre(controleRecurso.Recurso, controleRecurso.DataInicio, dataFim);
+            }
+            return custoTotal;
+        }
+
+        public decimal CalcularCustoCompartilhadoTotalAte(Projeto projeto, DateTime data)
+        {
+            decimal custoTotal = 0;
+            IList<ControleRecurso> listaControleRecurso = controleRecursoRepositorio.ListarCompartilhado(projeto);
+            foreach (var controleRecurso in listaControleRecurso)
+            {
+                // Verifica se recurso está nesse período
+                DateTime dataFim = data < controleRecurso.DataFim ? data : controleRecurso.DataFim;
+                if (data < controleRecurso.DataInicio) { continue; }
+                custoTotal += this.CalcularCustoTotalDoRecursoEntre(controleRecurso.Recurso, controleRecurso.DataInicio, dataFim);
+            }
+            return custoTotal;
+        }
+
+        public decimal CalcularCustoServicoTotalAte(Projeto projeto, DateTime data)
+        {
+            decimal custoTotal = 0;
+            IList<ControleRecurso> listaControleRecurso = controleRecursoRepositorio.ListarServico(projeto);
+            foreach (var controleRecurso in listaControleRecurso)
+            {
+                // Verifica se recurso está nesse período
+                DateTime dataFim = data < controleRecurso.DataFim ? data : controleRecurso.DataFim;
+                if (data < controleRecurso.DataInicio) { continue; }
+                custoTotal += this.CalcularCustoTotalDoRecursoEntre(controleRecurso.Recurso, controleRecurso.DataInicio, dataFim);
+            }
+            return custoTotal;
+        }
+
         public decimal CalcularCustoPercentual(Projeto projeto, DateTime data)
         {
             decimal custoTotal = this.CalcularCustoTotalAte(projeto, data);

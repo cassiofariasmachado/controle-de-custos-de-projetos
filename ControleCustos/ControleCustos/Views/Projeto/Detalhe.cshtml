@@ -1,4 +1,4 @@
-﻿@model ControleCustos.Models.ProjetoModel
+﻿@model ControleCustos.Models.ProjetoDetalheModel
 @{
     string titulo = "Detalhe";
     ViewBag.Title = titulo;
@@ -38,14 +38,18 @@
                 </div>
                 <hr />
                 <div class="row">
-                    <div class="col-md-4">
-                        Total Patrimônio: R$ 1899,00
+                    <h4 class="nome-projeto">Totais:</h4>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.TotalPatrimonio)
+                        @Html.Label("R$ " + Model.TotalPatrimonio.ToString("0:#,##0.00"))
                     </div>
-                    <div class="col-md-4">
-                        Total Compartilhado: R$ 6980,00
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.TotalCompartilhado)
+                        @Html.Label("R$ " + Model.TotalCompartilhado.ToString("0:#,##0.00"))
                     </div>
-                    <div class="col-md-4">
-                        Total Serviço: R$ 1350,00
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.TotalServico)
+                        @Html.Label("R$ " + Model.TotalServico.ToString("0:#,##0.00"))
                     </div>
                 </div>
                 <hr />
