@@ -73,5 +73,15 @@ namespace ControleCustos.Tests.Dominio
                 }
             }
         }
+
+        public int QuantidadeDeRecursosInternosPorProjeto(Projeto projeto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int QuantidadeDeRecursosInternosNaoUtilizadosPorProjetosAtivos()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

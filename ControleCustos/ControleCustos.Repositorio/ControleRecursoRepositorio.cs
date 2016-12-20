@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ControleCustos.Dominio;
 using System.Data.Entity;
+using ControleCustos.Dominio.Enum;
 
 namespace ControleCustos.Repositorio
 {
@@ -48,6 +49,33 @@ namespace ControleCustos.Repositorio
                                                                            .Include("Recurso")
                                                                            .Include("Projeto");
                 return query.ToList();
+            }
+        }
+
+        public int QuantidadeDeRecursosInternosPorProjeto(Projeto projeto)
+        {
+            using (var context = new DatabaseContext())
+            {
+                IQueryable<Recurso> query = context.ControleRecurso.Where(c => c.Projeto.Id == projeto.Id
+                                                                          && c.Recurso.Interno == true)
+                                                                   .Select(c => c.Recurso)
+                                                                   .Distinct();
+                IList<Recurso> listaRecursos2 = query.ToList();
+                return query.Count();
+            }
+        }
+
+        public int QuantidadeDeRecursosInternosNaoUtilizadosPorProjetosAtivos()
+        {
+            using (var context = new DatabaseContext())
+            {
+                IQueryable<Recurso> subquery = context.ControleRecurso.Where(c => c.Projeto.Situacao == SituacaoProjeto.EmAndamento
+                                                                               || c.Projeto.Situacao == SituacaoProjeto.Novo)
+                                                                      .Select(c => c.Recurso)
+                                                                      .Distinct();
+                IQueryable<Recurso> query = context.Recurso.Where(r => r.Interno == true)
+                                                                      .Except(subquery);
+                return query.Count();
             }
         }
 
