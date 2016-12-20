@@ -202,7 +202,7 @@ namespace ControleCustos.Controllers
         public PartialViewResult CarregarListaDeRecursosDoProjeto(int idProjeto)
         {
             Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
-            if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            if (ServicoDeAutenticacao.UsuarioLogado.Permissao != Permissao.Administrador && projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
             {
                 FlashMessage.Warning("Você não pode ver recursos de projetos de outros gerentes.");
                 return PartialView("_ListaDeRecursosProjeto", null);
@@ -217,7 +217,7 @@ namespace ControleCustos.Controllers
         public PartialViewResult CarregarListaDePatrimoniosDoProjeto(int idProjeto)
         {
             Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
-            if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            if (ServicoDeAutenticacao.UsuarioLogado.Permissao != Permissao.Administrador && projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
             {
                 FlashMessage.Warning("Você não pode ver recursos de projetos de outros gerentes.");
                 return PartialView("_ListaDeRecursosProjeto", null);
@@ -232,7 +232,7 @@ namespace ControleCustos.Controllers
         public PartialViewResult CarregarListaDeCompartilhadosDoProjeto(int idProjeto)
         {
             Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
-            if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            if (ServicoDeAutenticacao.UsuarioLogado.Permissao != Permissao.Administrador && projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
             {
                 FlashMessage.Warning("Você não pode ver recursos de projetos de outros gerentes.");
                 return PartialView("_ListaDeRecursosProjeto", null);
@@ -247,7 +247,7 @@ namespace ControleCustos.Controllers
         public PartialViewResult CarregarListaDeServicosDoProjeto(int idProjeto)
         {
             Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
-            if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            if (ServicoDeAutenticacao.UsuarioLogado.Permissao != Permissao.Administrador && projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
             {
                 FlashMessage.Warning("Você não pode ver recursos de projetos de outros gerentes.");
                 return PartialView("_ListaDeRecursosProjeto", null);
