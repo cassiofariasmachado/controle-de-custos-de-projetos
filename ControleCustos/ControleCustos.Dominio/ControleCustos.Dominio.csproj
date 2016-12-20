@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ControleRecurso.cs" />
     <Compile Include="Criptografia\Interface\IServicoDeCriptografia.cs" />
+    <Compile Include="Custo.cs" />
     <Compile Include="Enum\SituacaoProjeto.cs" />
     <Compile Include="Interface\IControleRecursoRepositorio.cs" />
     <Compile Include="Interface\IProjetoRepositorio.cs" />
