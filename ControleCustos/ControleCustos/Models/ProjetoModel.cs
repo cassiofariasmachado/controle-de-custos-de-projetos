@@ -48,6 +48,9 @@ namespace ControleCustos.Models
         [DisplayName("Faturamento previsto")]
         public decimal FaturamentoPrevisto { get; set; }
 
+        [DisplayName("Faturamento realizado")]
+        public decimal FaturamentoRealizado { get; set; }
+
         [Required]
         [DisplayName("Número de profissionais")]
         [Range(1, int.MaxValue, ErrorMessage = "Número de profissionais deve ser maior do que zero")]
@@ -73,6 +76,7 @@ namespace ControleCustos.Models
             this.DataFinalPrevista = projeto.DataFinalPrevista;
             this.DataFinalRealizada = projeto.DataFinalRealizada;
             this.FaturamentoPrevisto = projeto.FaturamentoPrevisto;
+            this.FaturamentoRealizado = projeto.FaturamentoRealizado.GetValueOrDefault();
             this.NumeroProfissionais = projeto.NumeroDeProfissionais;
             this.Situacao = projeto.Situacao;
         }

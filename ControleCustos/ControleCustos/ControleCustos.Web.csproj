@@ -138,6 +138,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="Vereyon.Web.FlashMessage, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vereyon.Web.FlashMessage.1.0.1\lib\net40\Vereyon.Web.FlashMessage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -177,15 +181,15 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\loaders.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\app\listagemRecursos.js" />
-    <Content Include="Scripts\app\projetos.js" />
+    <Content Include="Scripts\app\projeto\lista.js" />
     <Content Include="Scripts\app\relatorio\grafico.js" />
     <Content Include="Scripts\app\relatorio\relatorios.js" />
-    <Content Include="Scripts\app\relatorio\start.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -205,7 +209,9 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Relatorio\Index.cshtml" />
     <None Include="Views\Projeto\Cadastro.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -223,6 +229,7 @@
     <Content Include="Views\Projeto\_ListagemDeRecursos.cshtml" />
     <Content Include="Views\Projeto\Recurso.cshtml" />
     <Content Include="Views\Projeto\_ModalRecurso.cshtml" />
+    <Content Include="Views\Projeto\Detalhe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

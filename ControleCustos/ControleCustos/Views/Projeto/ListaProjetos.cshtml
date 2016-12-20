@@ -3,6 +3,7 @@
 }
 @using ControleCustos.Servicos
 @using ControleCustos.Dominio.Enum
+@using Vereyon.Web;
 @{var permissaoUsuario = ServicoDeAutenticacao.UsuarioLogado.Permissao; }
 
 <div class="jumbotron">
@@ -24,14 +25,14 @@
                 </div>
             </div>
             <div class="panel-body">
-                <form method="GET" class="form-horizontal" action="/projetos">
+                <form method="GET" class="form-horizontal">
                     <div class="form-group">
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <input class="form-control"
-                                       placeholder="Qual projeto você está procurando?"
-                                       autofocus="autofocus" /><span class="input-group-btn">
-                                    <button type="submit" class="btn btn-default">
+                                       placeholder="Filtrar por nome, cliente ou gerente"
+                                       autofocus="autofocus" id="caixa-busca" /><span class="input-group-btn">
+                                    <button type="submit" class="btn btn-default" id="botao-busca">
                                         <i class="glyphicon glyphicon-search"></i>
                                     </button>
                                 </span>
@@ -40,13 +41,12 @@
                         </div>
                     </div>
                 </form>
+                @Html.RenderFlashMessages()
                 <div id="projetos-lista" />
             </div>
         </div>
     </div>
 </div>
 @section scripts {
-    <script>
-        projetos.iniciar();
-    </script>
+    @Scripts.Render("~/bundles/lista-projetos")
 }

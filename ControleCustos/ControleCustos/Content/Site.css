@@ -38,9 +38,16 @@ textarea {
 }
 
 .graficos {
-  width: 100%; 
-  min-height: 450px;
+    width: 100%;
+    min-height: 450px;
 }
+
+.grafico-loader {
+    position: absolute;
+    left: 225px;
+    top: 125px;
+}
+
 .panel > .panel-heading {
     background-color: #3E3F3A;
 }

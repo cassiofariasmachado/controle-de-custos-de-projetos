@@ -1,10 +1,9 @@
-﻿class Relatorios {
+﻿var relatorios = {}
 
-    gerarDadosGraficoMenorCusto() {
-        return $.get("/relatorio/gerarGraficoMenorCusto");
-    }
+relatorios.gerarDadosGraficoMenorCusto = function () {
+    return $.get("/relatorio/gerarGraficoMenorCusto");
+}
 
-    gerarDadosGraficoMaiorCusto() {
-        return $.get("/relatorio/gerarGraficoMaiorCusto");
-    }
+relatorios.gerarDadosGraficoMaiorCusto = function () {
+    return $.get("/relatorio/gerarGraficoMaiorCusto");
 }

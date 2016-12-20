@@ -1,6 +1,7 @@
 ﻿using ControleCustos.Dominio;
 using ControleCustos.Dominio.Enum;
 using ControleCustos.Dominio.Interface;
+using ControleCustos.Filtro;
 using ControleCustos.Models;
 using ControleCustos.Servicos;
 using System;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 
 namespace ControleCustos.Controllers
 {
+    [Autorizador(Roles = "Administrador")]
     public class RelatorioController : Controller
     {
         IProjetoRepositorio projetoRepositorio = ServicoDeDependencias.MontarProjetoRepositorio();
@@ -18,7 +20,7 @@ namespace ControleCustos.Controllers
 
         public ActionResult Index()
         {
-            IList<Projeto> projetos = projetoRepositorio.ListarProjetosEmAndamento();
+            IList<Projeto> projetos = projetoRepositorio.ListarProjetosAtivos();
             IList<ProjetoParaRelatorioModel> projetosRelatorio = new List<ProjetoParaRelatorioModel>();
             foreach(var projeto in projetos)
             {
@@ -30,7 +32,7 @@ namespace ControleCustos.Controllers
 
         public JsonResult GerarGraficoMenorCusto()
         {
-            IList<Projeto> projetos = projetoRepositorio.ListarProjetosEmAndamento();
+            IList<Projeto> projetos = projetoRepositorio.ListarProjetosAtivos();
             IList<List<dynamic>> dados = new List<List<dynamic>>();
 
             foreach (var projeto in projetos)
