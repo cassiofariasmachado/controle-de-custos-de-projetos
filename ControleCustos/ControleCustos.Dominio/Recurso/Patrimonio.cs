@@ -1,6 +1,5 @@
 ﻿using ControleCustos.Dominio.Enum;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace ControleCustos.Dominio
 {
@@ -19,8 +18,7 @@ namespace ControleCustos.Dominio
         public Patrimonio() { }
 
         public Patrimonio(int id, 
-            string nome, 
-            TipoRecurso tipoRecurso, 
+            string nome,  
             decimal valorMensal, 
             SituacaoRecurso situacao,
             bool interno,
@@ -29,7 +27,7 @@ namespace ControleCustos.Dominio
             DateTime dataCompra, 
             decimal valorCompra,
             int tempoVidaUtil)
-            : base(id, nome, tipoRecurso, valorMensal, situacao, interno)
+            : base(id, nome, valorMensal, situacao, interno)
         {
             this.Modelo = modelo;
             this.Marca = marca;

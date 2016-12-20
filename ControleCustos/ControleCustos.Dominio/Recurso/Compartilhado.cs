@@ -1,5 +1,4 @@
 ﻿using ControleCustos.Dominio.Enum;
-using System.ComponentModel.DataAnnotations;
 
 namespace ControleCustos.Dominio
 {
@@ -19,11 +18,12 @@ namespace ControleCustos.Dominio
 
         public bool BackupIncremental { get; private set; }
 
+        public TipoRecurso TipoRecurso { get; private set; }
+
         public Compartilhado() { }
 
         public Compartilhado(int id, 
             string nome,
-            TipoRecurso tipoRecurso, 
             decimal valorMensal,
             SituacaoRecurso situacao,
             bool interno,
@@ -33,8 +33,9 @@ namespace ControleCustos.Dominio
             int processadores, 
             decimal memoria,
             bool backupDiario,
-            bool backupIncremental) : 
-            base(id, nome, tipoRecurso, valorMensal, situacao, interno)
+            bool backupIncremental,
+            TipoRecurso tipoRecurso) : 
+            base(id, nome, valorMensal, situacao, interno)
         {
             this.EnderecoIp = enderecoIp;
             this.BaseDeDados = baseDeDados;
@@ -43,6 +44,7 @@ namespace ControleCustos.Dominio
             this.Memoria = memoria;
             this.BackupDiario = backupDiario;
             this.BackupIncremental = backupIncremental;
+            this.TipoRecurso = tipoRecurso;
         }
     }
 }
