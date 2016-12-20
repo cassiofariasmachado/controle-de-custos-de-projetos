@@ -209,7 +209,9 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Relatorio\Index.cshtml" />
     <None Include="Views\Projeto\Cadastro.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -227,6 +229,7 @@
     <Content Include="Views\Projeto\_ListagemDeRecursos.cshtml" />
     <Content Include="Views\Projeto\Recurso.cshtml" />
     <Content Include="Views\Projeto\_ModalRecurso.cshtml" />
+    <Content Include="Views\Projeto\Detalhe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

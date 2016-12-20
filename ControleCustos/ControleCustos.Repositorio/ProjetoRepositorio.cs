@@ -36,11 +36,12 @@ namespace ControleCustos.Repositorio
             }
         }
 
-        public IList<Projeto> ListarProjetosEmAndamento()
+        public IList<Projeto> ListarProjetosAtivos()
         {
             using (var context = new DatabaseContext())
             {
-                IQueryable<Projeto> query = context.Projeto.Where(p => p.Situacao == SituacaoProjeto.EmAndamento)
+                IQueryable<Projeto> query = context.Projeto.Where(p => p.Situacao == SituacaoProjeto.EmAndamento 
+                                                                       || p.Situacao == SituacaoProjeto.Novo)
                                                            .Include("Gerente");
                 return query.ToList();
             }

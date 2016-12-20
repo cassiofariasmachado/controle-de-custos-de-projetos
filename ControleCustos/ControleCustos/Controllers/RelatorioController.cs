@@ -20,7 +20,7 @@ namespace ControleCustos.Controllers
 
         public ActionResult Index()
         {
-            IList<Projeto> projetos = projetoRepositorio.ListarProjetosEmAndamento();
+            IList<Projeto> projetos = projetoRepositorio.ListarProjetosAtivos();
             IList<ProjetoParaRelatorioModel> projetosRelatorio = new List<ProjetoParaRelatorioModel>();
             foreach(var projeto in projetos)
             {
@@ -32,7 +32,7 @@ namespace ControleCustos.Controllers
 
         public JsonResult GerarGraficoMenorCusto()
         {
-            IList<Projeto> projetos = projetoRepositorio.ListarProjetosEmAndamento();
+            IList<Projeto> projetos = projetoRepositorio.ListarProjetosAtivos();
             IList<List<dynamic>> dados = new List<List<dynamic>>();
 
             foreach (var projeto in projetos)

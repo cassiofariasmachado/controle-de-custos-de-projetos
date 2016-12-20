@@ -1,0 +1,35 @@
+﻿@model ControleCustos.Models.ProjetoModel
+@{
+    string titulo = "Detalhe";
+    ViewBag.Title = titulo;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="clearfix">
+                <h1 class="panel-title projetos-title-panel">@titulo</h1>
+                <a class="btn btn-link projetos-link-panel"
+                   href="/Projeto/ListaProjetos">Pesquisa de Projetos</a>
+                <h1 class="panel-title"></h1>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div id="nome-projeto">
+                <h2><strong>@Model.Nome</strong></h2>
+            </div>
+            <hr/>
+            <p>Gerente: @Model.Gerente.Nome</p>
+            <p>Cliente: @Model.Cliente</p>
+            <p>Principal tecnologia: @Model.Tecnologia</p>
+            <p>Data início: @Model.DataInicio.ToString("dd/MM/yyyy")</p>
+            <p>Data final prevista: @Model.DataFinalPrevista.ToString("dd/MM/yyyy")</p>
+            <p>Data final realizada: @(Model.DataFinalRealizada.HasValue ? Model.DataFinalRealizada.Value.ToString("dd/MM/yyyy") : "Ainda não finalizado")</p>
+            <p>Faturamento previsto: R$ @String.Format("{0:#,##0.00}", Model.FaturamentoPrevisto)</p>
+            <p>Numero profissionais: @Model.NumeroProfissionais</p>
+            <p>Situação: @Model.Situacao</p>
+        </div>
+    </div>
+</div>

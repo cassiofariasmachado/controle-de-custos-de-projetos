@@ -28,8 +28,7 @@ namespace ControleCustos.Repositorio.Migrations
                 gabriel,
                 nunes,
                 gerente,
-                administrador
-                );
+                administrador);
             context.SaveChanges();
 
             var projeto1 = new Projeto(1, "Máquinas da felicidade", cassio, "Coca-cola", "C#", new DateTime(2016, 9, 20), new DateTime(2016, 12, 20), 100000.00M, 10, SituacaoProjeto.EmAndamento);
@@ -49,23 +48,22 @@ namespace ControleCustos.Repositorio.Migrations
                 projeto5,
                 projeto6,
                 projeto7,
-                projeto8
-                );
+                projeto8);
             context.SaveChanges();
 
-            var patrimonio1 = new Patrimonio(1, "100001", TipoRecurso.Fisico, 300.00M, SituacaoRecurso.Indisponivel, "Notebook Inspiron", "Dell", new DateTime(2015, 12, 5), 3000.00M, 10);
-            var patrimonio2 = new Patrimonio(2, "100002", TipoRecurso.Fisico, 450.00M, SituacaoRecurso.Disponivel, "Desktop", "Dell", new DateTime(2013, 2, 1), 4500.00M, 10);
-            var patrimonio3 = new Patrimonio(3, "100003", TipoRecurso.Fisico, 100.00M, SituacaoRecurso.Disponivel, "Monitor", "Dell", new DateTime(2015, 12, 5), 500.00M, 5);
-            var patrimonio4 = new Patrimonio(4, "100004", TipoRecurso.Fisico, 230.00M, SituacaoRecurso.Disponivel, "Notebook Vostro", "Dell", new DateTime(2015, 12, 5), 3500.00M, 15);
-            var compartilhado1 = new Compartilhado(5, "VM Interna", TipoRecurso.Logico, 1500.00M, SituacaoRecurso.Indisponivel, "10.10.1.1", true, 1000.00M, 8, 200000.00M, true, true);
-            var compartilhado2 = new Compartilhado(6, "Base de dados", TipoRecurso.Logico, 500.00M, SituacaoRecurso.Disponivel, "11.2.150.1", true, 10000.00M, 4, 5000000.00M, true, true);
-            var compartilhado3 = new Compartilhado(7, "Servidor fisico", TipoRecurso.Fisico, 1500.00M, SituacaoRecurso.Indisponivel, "128.10.1.1", true, 25000.00M, 8, 3000000.00M, false, false);
-            var servico1 = new Servico(8, "Visual Studio Profissional", TipoRecurso.Logico, 2000.00M, SituacaoRecurso.Indisponivel, "Licença profissional do VS.", TipoServico.Licenca);
-            var servico2 = new Servico(9, "TFS", TipoRecurso.Logico, 1500.00M, SituacaoRecurso.Disponivel, "Licença TFS.", TipoServico.Licenca);
-            var servico3 = new Servico(10, "Windows Server", TipoRecurso.Logico, 1800.00M, SituacaoRecurso.Disponivel, "Licença Windows Server.", TipoServico.Licenca);
-            var servico4 = new Servico(11, "Microsoft Vision", TipoRecurso.Logico, 1350.00M, SituacaoRecurso.Indisponivel, "Licença Microsoft Vision.", TipoServico.Licenca);
-            var servico5 = new Servico(12, "VM Amazon", TipoRecurso.Logico, 2000, SituacaoRecurso.Indisponivel, "VM Amazon.", TipoServico.Servico);
-            var servico6 = new Servico(13, "VM Azure", TipoRecurso.Logico, 3400.00M, SituacaoRecurso.Disponivel, "VM Microsoft Azure.", TipoServico.Servico);
+            var patrimonio1 = new Patrimonio(1, "100001", TipoRecurso.Fisico, 300.00M, SituacaoRecurso.Indisponivel, true, "Notebook Inspiron", "Dell", new DateTime(2015, 12, 5), 3000.00M, 10);
+            var patrimonio2 = new Patrimonio(2, "100002", TipoRecurso.Fisico, 450.00M, SituacaoRecurso.Disponivel, true, "Desktop", "Dell", new DateTime(2013, 2, 1), 4500.00M, 10);
+            var patrimonio3 = new Patrimonio(3, "100003", TipoRecurso.Fisico, 100.00M, SituacaoRecurso.Disponivel, true, "Monitor", "Dell", new DateTime(2015, 12, 5), 500.00M, 5);
+            var patrimonio4 = new Patrimonio(4, "100004", TipoRecurso.Fisico, 230.00M, SituacaoRecurso.Disponivel, true, "Notebook Vostro", "Dell", new DateTime(2015, 12, 5), 3500.00M, 15);
+            var compartilhado1 = new Compartilhado(5, "VM Interna", TipoRecurso.Logico, 1500.00M, SituacaoRecurso.Indisponivel, true, "10.10.1.1", true, 1000.00M, 8, 200000.00M, true, true);
+            var compartilhado2 = new Compartilhado(6, "Base de dados", TipoRecurso.Logico, 500.00M, SituacaoRecurso.Disponivel, true, "11.2.150.1", true, 10000.00M, 4, 5000000.00M, true, true);
+            var compartilhado3 = new Compartilhado(7, "Servidor fisico", TipoRecurso.Fisico, 1500.00M, SituacaoRecurso.Indisponivel, true, "128.10.1.1", true, 25000.00M, 8, 3000000.00M, false, false);
+            var servico1 = new Servico(8, "Visual Studio Profissional", TipoRecurso.Logico, 2000.00M, SituacaoRecurso.Indisponivel, true, "Licença profissional do VS.", TipoServico.Licenca);
+            var servico2 = new Servico(9, "TFS", TipoRecurso.Logico, 1500.00M, SituacaoRecurso.Disponivel, true, "Licença TFS.", TipoServico.Licenca);
+            var servico3 = new Servico(10, "Windows Server", TipoRecurso.Logico, 1800.00M, SituacaoRecurso.Disponivel, true, "Licença Windows Server.", TipoServico.Licenca);
+            var servico4 = new Servico(11, "Microsoft Vision", TipoRecurso.Logico, 1350.00M, SituacaoRecurso.Indisponivel, true, "Licença Microsoft Vision.", TipoServico.Licenca);
+            var servico5 = new Servico(12, "VM Amazon", TipoRecurso.Logico, 2000, SituacaoRecurso.Indisponivel, false, "VM Amazon.", TipoServico.Servico);
+            var servico6 = new Servico(13, "VM Azure", TipoRecurso.Logico, 3400.00M, SituacaoRecurso.Disponivel, false, "VM Microsoft Azure.", TipoServico.Servico);
 
             context.Recurso.AddOrUpdate(r => r.Id,
                 patrimonio1,
@@ -80,8 +78,7 @@ namespace ControleCustos.Repositorio.Migrations
                 servico3,
                 servico4,
                 servico5,
-                servico6
-                );
+                servico6);
             context.SaveChanges();
 
             context.ControleRecurso.AddOrUpdate(c => c.Id,
@@ -90,9 +87,7 @@ namespace ControleCustos.Repositorio.Migrations
                 new ControleRecurso(3, projeto2, patrimonio4, new DateTime(2016, 3, 10), new DateTime(2016, 4, 11)),
                 new ControleRecurso(4, projeto2, compartilhado2, new DateTime(2016, 4, 3), new DateTime(2016, 5, 3)),
                 new ControleRecurso(5, projeto3, servico5, new DateTime(2016, 3, 11), new DateTime(2016, 8, 13)),
-                new ControleRecurso(6, projeto3, servico1, new DateTime(2016, 12, 1), new DateTime(2016, 12, 14))
-                );
-
+                new ControleRecurso(6, projeto3, servico1, new DateTime(2016, 12, 1), new DateTime(2016, 12, 14)));
         }
     }
 }
