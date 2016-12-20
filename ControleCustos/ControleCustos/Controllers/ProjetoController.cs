@@ -34,28 +34,33 @@ namespace ControleCustos.Controllers
             return View();
         }
 
-        public PartialViewResult ListaProjetosFiltrada()
+        public PartialViewResult ListaProjetosFiltrada(string filtro = "")
         {
             IList<Projeto> projetos = new List<Projeto>();
 
             if (ServicoDeAutenticacao.UsuarioLogado.Permissao == Permissao.Gerente)
             {
-                projetos = projetoRepositorio.ListarPorGerente(this.usuarioServico.BuscarPorEmail(ServicoDeAutenticacao.UsuarioLogado.Email));
+                projetos = projetoRepositorio.ListarPorGerente(this.usuarioServico.BuscarPorEmail(ServicoDeAutenticacao.UsuarioLogado.Email), filtro);
             }
             else
             {
-                projetos = projetoRepositorio.Listar();
+                projetos = projetoRepositorio.Listar(filtro);
             }
 
             IList<ProjetoModel> model = ConverterEmListagemDeProjetos(projetos);
 
             return PartialView("_ListaProjetosFiltrada", model); ;
         }
-        
-        [Autorizador(Roles = "Administrador")]
+
+        [Autorizador(Roles = "Administrador,Gerente")]
         public ActionResult Detalhe(int id)
         {
             var projeto = projetoRepositorio.Buscar(id);
+            if (ServicoDeAutenticacao.UsuarioLogado.Permissao != Permissao.Administrador && projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            {
+                FlashMessage.Danger("Você não pode visualizar projetos de outros gerentes.");
+                return RedirectToAction("ListaProjetos");
+            }
             var model = new ProjetoModel(projeto);
             return View(model);
         }
@@ -72,7 +77,7 @@ namespace ControleCustos.Controllers
             var projeto = projetoRepositorio.Buscar(id);
             if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
             {
-                FlashMessage.Warning("Você não pode editar projetos de outros gerentes.");
+                FlashMessage.Danger("Você não pode editar projetos de outros gerentes.");
                 return RedirectToAction("ListaProjetos");
             }
             var model = new ProjetoModel(projeto);
@@ -109,6 +114,128 @@ namespace ControleCustos.Controllers
             return View("Cadastro");
         }
 
+        [HttpGet]
+        [Autorizador(Roles = "Gerente")]
+        public PartialViewResult CarregarListaDeRecursosCompartilhados(int pagina)
+        {
+            IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaRecursoCompartilhados(pagina, quantidadeDeRecursosPorPagina);
+            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina, this.recursoRepositorio.CompartilhadoCount());
+            return PartialView("_ListagemDeRecursos", model);
+        }
+
+        [HttpGet]
+        [Autorizador(Roles = "Gerente")]
+        public PartialViewResult CarregarListaDePatrimonios(int pagina)
+        {
+            IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaPatrimonios(pagina, quantidadeDeRecursosPorPagina);
+            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina, this.recursoRepositorio.PatrimonioCount());
+            return PartialView("_ListagemDeRecursos", model);
+        }
+
+        [HttpGet]
+        [Autorizador(Roles = "Gerente")]
+        public PartialViewResult CarregarListaDeServicos(int pagina)
+        {
+            IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaServicos(pagina, quantidadeDeRecursosPorPagina);
+            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina, this.recursoRepositorio.ServicoCount());
+            return PartialView("_ListagemDeRecursos", model);
+        }
+
+        [HttpGet]
+        [Autorizador(Roles = "Gerente")]
+        public ActionResult Recurso(int idProjeto)
+        {
+            Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
+            if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            {
+                FlashMessage.Warning("Você não pode editar projetos de outros gerentes.");
+                return RedirectToAction("ListaProjetos");
+            }
+            ProjetoModel model = new ProjetoModel(projeto);
+            return View(model);
+        }
+
+        [HttpGet]
+        [Autorizador(Roles = "Gerente")]
+        public PartialViewResult CarregarModal(int idRecurso, int idProjeto)
+        {
+            Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
+            if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            {
+                FlashMessage.Warning("Você não pode adicionar recursos a projetos de outros gerentes.");
+                return PartialView("_ModalRecurso", new ControleRecursoModel());
+            }
+            Recurso recurso = this.recursoRepositorio.Buscar(idRecurso);
+            ControleRecursoModel model = new ControleRecursoModel(recurso, projeto, projeto.DataInicio, projeto.DataFinalPrevista);
+            return PartialView("_ModalRecurso", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Autorizador(Roles = "Gerente")]
+        public JsonResult SalvarModalRecurso(ControleRecursoModel model)
+        {
+            Projeto projeto = this.projetoRepositorio.Buscar(model.IdProjeto);
+
+            if (projeto.Gerente.Email != ServicoDeAutenticacao.UsuarioLogado.Email)
+            {
+                return Json("Você não pode adicionar recursos a projetos de outros gerentes!", JsonRequestBehavior.AllowGet);
+            }
+
+            if (ModelState.IsValid)
+            {
+                ControleRecurso controleRecurso = this.ConverterModelParaControleRecurso(model);
+                controleRecursoRepositorio.Inserir(controleRecurso);
+                return Json("Adicionado Com Sucesso.", JsonRequestBehavior.AllowGet);
+            }
+            return Json("Erro ao salvar.", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [Autorizador(Roles = "Gerente")]
+        public PartialViewResult CarregarListaDeRecursosDoProjeto(int idProjeto)
+        {
+            IList<ControleRecurso> controleRecurso = this.controleRecursoRepositorio.Listar(this.projetoRepositorio.Buscar(idProjeto));
+            IList<ControleRecursoModel> model = this.ConverterIListControleRecursoParaModel(controleRecurso);
+            return PartialView("_ListaDeRecursosProjeto", model);
+        }
+
+        private ControleRecurso ConverterModelParaControleRecurso(ControleRecursoModel model)
+        {
+            return new ControleRecurso(0, this.projetoRepositorio.Buscar(model.IdProjeto), this.recursoRepositorio.Buscar(model.IdRecurso), model.DataInicio, model.DataFim);
+        }
+        private IList<ControleRecursoModel> ConverterIListControleRecursoParaModel(IList<ControleRecurso> lista)
+        {
+            IList<ControleRecursoModel> model = new List<ControleRecursoModel>();
+            foreach(ControleRecurso controleRecurso in lista)
+            {
+                model.Add(new ControleRecursoModel(controleRecurso.Recurso, controleRecurso.Projeto, controleRecurso.DataInicio, controleRecurso.DataFim));
+            }
+            return model;
+        }
+
+        private IList<ProjetoModel> ConverterEmListagemDeProjetos(IList<Projeto> projetos)
+        {
+            IList<ProjetoModel> model = new List<ProjetoModel>();
+
+            foreach (var projeto in projetos)
+            {
+                model.Add(new ProjetoModel(projeto));
+            }
+
+            return model;
+        }
+
+        private RecursoListagemModel CriarRecursoListagemViewModel(IList<Recurso> recursos, int pagina, int quantidadeTotalRecursos)
+        {
+            RecursoListagemModel model = new RecursoListagemModel(recursos, quantidadeTotalRecursos);
+
+            model.PaginaAtual = pagina;
+
+            model.QuantidadeDeRecursosPorPagina = quantidadeDeRecursosPorPagina;
+            return model;
+        }
+
         private Projeto ConverterModelParaProjeto(ProjetoModel model)
         {
             return new Projeto(model.Id.GetValueOrDefault(), model.Nome, model.Gerente, model.Cliente, model.Tecnologia, model.DataInicio,
@@ -126,73 +253,5 @@ namespace ControleCustos.Controllers
             var model = new ProjetoModel(projeto);
             return model;
         }
-
-        public ActionResult Recurso()
-        {
-            return View();
-        }
-
-        public PartialViewResult CarregarListaDeRecursosCompartilhados(int pagina)
-        {
-            IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaRecursoCompartilhados(pagina, quantidadeDeRecursosPorPagina);
-            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina);
-            return PartialView("_ListagemDeRecursos", model);
-        }
-
-        public PartialViewResult CarregarListaDePatrimonios(int pagina)
-        {
-            IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaPatrimonios(pagina, quantidadeDeRecursosPorPagina);
-            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina);
-            return PartialView("_ListagemDeRecursos", model);
-        }
-
-        public PartialViewResult CarregarListaDeServicos(int pagina)
-        {
-            IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaServicos(pagina, quantidadeDeRecursosPorPagina);
-            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina);
-            return PartialView("_ListagemDeRecursos", model);
-        }
-
-        private RecursoListagemModel CriarRecursoListagemViewModel(IList<Recurso> recursos, int pagina)
-        {
-            RecursoListagemModel model = new RecursoListagemModel(recursos);
-
-            model.PaginaAtual = pagina;
-
-            model.QuantidadeDeRecursosPorPagina = quantidadeDeRecursosPorPagina;
-            return model;
-        }
-
-        private IList<ProjetoModel> ConverterEmListagemDeProjetos(IList<Projeto> projetos)
-        {
-            IList<ProjetoModel> model = new List<ProjetoModel>();
-
-            foreach (var projeto in projetos)
-            {
-                model.Add(new ProjetoModel(projeto));
-            }
-
-            return model;
-        }
-
-        public PartialViewResult CarregarModal(int id)
-        {
-            Recurso recurso = this.recursoRepositorio.Buscar(id);
-            ControleRecursoModel model = new ControleRecursoModel(recurso, new Projeto());
-            return PartialView("_ModalRecurso", model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public JsonResult SalvarModalRecurso(ControleRecursoModel model)
-        {
-
-            if (ModelState.IsValid)
-            {
-
-            }
-            return new JsonResult();
-        }
-
     }
 }

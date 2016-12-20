@@ -23,11 +23,14 @@ namespace ControleCustos
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                        "~/Scripts/app/projetos.js"));
+            bundles.Add(new ScriptBundle("~/bundles/lista-projetos").Include(
+                        "~/Scripts/app/projeto/lista.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/listagemRecursos").Include(
-                      "~/Scripts/app/listagemRecursos.js"));
+            bundles.Add(new ScriptBundle("~/bundles/projeto-recursos-lista").Include(
+                        "~/Scripts/app/projetos-recursos/lista-projetos-recursos.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/recurso").Include(
+                      "~/Scripts/app/projeto/recurso.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/relatorio").Include(
                       "~/Scripts/app/relatorio/relatorios.js",

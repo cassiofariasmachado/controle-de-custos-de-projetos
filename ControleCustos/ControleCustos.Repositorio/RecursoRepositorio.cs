@@ -20,8 +20,16 @@ namespace ControleCustos.Repositorio
         {
             using (var context = new DatabaseContext())
             {
-                IQueryable<Recurso> query = from b in context.Recurso.OfType<Compartilhado>() select b;
+                IQueryable<Recurso> query = from recurso in context.Recurso.OfType<Compartilhado>() select recurso;
                 return query.Where(r => r.Situacao == SituacaoRecurso.Disponivel).OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+            }
+        }
+        public int CompartilhadoCount()
+        {
+            using (var context = new DatabaseContext())
+            {
+                IQueryable<Recurso> query = from recurso in context.Recurso.OfType<Compartilhado>() select recurso;
+                return query.Where(r => r.Situacao == SituacaoRecurso.Disponivel).Count();
             }
         }
 
@@ -29,8 +37,17 @@ namespace ControleCustos.Repositorio
         {
             using (var context = new DatabaseContext())
             {
-                IQueryable<Recurso> query = from b in context.Recurso.OfType<Servico>() select b;
+                IQueryable<Recurso> query = from recurso in context.Recurso.OfType<Servico>() select recurso;
                 return query.Where(r => r.Situacao == SituacaoRecurso.Disponivel).OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+            }
+        }
+
+        public int ServicoCount()
+        {
+            using (var context = new DatabaseContext())
+            {
+                IQueryable<Recurso> query = from recurso in context.Recurso.OfType<Servico>() select recurso;
+                return query.Where(r => r.Situacao == SituacaoRecurso.Disponivel).Count();
             }
         }
 
@@ -38,8 +55,17 @@ namespace ControleCustos.Repositorio
         {
             using (var context = new DatabaseContext())
             {
-                IQueryable<Recurso> query = from b in context.Recurso.OfType<Patrimonio>() select b;
+                IQueryable<Recurso> query = from recurso in context.Recurso.OfType<Patrimonio>() select recurso;
                 return query.Where(r => r.Situacao == SituacaoRecurso.Disponivel).OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+            }
+        }
+
+        public int PatrimonioCount()
+        {
+            using (var context = new DatabaseContext())
+            {
+                IQueryable<Recurso> query = from recurso in context.Recurso.OfType<Patrimonio>() select recurso;
+                return query.Where(r => r.Situacao == SituacaoRecurso.Disponivel).Count();
             }
         }
 
