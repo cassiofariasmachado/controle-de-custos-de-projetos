@@ -54,53 +54,9 @@
     <Compile Include="ControleRecursoRepositorio.cs" />
     <Compile Include="CustoRepositorio.cs" />
     <Compile Include="DatabaseContext.cs" />
-    <Compile Include="Migrations\201612142349398_Initial.cs" />
-    <Compile Include="Migrations\201612142349398_Initial.Designer.cs">
-      <DependentUpon>201612142349398_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612150008223_AdicionarHerancaParaRecursos.cs" />
-    <Compile Include="Migrations\201612150008223_AdicionarHerancaParaRecursos.Designer.cs">
-      <DependentUpon>201612150008223_AdicionarHerancaParaRecursos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612150324216_Colocar Required no Usuario.cs" />
-    <Compile Include="Migrations\201612150324216_Colocar Required no Usuario.Designer.cs">
-      <DependentUpon>201612150324216_Colocar Required no Usuario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612151543252_AdicionarProjeto.cs" />
-    <Compile Include="Migrations\201612151543252_AdicionarProjeto.Designer.cs">
-      <DependentUpon>201612151543252_AdicionarProjeto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612151729330_CorrigirCamposRecursosCompartilhados.cs" />
-    <Compile Include="Migrations\201612151729330_CorrigirCamposRecursosCompartilhados.Designer.cs">
-      <DependentUpon>201612151729330_CorrigirCamposRecursosCompartilhados.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612152301483_ModificarFaturamentoParaDecimal.cs" />
-    <Compile Include="Migrations\201612152301483_ModificarFaturamentoParaDecimal.Designer.cs">
-      <DependentUpon>201612152301483_ModificarFaturamentoParaDecimal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612160044465_ModificarDataFinalRealizadaParaNullable.cs" />
-    <Compile Include="Migrations\201612160044465_ModificarDataFinalRealizadaParaNullable.Designer.cs">
-      <DependentUpon>201612160044465_ModificarDataFinalRealizadaParaNullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612160238345_AdicionarControleRecurso.cs" />
-    <Compile Include="Migrations\201612160238345_AdicionarControleRecurso.Designer.cs">
-      <DependentUpon>201612160238345_AdicionarControleRecurso.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612161935570_RefatorarEntidades.cs" />
-    <Compile Include="Migrations\201612161935570_RefatorarEntidades.Designer.cs">
-      <DependentUpon>201612161935570_RefatorarEntidades.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612192020171_CorrigirNomeDeTabelasEAdicionarPropriedadeInterno.cs" />
-    <Compile Include="Migrations\201612192020171_CorrigirNomeDeTabelasEAdicionarPropriedadeInterno.Designer.cs">
-      <DependentUpon>201612192020171_CorrigirNomeDeTabelasEAdicionarPropriedadeInterno.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612201316101_RemoverTipoRecursoDeRecursoEAdicionarApenasEmCompartilhado.cs" />
-    <Compile Include="Migrations\201612201316101_RemoverTipoRecursoDeRecursoEAdicionarApenasEmCompartilhado.Designer.cs">
-      <DependentUpon>201612201316101_RemoverTipoRecursoDeRecursoEAdicionarApenasEmCompartilhado.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612201841061_Adicionar as tabelas UnidadeTecnica, Custo e Colaboradores.cs" />
-    <Compile Include="Migrations\201612201841061_Adicionar as tabelas UnidadeTecnica, Custo e Colaboradores.Designer.cs">
-      <DependentUpon>201612201841061_Adicionar as tabelas UnidadeTecnica, Custo e Colaboradores.cs</DependentUpon>
+    <Compile Include="Migrations\201612201904355_Initial.cs" />
+    <Compile Include="Migrations\201612201904355_Initial.Designer.cs">
+      <DependentUpon>201612201904355_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProjetoRepositorio.cs" />
@@ -119,41 +75,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612142349398_Initial.resx">
-      <DependentUpon>201612142349398_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612150008223_AdicionarHerancaParaRecursos.resx">
-      <DependentUpon>201612150008223_AdicionarHerancaParaRecursos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612150324216_Colocar Required no Usuario.resx">
-      <DependentUpon>201612150324216_Colocar Required no Usuario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612151543252_AdicionarProjeto.resx">
-      <DependentUpon>201612151543252_AdicionarProjeto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612151729330_CorrigirCamposRecursosCompartilhados.resx">
-      <DependentUpon>201612151729330_CorrigirCamposRecursosCompartilhados.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612152301483_ModificarFaturamentoParaDecimal.resx">
-      <DependentUpon>201612152301483_ModificarFaturamentoParaDecimal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612160044465_ModificarDataFinalRealizadaParaNullable.resx">
-      <DependentUpon>201612160044465_ModificarDataFinalRealizadaParaNullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612160238345_AdicionarControleRecurso.resx">
-      <DependentUpon>201612160238345_AdicionarControleRecurso.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612161935570_RefatorarEntidades.resx">
-      <DependentUpon>201612161935570_RefatorarEntidades.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612192020171_CorrigirNomeDeTabelasEAdicionarPropriedadeInterno.resx">
-      <DependentUpon>201612192020171_CorrigirNomeDeTabelasEAdicionarPropriedadeInterno.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612201316101_RemoverTipoRecursoDeRecursoEAdicionarApenasEmCompartilhado.resx">
-      <DependentUpon>201612201316101_RemoverTipoRecursoDeRecursoEAdicionarApenasEmCompartilhado.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612201841061_Adicionar as tabelas UnidadeTecnica, Custo e Colaboradores.resx">
-      <DependentUpon>201612201841061_Adicionar as tabelas UnidadeTecnica, Custo e Colaboradores.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612201904355_Initial.resx">
+      <DependentUpon>201612201904355_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
