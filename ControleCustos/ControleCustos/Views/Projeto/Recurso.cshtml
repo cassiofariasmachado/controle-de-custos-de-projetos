@@ -15,19 +15,17 @@
                 </div>
             </div>
             <div class="panel-body">
-                <h3>@Model.Nome</h3>
+                <h3 class="nome-projeto">@Model.Nome</h3>
                 <span id="id-projeto" data-id-projeto="@Model.Id"></span>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Recusos
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a id="patrimonio">Patrimônio</a></li>
-                        <li><a id="compartilhado">Compartilhados</a></li>
-                        <li><a id="servico">Serviços</a></li>
-                    </ul>
-                </div>
+                <form method="GET" class="form-horizontal">
+                    <div class="form-group">
+                        <select class="form-control" id="select-tipo">
+                            <option value="patrimonio" selected>Patrimônios</option>
+                            <option value="compartilhado">Compartilhados</option>
+                            <option value="servico">Serviços</option>
+                        </select>
+                    </div>
+                </form>
                 <div class="alert alert-success" role="alert" id="mensagem" style="display:none">
                 </div>
                 <h4 id="nome-recurso"></h4>

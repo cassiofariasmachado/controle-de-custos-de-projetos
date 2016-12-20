@@ -10,14 +10,15 @@
         <div class="panel-heading">
             <div class="clearfix">
                 <h1 class="panel-title projetos-title-panel">@titulo</h1>
-                <h1 class="panel-title"></h1>
+                <a class="btn btn-link projetos-link-panel"
+                   href="/Projeto/ListaProjetos">Lista de Projetos</a>
             </div>
         </div>
         <div class="panel-body">
             <div class="clearfix">
                 <div class="row">
                     <span id="id-projeto" data-id-projeto="@Model.Id"></span>
-                    <h3 class="col-xs-offset-1"><strong>@Model.Nome</strong></h3>
+                    <h3 class="nome-projeto"><strong>@Model.Nome</strong></h3>
                     <div class="col-md-6">
                         <ul>
                             <li><strong>Gerente:</strong> @Model.Gerente.Nome</li>
@@ -48,7 +49,7 @@
                     </div>
                 </div>
                 <hr />
-                <form method="GET" class="form-horizontal col-xs-offset-1">
+                <form method="GET" class="form-horizontal">
                     <div class="form-group">
                         <select class="form-control" id="select-tipo">
                             <option value="todos" selected>Todos os recursos</option>
