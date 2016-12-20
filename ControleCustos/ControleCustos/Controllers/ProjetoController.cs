@@ -96,7 +96,12 @@ namespace ControleCustos.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Gerente = this.usuarioServico.BuscarPorEmail(ServicoDeAutenticacao.UsuarioLogado.Email);
+                if (DateTime.Compare(model.DataInicio, model.DataFinalPrevista) > 0)
+                {
+                    FlashMessage.Danger("Data início maior que data prevista.");
+                    return View("Cadastro",model);
+                }
+                    model.Gerente = this.usuarioServico.BuscarPorEmail(ServicoDeAutenticacao.UsuarioLogado.Email);
                 if (model.Id == null)
                 {
                     Projeto projeto = ConverterModelParaProjeto(model);
