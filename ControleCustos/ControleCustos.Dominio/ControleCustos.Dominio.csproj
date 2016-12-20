@@ -58,6 +58,7 @@
     <Compile Include="Enum\TipoServico.cs" />
     <Compile Include="Interface\IRecursoRepositorio.cs" />
     <Compile Include="CalculoServico.cs" />
+    <Compile Include="UnidadeTecnica.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="UsuarioServico.cs" />
     <Compile Include="Enum\Permissao.cs" />
