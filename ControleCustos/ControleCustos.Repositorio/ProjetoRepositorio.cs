@@ -19,13 +19,18 @@ namespace ControleCustos.Repositorio
             }
         }
 
-        public IList<Projeto> ListarPorGerente(Usuario gerente)
+        public IList<Projeto> ListarPorGerente(Usuario gerente, string filtro)
         {
             using (var context = new DatabaseContext())
             {
                 IQueryable<Projeto> query = context.Projeto
-                    .Where(p => p.Gerente.Id.Equals(gerente.Id))
-                    .Include(p => p.Gerente);
+                    .Where(
+                            p => p.Gerente.Id.Equals(gerente.Id)
+                            && (filtro == "" ||
+                                    (p.Cliente.ToLower().Contains(filtro.ToLower()) ||
+                                    p.Nome.ToLower().Contains(filtro.ToLower()) ||
+                                    p.Gerente.Nome.ToLower().Contains(filtro.ToLower()))))
+                         .Include(p => p.Gerente);
 
                 return query.ToList();
             }
@@ -45,7 +50,7 @@ namespace ControleCustos.Repositorio
         {
             using (var context = new DatabaseContext())
             {
-                IQueryable<Projeto> query = context.Projeto.Where(p => p.Situacao == SituacaoProjeto.Cancelado 
+                IQueryable<Projeto> query = context.Projeto.Where(p => p.Situacao == SituacaoProjeto.Cancelado
                                                                        || p.Situacao == SituacaoProjeto.Concluido)
                                                            .Include("Gerente");
                 return query.ToList();
@@ -74,11 +79,14 @@ namespace ControleCustos.Repositorio
             }
         }
 
-        public IList<Projeto> Listar()
+        public IList<Projeto> Listar(string filtro)
         {
             using (var context = new DatabaseContext())
             {
-                IQueryable<Projeto> query = context.Projeto;
+                IQueryable<Projeto> query = context.Projeto
+                     .Where(p => filtro == "" || (p.Cliente.ToLower().Contains(filtro.ToLower()) ||
+                                    p.Nome.ToLower().Contains(filtro.ToLower()) ||
+                                    p.Gerente.Nome.ToLower().Contains(filtro.ToLower())));
 
                 return query.Include(p => p.Gerente).ToList();
             }

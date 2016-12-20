@@ -10,7 +10,7 @@ namespace ControleCustos.Dominio.Interface
         IList<Projeto> ListarProjetosEncerrados();
         void Inserir(Projeto projeto);
         void Atualizar(Projeto projeto);
-        IList<Projeto> ListarPorGerente(Usuario gerente);
-        IList<Projeto> Listar();
+        IList<Projeto> ListarPorGerente(Usuario gerente, string filtro);
+        IList<Projeto> Listar(string filtro);
     }
 }

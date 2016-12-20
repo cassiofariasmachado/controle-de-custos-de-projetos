@@ -187,7 +187,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\app\listagemRecursos.js" />
-    <Content Include="Scripts\app\projetos.js" />
+    <Content Include="Scripts\app\projeto\lista.js" />
     <Content Include="Scripts\app\relatorio\grafico.js" />
     <Content Include="Scripts\app\relatorio\relatorios.js" />
     <Content Include="Scripts\bootstrap.js" />

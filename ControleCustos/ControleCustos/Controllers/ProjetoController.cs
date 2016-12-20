@@ -34,17 +34,17 @@ namespace ControleCustos.Controllers
             return View();
         }
 
-        public PartialViewResult ListaProjetosFiltrada()
+        public PartialViewResult ListaProjetosFiltrada(string filtro = "")
         {
             IList<Projeto> projetos = new List<Projeto>();
 
             if (ServicoDeAutenticacao.UsuarioLogado.Permissao == Permissao.Gerente)
             {
-                projetos = projetoRepositorio.ListarPorGerente(this.usuarioServico.BuscarPorEmail(ServicoDeAutenticacao.UsuarioLogado.Email));
+                projetos = projetoRepositorio.ListarPorGerente(this.usuarioServico.BuscarPorEmail(ServicoDeAutenticacao.UsuarioLogado.Email), filtro);
             }
             else
             {
-                projetos = projetoRepositorio.Listar();
+                projetos = projetoRepositorio.Listar(filtro);
             }
 
             IList<ProjetoModel> model = ConverterEmListagemDeProjetos(projetos);
