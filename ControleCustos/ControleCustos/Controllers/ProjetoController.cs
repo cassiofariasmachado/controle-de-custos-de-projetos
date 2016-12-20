@@ -198,7 +198,7 @@ namespace ControleCustos.Controllers
         }
 
         [HttpGet]
-        [Autorizador(Roles = "Gerente, Administrador")]
+        [Autorizador(Roles = "Gerente,Administrador")]
         public PartialViewResult CarregarListaDeRecursosDoProjeto(int idProjeto)
         {
             Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
@@ -213,7 +213,7 @@ namespace ControleCustos.Controllers
         }
 
         [HttpGet]
-        [Autorizador(Roles = "Gerente, Administrador")]
+        [Autorizador(Roles = "Gerente,Administrador")]
         public PartialViewResult CarregarListaDePatrimoniosDoProjeto(int idProjeto)
         {
             Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
@@ -228,7 +228,7 @@ namespace ControleCustos.Controllers
         }
 
         [HttpGet]
-        [Autorizador(Roles = "Gerente, Administrador")]
+        [Autorizador(Roles = "Gerente,Administrador")]
         public PartialViewResult CarregarListaDeCompartilhadosDoProjeto(int idProjeto)
         {
             Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
@@ -243,7 +243,7 @@ namespace ControleCustos.Controllers
         }
 
         [HttpGet]
-        [Autorizador(Roles = "Gerente, Administrador")]
+        [Autorizador(Roles = "Gerente,Administrador")]
         public PartialViewResult CarregarListaDeServicosDoProjeto(int idProjeto)
         {
             Projeto projeto = this.projetoRepositorio.Buscar(idProjeto);
