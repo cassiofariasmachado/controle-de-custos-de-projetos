@@ -58,9 +58,9 @@ namespace ControleCustos.Controllers
                 projetos = projetoRepositorio.Listar(filtro);
             }
 
-            IList<ProjetoModel> model = ConverterEmListagemDeProjetos(projetos);
+            ListaProjetosModel listaModel = new ListaProjetosModel(projetos);
 
-            return PartialView("_ListaProjetosFiltrada", model); ;
+            return PartialView("_ListaProjetosFiltrada", listaModel); ;
         }
 
         [Autorizador(Roles = "Administrador,Gerente")]
