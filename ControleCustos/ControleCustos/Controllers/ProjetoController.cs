@@ -29,7 +29,6 @@ namespace ControleCustos.Controllers
             this.calculoServico = ServicoDeDependencias.MontarCalculoServico();
         }
 
-
         [Autorizador(Roles = "Administrador,Gerente")]
         public ActionResult ListaProjetos()
         {
@@ -116,7 +115,6 @@ namespace ControleCustos.Controllers
                     FlashMessage.Confirmation("Projeto editado com sucesso.");
                     return RedirectToAction("ListaProjetos");
                 }
-
             }
             else
             {
@@ -129,27 +127,27 @@ namespace ControleCustos.Controllers
         [Autorizador(Roles = "Gerente")]
         public PartialViewResult CarregarListaDeRecursosCompartilhados(int pagina, Projeto projeto = null)
         {
-            IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaRecursoCompartilhados(pagina, quantidadeDeRecursosPorPagina);
-            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina, this.recursoRepositorio.CompartilhadoCount());
-            return PartialView("_ListagemDeRecursos", model);
+            IList<Compartilhado> recursos = this.recursoRepositorio.BuscaPaginadaRecursoCompartilhados(pagina, quantidadeDeRecursosPorPagina);
+            CompartilhadoListagemModel model = new CompartilhadoListagemModel(recursos, pagina, quantidadeDeRecursosPorPagina, this.recursoRepositorio.CompartilhadoCount());
+            return PartialView("_ListagemCompartilhado", model);
         }
 
         [HttpGet]
         [Autorizador(Roles = "Gerente")]
         public PartialViewResult CarregarListaDePatrimonios(int pagina)
         {
-            IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaPatrimonios(pagina, quantidadeDeRecursosPorPagina);
-            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina, this.recursoRepositorio.PatrimonioCount());
-            return PartialView("_ListagemDeRecursos", model);
+            IList<Patrimonio> patrimonios = this.recursoRepositorio.BuscaPaginadaPatrimonios(pagina, quantidadeDeRecursosPorPagina);
+            PatrimonioListagemModel model = new PatrimonioListagemModel(patrimonios, pagina, quantidadeDeRecursosPorPagina, this.recursoRepositorio.PatrimonioCount());
+            return PartialView("_ListagemPatrimonio", model);
         }
 
         [HttpGet]
         [Autorizador(Roles = "Gerente")]
         public PartialViewResult CarregarListaDeServicos(int pagina)
         {
-            IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaServicos(pagina, quantidadeDeRecursosPorPagina);
-            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina, this.recursoRepositorio.ServicoCount());
-            return PartialView("_ListagemDeRecursos", model);
+            IList<Servico> servicos = this.recursoRepositorio.BuscaPaginadaServicos(pagina, quantidadeDeRecursosPorPagina);
+            ServicoListagemModel model = new ServicoListagemModel(servicos, pagina, quantidadeDeRecursosPorPagina, this.recursoRepositorio.ServicoCount());
+            return PartialView("_ListagemServico", model);
         }
 
         [HttpGet]
@@ -285,16 +283,6 @@ namespace ControleCustos.Controllers
                 model.Add(new ProjetoModel(projeto));
             }
 
-            return model;
-        }
-
-        private RecursoListagemModel CriarRecursoListagemViewModel(IList<Recurso> recursos, int pagina, int quantidadeTotalRecursos)
-        {
-            RecursoListagemModel model = new RecursoListagemModel(recursos, quantidadeTotalRecursos);
-
-            model.PaginaAtual = pagina;
-
-            model.QuantidadeDeRecursosPorPagina = quantidadeDeRecursosPorPagina;
             return model;
         }
 

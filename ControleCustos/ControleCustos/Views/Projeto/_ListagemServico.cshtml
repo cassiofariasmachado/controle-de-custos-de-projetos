@@ -1,0 +1,35 @@
+﻿@model ControleCustos.Models.ServicoListagemModel
+@using ControleCustos.Models
+
+@{
+    string ultimaPaginaAttr = Model.UltimaPagina ? "true" : "";
+}
+<div class="table-responsive">
+    <table class="table table-bordered table-striped" data-ultima-pagina="@ultimaPaginaAttr" id="tabela">
+        <thead>
+            <tr>
+                <th class="text-center col-md-1">ID</th>
+                <th class="text-center">Nome</th>
+                <th class="text-center">Tipo de serviço</th>
+                <th class="text-center">Custo mensal</th>
+                <th class="text-center col-md-1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (ServicoModel servico in Model.Servicos)
+                {
+                    <tr>
+                        <td class="text-center">@servico.Id</td>
+                        <td class="text-center">@servico.Nome</td>
+                        <td class="text-center">@servico.TipoServico</td>
+                        <td class="text-center">R$ @String.Format("{0:#,##0.00}", servico.ValorMensal)</td>
+                        <td class="text-center"><button class="btn btn-xs" onclick="recurso.adicionarRecurso(@servico.Id)">Adicionar</button></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<button class="btn glyphicon glyphicon-chevron-left btn-sm" id="voltar"></button>
+<button class="btn glyphicon glyphicon-chevron-right btn-sm" id="avancar"></button>
