@@ -289,16 +289,6 @@ namespace ControleCustos.Controllers
             return new ControleRecursoListagemModel(listaControleRecursoModel, custoTotalPrevisto);
         }
 
-        private RecursoListagemModel CriarRecursoListagemViewModel(IList<Recurso> recursos, int pagina, int quantidadeTotalRecursos)
-        {
-            RecursoListagemModel model = new RecursoListagemModel(recursos, quantidadeTotalRecursos);
-
-            model.PaginaAtual = pagina;
-
-            model.QuantidadeDeRecursosPorPagina = quantidadeDeRecursosPorPagina;
-            return model;
-        }
-
         private bool EhDataValida(Projeto projeto, ControleRecursoModel model)
         {
             if (DateTime.Compare(model.DataInicio, projeto.DataInicio) < 0)
