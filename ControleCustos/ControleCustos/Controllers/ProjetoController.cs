@@ -29,6 +29,15 @@ namespace ControleCustos.Controllers
             this.calculoServico = ServicoDeDependencias.MontarCalculoServico();
         }
 
+        public ProjetoController(IProjetoRepositorio projetoRepositorio, UsuarioServico usuarioServico, IRecursoRepositorio recursoRepositorio, IControleRecursoRepositorio controleRecursoRepositorio, CalculoServico calculoServico)
+        {
+            this.projetoRepositorio = projetoRepositorio;
+            this.usuarioServico = usuarioServico;
+            this.recursoRepositorio = recursoRepositorio;
+            this.controleRecursoRepositorio = controleRecursoRepositorio;
+            this.calculoServico = calculoServico;
+        }
+
 
         [Autorizador(Roles = "Administrador,Gerente")]
         public ActionResult ListaProjetos()
