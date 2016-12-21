@@ -26,11 +26,16 @@ textarea {
 .projetos-link-panel {
     float: right;
     padding: 0px;
+    color:#FBAF41;
 }
 
 .projetos-title-panel {
     float: left;
     padding-top: 2px;
+}
+
+.glyphicon{
+    color:#FBAF41;
 }
 
 .img-logo {
