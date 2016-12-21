@@ -10,31 +10,22 @@ namespace ControleCustos.Infraestrutura
 {
     public class ServicoDeConfiguracao : IServicoDeConfiguracao
     {
-        private decimal saudeDoProjetoCritica = Convert.ToDecimal(WebConfigurationManager.AppSettings["SaudeDoProjetoCritica"]);
-        private decimal saudeDoProjetoRegular = Convert.ToDecimal(WebConfigurationManager.AppSettings["SaudeDoProjetoRegular"]);
-        private decimal saudeDoProjetoBoa = Convert.ToDecimal(WebConfigurationManager.AppSettings["SaudeDoProjetoBoa"]);
+        private decimal limiteSaudeBoaRegular = Convert.ToDecimal(WebConfigurationManager.AppSettings["LimiteSaudeBoaRegular"]);
+        private decimal limiteSaudeRegularCritica = Convert.ToDecimal(WebConfigurationManager.AppSettings["LimiteSaudeRegularCritica"]);
 
-        public decimal SaudeDoProjetoCritica
+        public decimal LimiteSaudeBoaRegular
         {
             get
             {
-                return this.saudeDoProjetoCritica;
+                return this.limiteSaudeBoaRegular;
             }
         }
 
-        public decimal SaudeDoProjetoRegular
+        public decimal LimiteSaudeRegularCritica
         {
             get
             {
-                return this.saudeDoProjetoRegular;
-            }
-        }
-
-        public decimal SaudeDoProjetoBoa
-        {
-            get
-            {
-                return this.saudeDoProjetoBoa;
+                return this.limiteSaudeRegularCritica;
             }
         }
     }

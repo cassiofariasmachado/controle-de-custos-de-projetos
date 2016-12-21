@@ -253,7 +253,7 @@ namespace ControleCustos.Controllers
                 projetos = projetoRepositorio.Listar(filtro);
             }
 
-            ListaProjetosModel listaModel = new ListaProjetosModel(projetos);
+            ListaProjetosModel listaModel = new ListaProjetosModel(projetos, this.servicoConfiguracao, this.calculoServico);
 
             return PartialView("_ListaProjetosFiltrada", listaModel); ;
         }

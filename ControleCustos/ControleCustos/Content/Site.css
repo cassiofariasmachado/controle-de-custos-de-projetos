@@ -130,12 +130,26 @@ textarea {
 }
 
 .saude-boa {
-    font-size: 60px;
+    font-size: 65px;
     color: #FFC156;
 }
 
 .saude-critica {
     font-size: 60px;
+}
+
+.saude-perigo-small {
+    font-size: 30px;
+    color: #d31010;
+}
+
+.saude-boa-small {
+    font-size: 30px;
+    color: #FFC156;
+}
+
+.saude-critica-small {
+    font-size: 30px;
 }
 
 .saude {
