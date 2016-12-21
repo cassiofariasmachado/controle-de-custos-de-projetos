@@ -1,10 +1,14 @@
-﻿using System.IO;
+﻿using Moq;
+using System.IO;
+using System.Security.Principal;
 using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.SessionState;
 
-namespace ControleCustos.Tests.Controller
+namespace ControleCustos.Tests
 {
-    public class FakeHttpContext
+    public static class FakeHttpContext
     {
         public static HttpContext FakeHttp()
         {

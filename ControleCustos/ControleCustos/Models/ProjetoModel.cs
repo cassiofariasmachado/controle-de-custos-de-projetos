@@ -80,5 +80,17 @@ namespace ControleCustos.Models
             this.NumeroProfissionais = projeto.NumeroDeProfissionais;
             this.Situacao = projeto.Situacao;
         }
+
+        public Projeto ConverterModelParaProjeto()
+        {
+            return new Projeto(this.Id.GetValueOrDefault(), this.Nome, this.Gerente, this.Cliente, this.Tecnologia, this.DataInicio,
+                                    this.DataFinalPrevista, this.FaturamentoPrevisto, this.NumeroProfissionais, this.Situacao);
+        }
+
+        public Projeto ConverterModelEditadaParaProjeto()
+        {
+            return new Projeto(this.Id.GetValueOrDefault(), this.Nome, this.Gerente, this.Cliente, this.Tecnologia, this.DataInicio,
+                                    this.DataFinalPrevista, this.DataFinalRealizada.GetValueOrDefault(), this.FaturamentoPrevisto, this.FaturamentoRealizado, this.NumeroProfissionais, this.Situacao);
+        }
     }
 }

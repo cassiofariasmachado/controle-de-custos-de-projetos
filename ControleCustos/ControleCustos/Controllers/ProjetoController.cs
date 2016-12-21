@@ -99,14 +99,14 @@ namespace ControleCustos.Controllers
                 model.Gerente = this.usuarioServico.BuscarPorEmail(ServicoDeAutenticacao.UsuarioLogado.Email);
                 if (model.Id == null)
                 {
-                    Projeto projeto = ConverterModelParaProjeto(model);
+                    Projeto projeto = model.ConverterModelParaProjeto();
                     this.projetoRepositorio.Inserir(projeto);
                     FlashMessage.Confirmation("Projeto adicionado com sucesso.");
                     return RedirectToAction("ListaProjetos");
                 }
                 else
                 {
-                    Projeto projeto = ConverterModelEditadaParaProjeto(model);
+                    Projeto projeto = model.ConverterModelEditadaParaProjeto();
                     this.projetoRepositorio.Atualizar(projeto);
                     FlashMessage.Confirmation("Projeto editado com sucesso.");
                     return RedirectToAction("ListaProjetos");
@@ -289,33 +289,13 @@ namespace ControleCustos.Controllers
             return new ControleRecursoListagemModel(listaControleRecursoModel, custoTotalPrevisto);
         }
 
-        private IList<ProjetoModel> ConverterEmListagemDeProjetos(IList<Projeto> projetos)
+        private RecursoListagemModel CriarRecursoListagemViewModel(IList<Recurso> recursos, int pagina, int quantidadeTotalRecursos)
         {
-            IList<ProjetoModel> model = new List<ProjetoModel>();
+            RecursoListagemModel model = new RecursoListagemModel(recursos, quantidadeTotalRecursos);
 
-            foreach (var projeto in projetos)
-            {
-                model.Add(new ProjetoModel(projeto));
-            }
+            model.PaginaAtual = pagina;
 
-            return model;
-        }
-
-        private Projeto ConverterModelParaProjeto(ProjetoModel model)
-        {
-            return new Projeto(model.Id.GetValueOrDefault(), model.Nome, model.Gerente, model.Cliente, model.Tecnologia, model.DataInicio,
-                                    model.DataFinalPrevista, model.FaturamentoPrevisto, model.NumeroProfissionais, model.Situacao);
-        }
-
-        private Projeto ConverterModelEditadaParaProjeto(ProjetoModel model)
-        {
-            return new Projeto(model.Id.GetValueOrDefault(), model.Nome, model.Gerente, model.Cliente, model.Tecnologia, model.DataInicio,
-                                    model.DataFinalPrevista, model.DataFinalRealizada.GetValueOrDefault(), model.FaturamentoPrevisto, model.FaturamentoRealizado, model.NumeroProfissionais, model.Situacao);
-        }
-
-        private ProjetoModel CriarProjetoViewModel(Projeto projeto)
-        {
-            var model = new ProjetoModel(projeto);
+            model.QuantidadeDeRecursosPorPagina = quantidadeDeRecursosPorPagina;
             return model;
         }
 
