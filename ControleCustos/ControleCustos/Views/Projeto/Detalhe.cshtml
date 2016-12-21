@@ -19,19 +19,22 @@
             <div class="clearfix">
                 <div class="row">
                     <span id="id-projeto" data-id-projeto="@Model.Id"></span>
-                    <h3 class="col-md-4 nome-projeto"><strong>@Model.Nome</strong></h3>
-                    @if (Model.Saude >= 80)
+                </div>
+                <div class="row">
+                    @if (Model.Saude >= Model.LimiteSaudeCritica)
                     {
-                        <span class="col-md-1 saude-critica">&#9760;</span>
+                        <div title="Saúde do projeto: @String.Format("{0:P2}.", @Model.Saude/100)" class="col-md-1 saude-critica span1 pull-right">&#9760;</div>
                     }
-                    else if (Model.Saude < 80 && Model.Saude > 40)
+                    else if (Model.Saude < Model.LimiteSaudeCritica && Model.Saude > Model.LimiteSaudeRegular)
                     {
-                        <span class="col-md-6 saude-perigo">&#9888;</span>
+                        <div title="Saúde do projeto: @String.Format("{0:P2}.", @Model.Saude/100)" class="col-md-1 saude-perigo span3 pull-right">&#9888;</div>
                     }
                     else
                     {
-                        <span class="col-md-1 saude-boa">&#9787;</span>
+                        <div title="Saúde do projeto: @String.Format("{0:P2}.", @Model.Saude/100)" class="col-md-1 saude-boa span1 pull-right">&#9787;</div>
                     }
+                    <h3 class="col-md-8 nome-projeto"><strong>@Model.Nome</strong></h3>
+                    <div class="col-md-pull-2 col-md-offset-9">Saúde do projeto: @String.Format("{0:P2}", @Model.Saude / 100)</div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -56,15 +59,15 @@
                     <h4 class="nome-projeto">Custos do projeto até sua data final: (R$)</h4>
                     <div class="col-md-3">
                         @Html.LabelFor(model => model.TotalPatrimonio)
-                        @Html.Label(Model.TotalPatrimonio.ToString("0:#,##0.00"))
+                        @Html.Label(String.Format("{0:C}", Model.TotalPatrimonio))
                     </div>
                     <div class="col-md-3">
                         @Html.LabelFor(model => model.TotalCompartilhado)
-                        @Html.Label(Model.TotalCompartilhado.ToString("0:#,##0.00"))
+                        @Html.Label(Model.TotalCompartilhado.ToString("{0:#,##0.00}"))
                     </div>
                     <div class="col-md-3">
                         @Html.LabelFor(model => model.TotalServico)
-                        @Html.Label(Model.TotalServico.ToString("0:#,##0.00"))
+                        @Html.Label(Model.TotalServico.ToString("{0:#,##0.00}"))
                     </div>
                     <div class="col-md-3">
                         <strong>Total: </strong>

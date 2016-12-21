@@ -2,6 +2,7 @@
 using ControleCustos.Dominio.Enum;
 using ControleCustos.Dominio.Interface;
 using ControleCustos.Filtro;
+using ControleCustos.Infraestrutura;
 using ControleCustos.Models;
 using ControleCustos.Servicos;
 using System;
@@ -19,6 +20,7 @@ namespace ControleCustos.Controllers
         private const int quantidadeDeRecursosPorPagina = 5;
         private IControleRecursoRepositorio controleRecursoRepositorio;
         private CalculoServico calculoServico;
+        private ServicoDeConfiguracao servicoConfiguracao;
 
         public ProjetoController()
         {
@@ -27,6 +29,7 @@ namespace ControleCustos.Controllers
             this.recursoRepositorio = ServicoDeDependencias.MontarRecursoRepositorio();
             this.controleRecursoRepositorio = ServicoDeDependencias.MontarControleRecursoRepositorio();
             this.calculoServico = ServicoDeDependencias.MontarCalculoServico();
+            this.servicoConfiguracao = ServicoDeDependencias.MontarServicoConfiguracao();
         }
 
         public ProjetoController(IProjetoRepositorio projetoRepositorio, UsuarioServico usuarioServico, IRecursoRepositorio recursoRepositorio, IControleRecursoRepositorio controleRecursoRepositorio, CalculoServico calculoServico)
@@ -76,7 +79,7 @@ namespace ControleCustos.Controllers
             decimal totalCompartilhado = this.calculoServico.CalcularCustoCompartilhadoTotalAte(projeto, DateTime.Now);
             decimal totalServico = this.calculoServico.CalcularCustoServicoTotalAte(projeto, DateTime.Now);
             decimal saude = this.calculoServico.CalcularCustoPercentual(projeto, DateTime.Now);
-            var model = new ProjetoDetalheModel(projeto, totalPatrimonio, totalCompartilhado, totalServico, saude);
+            var model = new ProjetoDetalheModel(projeto, totalPatrimonio, totalCompartilhado, totalServico, saude, servicoConfiguracao);
             return View(model);
         }
 
@@ -109,9 +112,9 @@ namespace ControleCustos.Controllers
                 if (DateTime.Compare(model.DataInicio, model.DataFinalPrevista) > 0)
                 {
                     FlashMessage.Danger("Data início maior que data prevista.");
-                    return View("Cadastro",model);
+                    return View("Cadastro", model);
                 }
-                    model.Gerente = this.usuarioServico.BuscarPorEmail(ServicoDeAutenticacao.UsuarioLogado.Email);
+                model.Gerente = this.usuarioServico.BuscarPorEmail(ServicoDeAutenticacao.UsuarioLogado.Email);
                 if (model.Id == null)
                 {
                     Projeto projeto = ConverterModelParaProjeto(model);
