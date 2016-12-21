@@ -30,21 +30,6 @@ namespace ControleCustos.Tests.Dominio
             lista[lista.FindIndex(p => p.Id == recurso.Id)] = recurso;
         }
 
-        public IList<Recurso> BuscaPaginadaPatrimonios(int pagina, int quantidade)
-        {
-            return lista.Where(r => r is Patrimonio && r.Situacao == SituacaoRecurso.Disponivel).OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
-        }
-
-        public IList<Recurso> BuscaPaginadaRecursoCompartilhados(int pagina, int quantidade)
-        {
-            return lista.Where(r => r is Compartilhado && r.Situacao == SituacaoRecurso.Disponivel).OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
-        }
-
-        public IList<Recurso> BuscaPaginadaServicos(int pagina, int quantidade)
-        {
-            return lista.Where(r => r is Servico && r.Situacao == SituacaoRecurso.Disponivel).OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
-        }
-
         public Recurso Buscar(int id)
         {
             return lista.Find(r => r.Id == id);
@@ -68,6 +53,21 @@ namespace ControleCustos.Tests.Dominio
         public int ServicoCount()
         {
             return lista.Where(r => r is Servico).ToList().Count;
+        }
+
+        IList<Patrimonio> IRecursoRepositorio.BuscaPaginadaPatrimonios(int pagina, int quantidade)
+        {
+            throw new NotImplementedException();
+        }
+
+        IList<Compartilhado> IRecursoRepositorio.BuscaPaginadaRecursoCompartilhados(int pagina, int quantidade)
+        {
+            throw new NotImplementedException();
+        }
+
+        IList<Servico> IRecursoRepositorio.BuscaPaginadaServicos(int pagina, int quantidade)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -111,7 +111,6 @@ namespace ControleCustos.Controllers
                     FlashMessage.Confirmation("Projeto editado com sucesso.");
                     return RedirectToAction("ListaProjetos");
                 }
-
             }
             else
             {
@@ -159,27 +158,27 @@ namespace ControleCustos.Controllers
         [Autorizador(Roles = "Gerente")]
         public PartialViewResult CarregarListaDeRecursosCompartilhados(int pagina, Projeto projeto = null)
         {
-            IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaRecursoCompartilhados(pagina, quantidadeDeRecursosPorPagina);
-            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina, this.recursoRepositorio.CompartilhadoCount());
-            return PartialView("_ListagemDeRecursos", model);
+            IList<Compartilhado> recursos = this.recursoRepositorio.BuscaPaginadaRecursoCompartilhados(pagina, quantidadeDeRecursosPorPagina);
+            CompartilhadoListagemModel model = new CompartilhadoListagemModel(recursos, pagina, quantidadeDeRecursosPorPagina, this.recursoRepositorio.CompartilhadoCount());
+            return PartialView("_ListagemCompartilhado", model);
         }
 
         [HttpGet]
         [Autorizador(Roles = "Gerente")]
         public PartialViewResult CarregarListaDePatrimonios(int pagina)
         {
-            IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaPatrimonios(pagina, quantidadeDeRecursosPorPagina);
-            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina, this.recursoRepositorio.PatrimonioCount());
-            return PartialView("_ListagemDeRecursos", model);
+            IList<Patrimonio> patrimonios = this.recursoRepositorio.BuscaPaginadaPatrimonios(pagina, quantidadeDeRecursosPorPagina);
+            PatrimonioListagemModel model = new PatrimonioListagemModel(patrimonios, pagina, quantidadeDeRecursosPorPagina, this.recursoRepositorio.PatrimonioCount());
+            return PartialView("_ListagemPatrimonio", model);
         }
 
         [HttpGet]
         [Autorizador(Roles = "Gerente")]
         public PartialViewResult CarregarListaDeServicos(int pagina)
         {
-            IList<Recurso> recursos = this.recursoRepositorio.BuscaPaginadaServicos(pagina, quantidadeDeRecursosPorPagina);
-            RecursoListagemModel model = CriarRecursoListagemViewModel(recursos, pagina, this.recursoRepositorio.ServicoCount());
-            return PartialView("_ListagemDeRecursos", model);
+            IList<Servico> servicos = this.recursoRepositorio.BuscaPaginadaServicos(pagina, quantidadeDeRecursosPorPagina);
+            ServicoListagemModel model = new ServicoListagemModel(servicos, pagina, quantidadeDeRecursosPorPagina, this.recursoRepositorio.ServicoCount());
+            return PartialView("_ListagemServico", model);
         }
 
         [HttpGet]
@@ -208,7 +207,7 @@ namespace ControleCustos.Controllers
                 return PartialView("_ListaDeRecursosProjeto", null);
             }
             IList<ControleRecurso> controleRecurso = this.controleRecursoRepositorio.Listar(projeto);
-            IList<ControleRecursoModel> model = this.ConverterIListControleRecursoParaModel(controleRecurso);
+            ControleRecursoListagemModel model = this.ConverterIListControleRecursoParaModel(projeto, controleRecurso);
             return PartialView("_ListaDeRecursosProjeto", model);
         }
 
@@ -223,7 +222,7 @@ namespace ControleCustos.Controllers
                 return PartialView("_ListaDeRecursosProjeto", null);
             }
             IList<ControleRecurso> controleRecurso = this.controleRecursoRepositorio.ListarPatrimonio(projeto);
-            IList<ControleRecursoModel> model = this.ConverterIListControleRecursoParaModel(controleRecurso);
+            ControleRecursoListagemModel model = this.ConverterIListControleRecursoParaModel(projeto, controleRecurso);
             return PartialView("_ListaDeRecursosProjeto", model);
         }
 
@@ -238,7 +237,7 @@ namespace ControleCustos.Controllers
                 return PartialView("_ListaDeRecursosProjeto", null);
             }
             IList<ControleRecurso> controleRecurso = this.controleRecursoRepositorio.ListarCompartilhado(projeto);
-            IList<ControleRecursoModel> model = this.ConverterIListControleRecursoParaModel(controleRecurso);
+            ControleRecursoListagemModel model = this.ConverterIListControleRecursoParaModel(projeto, controleRecurso);
             return PartialView("_ListaDeRecursosProjeto", model);
         }
         public PartialViewResult ListaProjetosFiltrada(string filtro = "")
@@ -270,7 +269,7 @@ namespace ControleCustos.Controllers
                 return PartialView("_ListaDeRecursosProjeto", null);
             }
             IList<ControleRecurso> controleRecurso = this.controleRecursoRepositorio.ListarServico(projeto);
-            IList<ControleRecursoModel> model = this.ConverterIListControleRecursoParaModel(controleRecurso);
+            ControleRecursoListagemModel model = this.ConverterIListControleRecursoParaModel(projeto, controleRecurso);
             return PartialView("_ListaDeRecursosProjeto", model);
         }
 
@@ -279,24 +278,15 @@ namespace ControleCustos.Controllers
             return new ControleRecurso(0, this.projetoRepositorio.Buscar(model.IdProjeto), this.recursoRepositorio.Buscar(model.IdRecurso), model.DataInicio, model.DataFim);
         }
 
-        private IList<ControleRecursoModel> ConverterIListControleRecursoParaModel(IList<ControleRecurso> lista)
+        private ControleRecursoListagemModel ConverterIListControleRecursoParaModel(Projeto projeto, IList<ControleRecurso> lista)
         {
-            IList<ControleRecursoModel> model = new List<ControleRecursoModel>();
+            IList<ControleRecursoModel> listaControleRecursoModel = new List<ControleRecursoModel>();
             foreach (ControleRecurso controleRecurso in lista)
             {
-                model.Add(new ControleRecursoModel(controleRecurso.Recurso, controleRecurso.Projeto, controleRecurso.DataInicio, controleRecurso.DataFim));
+                listaControleRecursoModel.Add(new ControleRecursoModel(controleRecurso.Recurso, controleRecurso.Projeto, controleRecurso.DataInicio, controleRecurso.DataFim));
             }
-            return model;
-        }
-
-        private RecursoListagemModel CriarRecursoListagemViewModel(IList<Recurso> recursos, int pagina, int quantidadeTotalRecursos)
-        {
-            RecursoListagemModel model = new RecursoListagemModel(recursos, quantidadeTotalRecursos);
-
-            model.PaginaAtual = pagina;
-
-            model.QuantidadeDeRecursosPorPagina = quantidadeDeRecursosPorPagina;
-            return model;
+            decimal custoTotalPrevisto = calculoServico.CalcularCustoTotalAte(projeto, projeto.DataFinalPrevista);
+            return new ControleRecursoListagemModel(listaControleRecursoModel, custoTotalPrevisto);
         }
 
         private bool EhDataValida(Projeto projeto, ControleRecursoModel model)

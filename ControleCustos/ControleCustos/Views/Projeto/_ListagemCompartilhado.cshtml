@@ -1,0 +1,43 @@
+﻿@model ControleCustos.Models.CompartilhadoListagemModel
+@using ControleCustos.Models
+
+@{
+    string ultimaPaginaAttr = Model.UltimaPagina ? "true" : "";
+}
+<div class="table-responsive">
+    <table class="table table-bordered table-striped" data-ultima-pagina="@ultimaPaginaAttr" id="tabela">
+        <thead>
+            <tr>
+                <th class="text-center col-md-1">ID</th>
+                <th class="text-center">Nome</th>
+                <th class="text-center">Endereço IP</th>
+                <th class="text-center">Base de dados</th>
+                <th class="text-center">Espaço em disco (GB)</th>
+                <th class="text-center">Memória (GB)</th>
+                <th class="text-center">Processadores</th>
+                <th class="text-center">Custo mensal</th>
+                <th class="text-center col-md-1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (CompartilhadoModel compartilhado in Model.Compartilhados)
+                {
+                    <tr>
+                        <td class="text-center">@compartilhado.Id</td>
+                        <td class="text-center">@compartilhado.Nome</td>
+                        <td class="text-center">@compartilhado.EnderecoIp</td>
+                        <td class="text-center">@(compartilhado.BaseDeDados ? "Sim" : "Nao")</td>
+                        <td class="text-center">@String.Format("{0:#,##0.00} GB", compartilhado.EspacoEmDisco)</td>
+                        <td class="text-center">@String.Format("{0:#,##0.00} GB", compartilhado.Memoria)</td>
+                        <td class="text-center">@compartilhado.Processadores</td>
+                        <td class="text-center">@String.Format("R$ {0:#,##0.00}", compartilhado.ValorMensal)</td>
+                        <td class="text-center"><button class="btn btn-xs" onclick="recurso.adicionarRecurso(@compartilhado.Id)">Adicionar</button></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<button class="btn glyphicon glyphicon-chevron-left btn-sm" id="voltar"></button>
+<button class="btn glyphicon glyphicon-chevron-right btn-sm" id="avancar"></button>

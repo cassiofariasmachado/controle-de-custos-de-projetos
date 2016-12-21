@@ -167,6 +167,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompartilhadoListagemModel.cs" />
+    <Compile Include="Models\CompartilhadoModel.cs" />
+    <Compile Include="Models\ControleRecursoListagemModel.cs" />
+    <Compile Include="Models\PatrimonioListagemModel.cs" />
+    <Compile Include="Models\PatrimonioModel.cs" />
     <Compile Include="Models\ListaProjetosModel.cs" />
     <Compile Include="Models\ProjetoDetalheModel.cs" />
     <Compile Include="Models\ProjetoModel.cs" />
@@ -175,6 +180,8 @@
     <Compile Include="Models\RecursoModel.cs" />
     <Compile Include="Models\ProjetoParaRelatorioModel.cs" />
     <Compile Include="Models\RelatorioModel.cs" />
+    <Compile Include="Models\ServicoListagemModel.cs" />
+    <Compile Include="Models\ServicoModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicos\ServicoDeAutenticacao.cs" />
@@ -229,11 +236,13 @@
     <Content Include="Views\Acesso\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Projeto\_ListaProjetosFiltrada.cshtml" />
-    <Content Include="Views\Projeto\_ListagemDeRecursos.cshtml" />
     <Content Include="Views\Projeto\Recurso.cshtml" />
     <Content Include="Views\Projeto\_ModalRecurso.cshtml" />
     <Content Include="Views\Projeto\Detalhe.cshtml" />
     <Content Include="Views\Projeto\_ListaDeRecursosProjeto.cshtml" />
+    <Content Include="Views\Projeto\_ListagemPatrimonio.cshtml" />
+    <Content Include="Views\Projeto\_ListagemServico.cshtml" />
+    <Content Include="Views\Projeto\_ListagemCompartilhado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

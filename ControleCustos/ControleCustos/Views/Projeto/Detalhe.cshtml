@@ -54,27 +54,29 @@
                         </ul>
                     </div>
                 </div>
-                <hr />
+
+                <hr/>
                 <div class="row">
-                    <h4 class="nome-projeto">Custos do projeto até sua data final: (R$)</h4>
+                    <h4 class="nome-projeto">Custos do projeto até sua data final:</h4>
                     <div class="col-md-3">
                         @Html.LabelFor(model => model.TotalPatrimonio)
-                        @Html.Label(String.Format("{0:C}", Model.TotalPatrimonio))
+                        @Html.Label(String.Format("R$ {0:0.00}", Model.TotalPatrimonio))
                     </div>
                     <div class="col-md-3">
                         @Html.LabelFor(model => model.TotalCompartilhado)
-                        @Html.Label(Model.TotalCompartilhado.ToString("{0:#,##0.00}"))
+                        @Html.Label(String.Format("R$ {0:0.00}", Model.TotalCompartilhado))
                     </div>
                     <div class="col-md-3">
                         @Html.LabelFor(model => model.TotalServico)
-                        @Html.Label(Model.TotalServico.ToString("{0:#,##0.00}"))
+                        @Html.Label(String.Format("R$ {0:0.00}", Model.TotalServico))
                     </div>
                     <div class="col-md-3">
                         <strong>Total: </strong>
-                        @Html.Label((Model.TotalPatrimonio + Model.TotalServico + Model.TotalCompartilhado).ToString("0:#,##0.00"))
+                        @Html.Label(String.Format("R$ {0:0.00}", (Model.TotalPatrimonio + Model.TotalServico + Model.TotalCompartilhado)))
                     </div>
                 </div>
-                <hr />
+                <hr/>
+
                 <form method="GET" class="form-horizontal">
                     <div class="form-group">
                         <select class="form-control" id="select-tipo">

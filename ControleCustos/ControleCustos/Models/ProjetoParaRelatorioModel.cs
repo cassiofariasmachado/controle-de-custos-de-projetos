@@ -25,14 +25,14 @@ namespace ControleCustos.Models
 
         public ProjetoParaRelatorioModel() { }
 
-        public ProjetoParaRelatorioModel(Projeto projeto, CalculoServico calculo)
+        public ProjetoParaRelatorioModel(Projeto projeto, decimal custoTotal, decimal custoMesCorrente)
         {
             this.Cliente = projeto.Cliente;
             this.Projeto = projeto.Nome;
             this.Gerente = projeto.Gerente.Nome;
             this.Situacao = projeto.Situacao;
-            this.CustoTotal = calculo.CalcularCustoTotalAte(projeto, DateTime.Now);
-            this.CustoMesCorrente = calculo.CalcularCustoMensal(projeto, DateTime.Now.Month, DateTime.Now.Year);
+            this.CustoTotal = custoTotal;
+            this.CustoMesCorrente = custoMesCorrente;
             this.FaturamentoPrevisto = projeto.FaturamentoPrevisto;
         }
     }

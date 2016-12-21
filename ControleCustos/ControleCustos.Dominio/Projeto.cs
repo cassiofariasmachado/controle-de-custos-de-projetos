@@ -61,9 +61,9 @@ namespace ControleCustos.Dominio
                        string tecnologia,
                        DateTime dataInicio,
                        DateTime dataFinalPrevista,
-                       DateTime dataFinalRealizada,
+                       DateTime? dataFinalRealizada,
                        decimal faturamentoPrevisto,
-                       decimal faturamentoRealizado,
+                       decimal? faturamentoRealizado,
                        int numeroProfissionais,
                        SituacaoProjeto situacao)
             : this(id, nome, gerente, cliente, tecnologia, dataInicio, dataFinalPrevista, faturamentoPrevisto, numeroProfissionais, situacao)

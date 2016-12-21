@@ -1,0 +1,37 @@
+﻿@model ControleCustos.Models.PatrimonioListagemModel
+@using ControleCustos.Models
+
+@{
+    string ultimaPaginaAttr = Model.UltimaPagina ? "true" : "";
+}
+<div class="table-responsive">
+    <table class="table table-bordered table-striped" data-ultima-pagina="@ultimaPaginaAttr" id="tabela">
+        <thead>
+            <tr>
+                <th class="text-center col-md-1">ID</th>
+                <th class="text-center">Patrimônio</th>
+                <th class="text-center">Marca</th>
+                <th class="text-center">Modelo</th>
+                <th class="text-center">Custo mensal</th>
+                <th class="text-center col-md-1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (PatrimonioModel patrimonio in Model.Patrimonios)
+                {
+                    <tr>
+                        <td class="text-center">@patrimonio.Id</td>
+                        <td class="text-center">@patrimonio.Nome</td>
+                        <td class="text-center">@patrimonio.Marca</td>
+                        <td class="text-center">@patrimonio.Modelo</td>
+                        <td class="text-center">R$ @String.Format("{0:#,##0.00}", patrimonio.ValorMensal)</td>
+                        <td class="text-center"><button class="btn btn-xs" onclick="recurso.adicionarRecurso(@patrimonio.Id)">Adicionar</button></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<button class="btn glyphicon glyphicon-chevron-left btn-sm" id="voltar"></button>
+<button class="btn glyphicon glyphicon-chevron-right btn-sm" id="avancar"></button>
