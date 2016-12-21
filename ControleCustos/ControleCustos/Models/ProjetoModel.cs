@@ -90,7 +90,7 @@ namespace ControleCustos.Models
         public Projeto ConverterModelEditadaParaProjeto()
         {
             return new Projeto(this.Id.GetValueOrDefault(), this.Nome, this.Gerente, this.Cliente, this.Tecnologia, this.DataInicio,
-                                    this.DataFinalPrevista, this.DataFinalRealizada.GetValueOrDefault(), this.FaturamentoPrevisto, this.FaturamentoRealizado, this.NumeroProfissionais, this.Situacao);
+                                    this.DataFinalPrevista, this.DataFinalRealizada, this.FaturamentoPrevisto, this.FaturamentoRealizado, this.NumeroProfissionais, this.Situacao);
         }
     }
 }
