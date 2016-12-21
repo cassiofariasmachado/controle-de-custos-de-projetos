@@ -26,7 +26,7 @@ textarea {
 .projetos-link-panel {
     float: right;
     padding: 0px;
-    color:#FBAF41;
+    color: #FBAF41;
 }
 
 .projetos-title-panel {
@@ -34,8 +34,8 @@ textarea {
     padding-top: 2px;
 }
 
-.glyphicon{
-    color:#FBAF41;
+.glyphicon {
+    color: #FBAF41;
 }
 
 .img-logo {
@@ -124,15 +124,20 @@ textarea {
     margin-left: 15px;
 }
 
-.saude-perigo{
-  font-size:35px;
-  color: #d31010;
-}
-.saude-boa{
-  font-size:35px;
-    color: #2d750e;
+.saude-perigo {
+    font-size: 60px;
+    color: #d31010;
 }
 
-.saude-critica{
-  font-size:35px;
+.saude-boa {
+    font-size: 60px;
+    color: #FFC156;
+}
+
+.saude-critica {
+    font-size: 60px;
+}
+
+.saude {
+    padding-right: 20px;
 }

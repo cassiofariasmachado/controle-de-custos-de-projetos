@@ -38,5 +38,10 @@ namespace ControleCustos.Servicos
         {
             return new ControleRecursoRepositorio();
         }
+
+        public static ServicoDeConfiguracao MontarServicoConfiguracao()
+        {
+            return new ServicoDeConfiguracao();
+        }
     }
 }
