@@ -22,12 +22,7 @@ namespace ControleCustos.Controllers
         public ActionResult Index()
         {
             IList<Projeto> projetos = projetoRepositorio.ListarProjetosAtivos();
-            IList<ProjetoParaRelatorioModel> projetosRelatorio = new List<ProjetoParaRelatorioModel>();
-            foreach(var projeto in projetos)
-            {
-                projetosRelatorio.Add(new ProjetoParaRelatorioModel(projeto, calculoServico));
-            }
-            RelatorioModel model = new RelatorioModel(projetosRelatorio);
+            RelatorioModel model = this.ConverterEmRelatorioModel(projetos);
             return View(model);
         }
 
@@ -63,6 +58,18 @@ namespace ControleCustos.Controllers
             }
 
             return Json(new { Dados = dados }, JsonRequestBehavior.AllowGet);
+        }
+
+        private RelatorioModel ConverterEmRelatorioModel(IList<Projeto> projetos)
+        {
+            IList<ProjetoParaRelatorioModel> projetosRelatorio = new List<ProjetoParaRelatorioModel>();
+            foreach (var projeto in projetos)
+            {
+                var custoTotal = calculoServico.CalcularCustoTotalAte(projeto, DateTime.Now);
+                var custoMesCorrente = calculoServico.CalcularCustoMensal(projeto, DateTime.Now.Month, DateTime.Now.Year);
+                projetosRelatorio.Add(new ProjetoParaRelatorioModel(projeto, custoTotal, custoMesCorrente));
+            }
+            return new RelatorioModel(projetosRelatorio);
         }
     }
 }
