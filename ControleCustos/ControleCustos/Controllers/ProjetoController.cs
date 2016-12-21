@@ -63,10 +63,10 @@ namespace ControleCustos.Controllers
                 FlashMessage.Danger("Você não pode visualizar projetos de outros gerentes.");
                 return RedirectToAction("ListaProjetos");
             }
-            decimal totalPatrimonio = this.calculoServico.CalcularCustoPatrimonioTotalAte(projeto, DateTime.Now);
-            decimal totalCompartilhado = this.calculoServico.CalcularCustoCompartilhadoTotalAte(projeto, DateTime.Now);
-            decimal totalServico = this.calculoServico.CalcularCustoServicoTotalAte(projeto, DateTime.Now);
-            decimal saude = this.calculoServico.CalcularCustoPercentual(projeto, DateTime.Now);
+            decimal totalPatrimonio = this.calculoServico.CalcularCustoPatrimonioTotalAte(projeto, projeto.DataFinalPrevista);
+            decimal totalCompartilhado = this.calculoServico.CalcularCustoCompartilhadoTotalAte(projeto, projeto.DataFinalPrevista);
+            decimal totalServico = this.calculoServico.CalcularCustoServicoTotalAte(projeto, projeto.DataFinalPrevista);
+            decimal saude = this.calculoServico.CalcularCustoPercentual(projeto, projeto.DataFinalPrevista);
             var model = new ProjetoDetalheModel(projeto, totalPatrimonio, totalCompartilhado, totalServico, saude, servicoConfiguracao);
             return View(model);
         }
