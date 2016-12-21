@@ -1,5 +1,6 @@
 ﻿using ControleCustos.Dominio;
 using ControleCustos.Dominio.Enum;
+using ControleCustos.Infraestrutura;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -58,12 +59,18 @@ namespace ControleCustos.Models
         [DisplayName("Saúde")]
         public decimal Saude { get; set; }
 
+        public decimal LimiteSaudeBoa { get; set; }
+
+        public decimal LimiteSaudeRegular { get; set; }
+
+        public decimal LimiteSaudeCritica { get; set; }
+
         public ProjetoDetalheModel()
         {
 
         }
 
-        public ProjetoDetalheModel(Projeto projeto, decimal totalPatrimonio, decimal totalCompartilhado, decimal totalServico, decimal saude)
+        public ProjetoDetalheModel(Projeto projeto, decimal totalPatrimonio, decimal totalCompartilhado, decimal totalServico, decimal saude, ServicoDeConfiguracao configuracao)
         {
             this.Id = projeto.Id;
             this.Nome = projeto.Nome;
@@ -81,6 +88,9 @@ namespace ControleCustos.Models
             this.TotalCompartilhado = totalCompartilhado;
             this.TotalServico = totalServico;
             this.Saude = saude;
+            this.LimiteSaudeBoa = configuracao.SaudeDoProjetoBoa;
+            this.LimiteSaudeRegular = configuracao.SaudeDoProjetoRegular;
+            this.LimiteSaudeCritica = configuracao.SaudeDoProjetoCritica;
         }
     }
 }

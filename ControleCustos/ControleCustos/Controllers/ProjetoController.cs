@@ -2,6 +2,7 @@
 using ControleCustos.Dominio.Enum;
 using ControleCustos.Dominio.Interface;
 using ControleCustos.Filtro;
+using ControleCustos.Infraestrutura;
 using ControleCustos.Models;
 using ControleCustos.Servicos;
 using System;
@@ -19,6 +20,7 @@ namespace ControleCustos.Controllers
         private const int quantidadeDeRecursosPorPagina = 5;
         private IControleRecursoRepositorio controleRecursoRepositorio;
         private CalculoServico calculoServico;
+        private ServicoDeConfiguracao servicoConfiguracao;
 
         public ProjetoController()
         {
@@ -27,6 +29,7 @@ namespace ControleCustos.Controllers
             this.recursoRepositorio = ServicoDeDependencias.MontarRecursoRepositorio();
             this.controleRecursoRepositorio = ServicoDeDependencias.MontarControleRecursoRepositorio();
             this.calculoServico = ServicoDeDependencias.MontarCalculoServico();
+            this.servicoConfiguracao = ServicoDeDependencias.MontarServicoConfiguracao();
         }
 
         public ProjetoController(IProjetoRepositorio projetoRepositorio, UsuarioServico usuarioServico, IRecursoRepositorio recursoRepositorio, IControleRecursoRepositorio controleRecursoRepositorio, CalculoServico calculoServico)
@@ -64,7 +67,7 @@ namespace ControleCustos.Controllers
             decimal totalCompartilhado = this.calculoServico.CalcularCustoCompartilhadoTotalAte(projeto, DateTime.Now);
             decimal totalServico = this.calculoServico.CalcularCustoServicoTotalAte(projeto, DateTime.Now);
             decimal saude = this.calculoServico.CalcularCustoPercentual(projeto, DateTime.Now);
-            var model = new ProjetoDetalheModel(projeto, totalPatrimonio, totalCompartilhado, totalServico, saude);
+            var model = new ProjetoDetalheModel(projeto, totalPatrimonio, totalCompartilhado, totalServico, saude, servicoConfiguracao);
             return View(model);
         }
 
@@ -96,14 +99,14 @@ namespace ControleCustos.Controllers
                 model.Gerente = this.usuarioServico.BuscarPorEmail(ServicoDeAutenticacao.UsuarioLogado.Email);
                 if (model.Id == null)
                 {
-                    Projeto projeto = ConverterModelParaProjeto(model);
+                    Projeto projeto = model.ConverterModelParaProjeto();
                     this.projetoRepositorio.Inserir(projeto);
                     FlashMessage.Confirmation("Projeto adicionado com sucesso.");
                     return RedirectToAction("ListaProjetos");
                 }
                 else
                 {
-                    Projeto projeto = ConverterModelEditadaParaProjeto(model);
+                    Projeto projeto = model.ConverterModelEditadaParaProjeto();
                     this.projetoRepositorio.Atualizar(projeto);
                     FlashMessage.Confirmation("Projeto editado com sucesso.");
                     return RedirectToAction("ListaProjetos");
@@ -275,6 +278,7 @@ namespace ControleCustos.Controllers
         {
             return new ControleRecurso(0, this.projetoRepositorio.Buscar(model.IdProjeto), this.recursoRepositorio.Buscar(model.IdRecurso), model.DataInicio, model.DataFim);
         }
+
         private IList<ControleRecursoModel> ConverterIListControleRecursoParaModel(IList<ControleRecurso> lista)
         {
             IList<ControleRecursoModel> model = new List<ControleRecursoModel>();
@@ -285,18 +289,6 @@ namespace ControleCustos.Controllers
             return model;
         }
 
-        private IList<ProjetoModel> ConverterEmListagemDeProjetos(IList<Projeto> projetos)
-        {
-            IList<ProjetoModel> model = new List<ProjetoModel>();
-
-            foreach (var projeto in projetos)
-            {
-                model.Add(new ProjetoModel(projeto));
-            }
-
-            return model;
-        }
-
         private RecursoListagemModel CriarRecursoListagemViewModel(IList<Recurso> recursos, int pagina, int quantidadeTotalRecursos)
         {
             RecursoListagemModel model = new RecursoListagemModel(recursos, quantidadeTotalRecursos);
@@ -304,24 +296,6 @@ namespace ControleCustos.Controllers
             model.PaginaAtual = pagina;
 
             model.QuantidadeDeRecursosPorPagina = quantidadeDeRecursosPorPagina;
-            return model;
-        }
-
-        private Projeto ConverterModelParaProjeto(ProjetoModel model)
-        {
-            return new Projeto(model.Id.GetValueOrDefault(), model.Nome, model.Gerente, model.Cliente, model.Tecnologia, model.DataInicio,
-                                    model.DataFinalPrevista, model.FaturamentoPrevisto, model.NumeroProfissionais, model.Situacao);
-        }
-
-        private Projeto ConverterModelEditadaParaProjeto(ProjetoModel model)
-        {
-            return new Projeto(model.Id.GetValueOrDefault(), model.Nome, model.Gerente, model.Cliente, model.Tecnologia, model.DataInicio,
-                                    model.DataFinalPrevista, model.DataFinalRealizada.GetValueOrDefault(), model.FaturamentoPrevisto, model.FaturamentoRealizado, model.NumeroProfissionais, model.Situacao);
-        }
-
-        private ProjetoModel CriarProjetoViewModel(Projeto projeto)
-        {
-            var model = new ProjetoModel(projeto);
             return model;
         }
 
