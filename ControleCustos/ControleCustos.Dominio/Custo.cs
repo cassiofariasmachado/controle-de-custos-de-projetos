@@ -9,7 +9,10 @@ namespace ControleCustos.Dominio
         public decimal Valor { get; private set; }
         public UnidadeTecnica UnidadeTecnica { get; private set; }
         public DateTime Periodo { get; private set; }
+        public Custo()
+        {
 
+        }
         public Custo(int id, string conta, decimal valor, UnidadeTecnica UnidadeTecnica, DateTime Periodo)
         {
             this.Id = id;

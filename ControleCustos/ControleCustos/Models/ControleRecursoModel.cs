@@ -27,8 +27,10 @@ namespace ControleCustos.Models
         public string NomeProjeto { get; set; }
         public string NomeRecurso { get; set; }
         [Required]
+        [DisplayName("Data de início")]
         public DateTime DataInicio { get; set; }
         [Required]
+        [DisplayName("Data de fim")]
         public DateTime DataFim { get; set; }
     }
 }

@@ -4,6 +4,7 @@
     ViewBag.Title = titulo;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using Vereyon.Web;
 
 <div class="jumbotron">
 
@@ -17,9 +18,11 @@
             </div>
         </div>
         <div class="panel-body">
+            @Html.RenderFlashMessages()
             @using (Ajax.BeginForm("Salvar", "Projeto", new AjaxOptions { HttpMethod = "Post" }, new { @class = "form-horizontal" }))
             {
                 @Html.HiddenFor(model => model.Id)
+                @Html.AntiForgeryToken()
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Nome, new { @class = "col-sm-2 control-label" })

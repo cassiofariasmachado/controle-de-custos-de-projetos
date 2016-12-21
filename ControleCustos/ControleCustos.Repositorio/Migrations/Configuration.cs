@@ -88,6 +88,36 @@ namespace ControleCustos.Repositorio.Migrations
                 new ControleRecurso(4, projeto2, compartilhado2, new DateTime(2016, 4, 3), new DateTime(2016, 5, 3)),
                 new ControleRecurso(5, projeto3, servico5, new DateTime(2016, 3, 11), new DateTime(2016, 8, 13)),
                 new ControleRecurso(6, projeto3, servico1, new DateTime(2016, 12, 1), new DateTime(2016, 12, 14)));
+
+
+            UnidadeTecnica unidade1 = new UnidadeTecnica(1, "Cwi - Poa", "Poa", "Porto Alegre");
+            UnidadeTecnica unidade2 = new UnidadeTecnica(2, "Cwi - Sl", "Sl", "São Leopoldo");
+            UnidadeTecnica unidade3 = new UnidadeTecnica(3, "Cwi - Nh", "Nh", "Novo Hamburgo");
+            UnidadeTecnica unidade4 = new UnidadeTecnica(4, "Cwi - Sp", "Sp", "São Paulo");
+            context.UnidadeTecnica.AddOrUpdate(u => u.Id,
+               unidade1,
+               unidade2,
+               unidade3,
+               unidade4);
+            context.SaveChanges();
+
+            context.Colaboradores.AddOrUpdate(c => c.Id,
+                new Colaboradores(1, 100, new DateTime(2016, 8, 1), unidade1),
+                new Colaboradores(2, 120, new DateTime(2016, 9, 1), unidade1),
+                new Colaboradores(3, 150, new DateTime(2016, 10, 1), unidade1),
+                new Colaboradores(4, 200, new DateTime(2016, 10, 1), unidade1),
+                new Colaboradores(5, 210, new DateTime(2016, 11, 1), unidade1),
+                new Colaboradores(6, 400, new DateTime(2016, 10, 1), unidade2));
+            context.SaveChanges();
+
+            context.Custo.AddOrUpdate(c => c.Id,
+                new Custo(1, "Agua", 100, unidade1, new DateTime(2016, 8, 1)),
+                new Custo(2, "Agua", 100, unidade1, new DateTime(2016, 9, 1)),
+                new Custo(3, "Agua", 100, unidade1, new DateTime(2016, 10, 1)),
+                new Custo(4, "Agua", 100, unidade1, new DateTime(2016, 11, 1)),
+                new Custo(5, "Agua", 100, unidade1, new DateTime(2016, 12, 1)),
+                new Custo(6, "Luz", 100, unidade2, new DateTime(2016, 8, 1)));
+            context.SaveChanges();
         }
     }
 }

@@ -6,6 +6,10 @@
         public string Nome { get; private set; }
         public string Sigla { get; private set; }
         public string Local { get; private set; }
+        public UnidadeTecnica()
+        {
+
+        }
         public UnidadeTecnica(int id, string nome, string sigla, string local)
         {
             this.Id = id;
