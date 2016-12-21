@@ -58,10 +58,8 @@ namespace ControleCustos.Models
         [DisplayName("Saúde")]
         public decimal Saude { get; set; }
 
-        public ProjetoDetalheModel()
-        {
+        public ProjetoDetalheModel() { }
 
-        }
 
         public ProjetoDetalheModel(Projeto projeto, decimal totalPatrimonio, decimal totalCompartilhado, decimal totalServico, decimal saude)
         {
