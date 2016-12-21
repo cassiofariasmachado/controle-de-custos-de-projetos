@@ -55,12 +55,15 @@ namespace ControleCustos.Models
         [DisplayName("Servico:")]
         public decimal TotalServico { get; set; }
 
+        [DisplayName("Saúde")]
+        public decimal Saude { get; set; }
+
         public ProjetoDetalheModel()
         {
 
         }
 
-        public ProjetoDetalheModel(Projeto projeto, decimal totalPatrimonio, decimal totalCompartilhado, decimal totalServico)
+        public ProjetoDetalheModel(Projeto projeto, decimal totalPatrimonio, decimal totalCompartilhado, decimal totalServico, decimal saude)
         {
             this.Id = projeto.Id;
             this.Nome = projeto.Nome;
@@ -77,6 +80,7 @@ namespace ControleCustos.Models
             this.TotalPatrimonio = totalPatrimonio;
             this.TotalCompartilhado = totalCompartilhado;
             this.TotalServico = totalServico;
+            this.Saude = saude;
         }
     }
 }

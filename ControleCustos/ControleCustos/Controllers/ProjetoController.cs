@@ -75,7 +75,8 @@ namespace ControleCustos.Controllers
             decimal totalPatrimonio = this.calculoServico.CalcularCustoPatrimonioTotalAte(projeto, DateTime.Now);
             decimal totalCompartilhado = this.calculoServico.CalcularCustoCompartilhadoTotalAte(projeto, DateTime.Now);
             decimal totalServico = this.calculoServico.CalcularCustoServicoTotalAte(projeto, DateTime.Now);
-            var model = new ProjetoDetalheModel(projeto, totalPatrimonio, totalCompartilhado, totalServico);
+            decimal saude = this.calculoServico.CalcularCustoPercentual(projeto, DateTime.Now);
+            var model = new ProjetoDetalheModel(projeto, totalPatrimonio, totalCompartilhado, totalServico, saude);
             return View(model);
         }
 
