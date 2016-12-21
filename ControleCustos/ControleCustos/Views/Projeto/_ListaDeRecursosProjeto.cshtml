@@ -1,7 +1,7 @@
-﻿@model List<ControleCustos.Models.ControleRecursoModel>
+﻿@model ControleCustos.Models.ControleRecursoListagemModel
 @using ControleCustos.Models
 
-@if (Model == null || Model.LongCount() == 0)
+@if (Model == null || Model.Recursos.LongCount() == 0)
 {
     <span class="col-sm-offset-1">Nenhum recurso encontrado.</span>
 }
@@ -18,7 +18,7 @@ else
             </thead>
             <tbody>
                 @{
-                    foreach (ControleRecursoModel controleRecurso in Model)
+                    foreach (ControleRecursoModel controleRecurso in Model.Recursos)
                     {
                         <tr>
                             <td class="text-left">@controleRecurso.NomeRecurso</td>
@@ -30,5 +30,4 @@ else
             </tbody>
         </table>
     </div>
-                    }
-
+}

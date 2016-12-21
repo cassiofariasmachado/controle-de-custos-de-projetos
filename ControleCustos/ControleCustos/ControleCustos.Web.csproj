@@ -169,6 +169,7 @@
     </Compile>
     <Compile Include="Models\CompartilhadoListagemModel.cs" />
     <Compile Include="Models\CompartilhadoModel.cs" />
+    <Compile Include="Models\ControleRecursoListagemModel.cs" />
     <Compile Include="Models\PatrimonioListagemModel.cs" />
     <Compile Include="Models\PatrimonioModel.cs" />
     <Compile Include="Models\ListaProjetosModel.cs" />

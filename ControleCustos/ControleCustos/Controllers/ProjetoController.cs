@@ -222,7 +222,7 @@ namespace ControleCustos.Controllers
                 return PartialView("_ListaDeRecursosProjeto", null);
             }
             IList<ControleRecurso> controleRecurso = this.controleRecursoRepositorio.Listar(projeto);
-            IList<ControleRecursoModel> model = this.ConverterIListControleRecursoParaModel(controleRecurso);
+            ControleRecursoListagemModel model = this.ConverterIListControleRecursoParaModel(projeto, controleRecurso);
             return PartialView("_ListaDeRecursosProjeto", model);
         }
 
@@ -237,7 +237,7 @@ namespace ControleCustos.Controllers
                 return PartialView("_ListaDeRecursosProjeto", null);
             }
             IList<ControleRecurso> controleRecurso = this.controleRecursoRepositorio.ListarPatrimonio(projeto);
-            IList<ControleRecursoModel> model = this.ConverterIListControleRecursoParaModel(controleRecurso);
+            ControleRecursoListagemModel model = this.ConverterIListControleRecursoParaModel(projeto, controleRecurso);
             return PartialView("_ListaDeRecursosProjeto", model);
         }
 
@@ -252,7 +252,7 @@ namespace ControleCustos.Controllers
                 return PartialView("_ListaDeRecursosProjeto", null);
             }
             IList<ControleRecurso> controleRecurso = this.controleRecursoRepositorio.ListarCompartilhado(projeto);
-            IList<ControleRecursoModel> model = this.ConverterIListControleRecursoParaModel(controleRecurso);
+            ControleRecursoListagemModel model = this.ConverterIListControleRecursoParaModel(projeto, controleRecurso);
             return PartialView("_ListaDeRecursosProjeto", model);
         }
 
@@ -267,7 +267,7 @@ namespace ControleCustos.Controllers
                 return PartialView("_ListaDeRecursosProjeto", null);
             }
             IList<ControleRecurso> controleRecurso = this.controleRecursoRepositorio.ListarServico(projeto);
-            IList<ControleRecursoModel> model = this.ConverterIListControleRecursoParaModel(controleRecurso);
+            ControleRecursoListagemModel model = this.ConverterIListControleRecursoParaModel(projeto, controleRecurso);
             return PartialView("_ListaDeRecursosProjeto", model);
         }
 
@@ -275,14 +275,16 @@ namespace ControleCustos.Controllers
         {
             return new ControleRecurso(0, this.projetoRepositorio.Buscar(model.IdProjeto), this.recursoRepositorio.Buscar(model.IdRecurso), model.DataInicio, model.DataFim);
         }
-        private IList<ControleRecursoModel> ConverterIListControleRecursoParaModel(IList<ControleRecurso> lista)
+
+        private ControleRecursoListagemModel ConverterIListControleRecursoParaModel(Projeto projeto, IList<ControleRecurso> lista)
         {
-            IList<ControleRecursoModel> model = new List<ControleRecursoModel>();
+            IList<ControleRecursoModel> listaControleRecursoModel = new List<ControleRecursoModel>();
             foreach (ControleRecurso controleRecurso in lista)
             {
-                model.Add(new ControleRecursoModel(controleRecurso.Recurso, controleRecurso.Projeto, controleRecurso.DataInicio, controleRecurso.DataFim));
+                listaControleRecursoModel.Add(new ControleRecursoModel(controleRecurso.Recurso, controleRecurso.Projeto, controleRecurso.DataInicio, controleRecurso.DataFim));
             }
-            return model;
+            decimal custoTotalPrevisto = calculoServico.CalcularCustoTotalAte(projeto, projeto.DataFinalPrevista);
+            return new ControleRecursoListagemModel(listaControleRecursoModel, custoTotalPrevisto);
         }
 
         private IList<ProjetoModel> ConverterEmListagemDeProjetos(IList<Projeto> projetos)
