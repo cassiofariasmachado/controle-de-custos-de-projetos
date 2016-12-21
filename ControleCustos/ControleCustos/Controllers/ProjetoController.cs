@@ -29,6 +29,16 @@ namespace ControleCustos.Controllers
             this.calculoServico = ServicoDeDependencias.MontarCalculoServico();
         }
 
+        public ProjetoController(IProjetoRepositorio projetoRepositorio, UsuarioServico usuarioServico, IRecursoRepositorio recursoRepositorio, IControleRecursoRepositorio controleRecursoRepositorio, CalculoServico calculoServico)
+        {
+            this.projetoRepositorio = projetoRepositorio;
+            this.usuarioServico = usuarioServico;
+            this.recursoRepositorio = recursoRepositorio;
+            this.controleRecursoRepositorio = controleRecursoRepositorio;
+            this.calculoServico = calculoServico;
+        }
+
+
         [Autorizador(Roles = "Administrador,Gerente")]
         public ActionResult ListaProjetos()
         {
@@ -48,9 +58,9 @@ namespace ControleCustos.Controllers
                 projetos = projetoRepositorio.Listar(filtro);
             }
 
-            IList<ProjetoModel> model = ConverterEmListagemDeProjetos(projetos);
+            ListaProjetosModel listaModel = new ListaProjetosModel(projetos);
 
-            return PartialView("_ListaProjetosFiltrada", model); ;
+            return PartialView("_ListaProjetosFiltrada", listaModel); ;
         }
 
         [Autorizador(Roles = "Administrador,Gerente")]
@@ -65,7 +75,8 @@ namespace ControleCustos.Controllers
             decimal totalPatrimonio = this.calculoServico.CalcularCustoPatrimonioTotalAte(projeto, DateTime.Now);
             decimal totalCompartilhado = this.calculoServico.CalcularCustoCompartilhadoTotalAte(projeto, DateTime.Now);
             decimal totalServico = this.calculoServico.CalcularCustoServicoTotalAte(projeto, DateTime.Now);
-            var model = new ProjetoDetalheModel(projeto, totalPatrimonio, totalCompartilhado, totalServico);
+            decimal saude = this.calculoServico.CalcularCustoPercentual(projeto, DateTime.Now);
+            var model = new ProjetoDetalheModel(projeto, totalPatrimonio, totalCompartilhado, totalServico, saude);
             return View(model);
         }
 

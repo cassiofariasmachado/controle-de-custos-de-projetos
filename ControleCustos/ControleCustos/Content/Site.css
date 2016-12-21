@@ -123,3 +123,16 @@ textarea {
 .nome-projeto {
     margin-left: 15px;
 }
+
+.saude-perigo{
+  font-size:35px;
+  color: #d31010;
+}
+.saude-boa{
+  font-size:35px;
+    color: #2d750e;
+}
+
+.saude-critica{
+  font-size:35px;
+}

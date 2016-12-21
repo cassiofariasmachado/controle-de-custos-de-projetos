@@ -171,6 +171,7 @@
     <Compile Include="Models\CompartilhadoModel.cs" />
     <Compile Include="Models\PatrimonioListagemModel.cs" />
     <Compile Include="Models\PatrimonioModel.cs" />
+    <Compile Include="Models\ListaProjetosModel.cs" />
     <Compile Include="Models\ProjetoDetalheModel.cs" />
     <Compile Include="Models\ProjetoModel.cs" />
     <Compile Include="Models\RecursoListagemModel.cs" />
@@ -188,7 +189,6 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\clouds.css" />
     <Content Include="Content\loaders.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

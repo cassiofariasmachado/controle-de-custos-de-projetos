@@ -1,4 +1,4 @@
-﻿@model IList<ControleCustos.Models.ProjetoModel>
+﻿@model ControleCustos.Models.ListaProjetosModel
 @using ControleCustos.Models
 @using ControleCustos.Servicos
 @using ControleCustos.Dominio.Enum
@@ -8,6 +8,7 @@
 <div class="table-responsive">
     <table class="table table-bordered table-striped">
         <thead>
+            
             <tr>
                 <th class="text-left col-md-3">Nome</th>
                 <th class="text-left col-md-2">Cliente</th>
@@ -26,7 +27,7 @@
         </thead>
         <tbody>
             @{
-                foreach (ProjetoModel projeto in Model)
+                foreach (ProjetoModel projeto in Model.Projetos)
                 {
                     <tr>
                         <td class="text-left">
