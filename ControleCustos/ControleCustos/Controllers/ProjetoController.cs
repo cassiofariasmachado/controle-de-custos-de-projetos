@@ -285,8 +285,7 @@ namespace ControleCustos.Controllers
             {
                 listaControleRecursoModel.Add(new ControleRecursoModel(controleRecurso.Recurso, controleRecurso.Projeto, controleRecurso.DataInicio, controleRecurso.DataFim));
             }
-            decimal custoTotalPrevisto = calculoServico.CalcularCustoTotalAte(projeto, projeto.DataFinalPrevista);
-            return new ControleRecursoListagemModel(listaControleRecursoModel, custoTotalPrevisto);
+            return new ControleRecursoListagemModel(listaControleRecursoModel);
         }
 
         private bool EhDataValida(Projeto projeto, ControleRecursoModel model)

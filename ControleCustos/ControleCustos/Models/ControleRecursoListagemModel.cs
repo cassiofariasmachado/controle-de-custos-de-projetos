@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace ControleCustos.Models
 {
@@ -10,13 +6,9 @@ namespace ControleCustos.Models
     {
         public IList<ControleRecursoModel> Recursos { get; set; }
 
-        [DisplayName("Custo total previsto: ")]
-        public decimal CustoTotalPrevisto { get; set; }
-
-        public ControleRecursoListagemModel(IList<ControleRecursoModel> listaControleRecursoModel, decimal custoTotalPrevisto)
+        public ControleRecursoListagemModel(IList<ControleRecursoModel> listaControleRecursoModel)
         {
             this.Recursos = listaControleRecursoModel;
-            this.CustoTotalPrevisto = custoTotalPrevisto;
         }
     }
 }
