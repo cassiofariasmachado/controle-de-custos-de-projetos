@@ -100,61 +100,6 @@ namespace ControleCustos.Tests
         }
 
         [TestMethod]
-        public void ListaProjetosFiltradaUsuarioLogaEhGerenteESemFiltroDeveRetornarListaVazia()
-        {
-            // Arrange
-            var usuarioCassio = new Usuario(1, "Cassio Farias Machado", "cassio@cwi.com.br", "446ffac81f08f558556ea6d61a49dc17", Permissao.Gerente);
-            var projetoRepositorio = new Mock<IProjetoRepositorio>();
-            var usuarioRepositorio = new Mock<IUsuarioRepositorio>();
-            usuarioRepositorio.Setup(u => u.BuscarPorEmail("cassio@cwi.com.br")).Returns(usuarioCassio);
-            projetoRepositorio.Setup(p => p.ListarPorGerente(usuarioCassio, "")).Returns(new List<Projeto>());
-            var usuarioServico = new UsuarioServico(usuarioRepositorio.Object, new ServicoDeCriptografia());
-            var projetoController = new ProjetoController(projetoRepositorio.Object, usuarioServico, null, null, null);
-            // Act
-            var result = projetoController.ListaProjetosFiltrada();
-            //Assert 
-            Assert.AreEqual(0, ((ListaProjetosModel)result.ViewData.Model).Projetos.Count);
-        }
-
-        [TestMethod]
-        public void ListaProjetosFiltradaUsuarioLogaEhGerenteEComFiltroDeveRetornarListaVaziaPoisOMockEhVazio()
-        {
-            // Arrange
-            var usuarioCassio = new Usuario(1, "Cassio Farias Machado", "cassio@cwi.com.br", "446ffac81f08f558556ea6d61a49dc17", Permissao.Gerente);
-            var projetoRepositorio = new Mock<IProjetoRepositorio>();
-            var usuarioRepositorio = new Mock<IUsuarioRepositorio>();
-            usuarioRepositorio.Setup(u => u.BuscarPorEmail("cassio@cwi.com.br")).Returns(usuarioCassio);
-            projetoRepositorio.Setup(p => p.ListarPorGerente(usuarioCassio, "cwi")).Returns(new List<Projeto>());
-            var usuarioServico = new UsuarioServico(usuarioRepositorio.Object, new ServicoDeCriptografia());
-            var projetoController = new ProjetoController(projetoRepositorio.Object, usuarioServico, null, null, null);
-            // Act
-            var result = projetoController.ListaProjetosFiltrada("cwi");
-            //Assert 
-            Assert.AreEqual(0, ((ListaProjetosModel)result.ViewData.Model).Projetos.Count);
-        }
-
-        [TestMethod]
-        public void ListaProjetosFiltradaUsuarioLogaEhGerenteEComFiltroDeveRetornarListaCom1()
-        {
-            // Arrange
-            var usuarioCassio = new Usuario(1, "Cassio Farias Machado", "cassio@cwi.com.br", "446ffac81f08f558556ea6d61a49dc17", Permissao.Gerente);
-            var projetoRepositorio = new Mock<IProjetoRepositorio>();
-            var usuarioRepositorio = new Mock<IUsuarioRepositorio>();
-            var lista = new List<Projeto>()
-            {
-                new Projeto(1, "Guarana", usuarioCassio, "Vonpar", "Java", new DateTime(), new DateTime(2019, 12, 20), 1000, 2, SituacaoProjeto.Novo)
-            };
-            usuarioRepositorio.Setup(u => u.BuscarPorEmail("cassio@cwi.com.br")).Returns(usuarioCassio);
-            projetoRepositorio.Setup(p => p.ListarPorGerente(usuarioCassio, "cwi")).Returns(lista);
-            var usuarioServico = new UsuarioServico(usuarioRepositorio.Object, new ServicoDeCriptografia());
-            var projetoController = new ProjetoController(projetoRepositorio.Object, usuarioServico, null, null, null);
-            // Act
-            var result = projetoController.ListaProjetosFiltrada("cwi");
-            //Assert 
-            Assert.AreEqual(1, ((ListaProjetosModel)result.ViewData.Model).Projetos.Count);
-        }
-
-        [TestMethod]
         public void CarregarListaDeCompartilhadosDoProjetoGerenteAcessandoProjetoDeOutroGerenteDeveRetornarModelNull()
         {
             // Arrange
@@ -458,6 +403,24 @@ namespace ControleCustos.Tests
             var result = projetoController.CarregarListaDePatrimonios(1);
             //Assert
             Assert.AreEqual("_ListagemPatrimonio", result.ViewName);
+            Assert.AreNotEqual(null, result.Model);
+        }
+
+        [TestMethod]
+        public void CarregarListaDeRecursosCompartilhadosDeveRetornarView_ListagemServicoEModelPopulada()
+        {
+            // Arrange
+            var recursoRepositorio = new Mock<IRecursoRepositorio>();
+            var listaCompartilhado = new List<Compartilhado>()
+            {
+                new Compartilhado(1, "VM", 10000, SituacaoRecurso.Indisponivel,true, "100.1.1.1", true,1000, 100, 10000, true, true, TipoRecurso.Fisico) { }
+        };
+            recursoRepositorio.Setup(r => r.BuscaPaginadaRecursoCompartilhados(1, 5)).Returns(listaCompartilhado);
+            var projetoController = new ProjetoController(null, null, recursoRepositorio.Object, null, null);
+            // Act
+            var result = projetoController.CarregarListaDeRecursosCompartilhados(1);
+            //Assert
+            Assert.AreEqual("_ListagemCompartilhado", result.ViewName);
             Assert.AreNotEqual(null, result.Model);
         }
     }
