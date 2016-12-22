@@ -156,7 +156,7 @@ namespace ControleCustos.Controllers
 
         [HttpGet]
         [Autorizador(Roles = "Gerente")]
-        public PartialViewResult CarregarListaDeRecursosCompartilhados(int pagina, Projeto projeto = null)
+        public PartialViewResult CarregarListaDeRecursosCompartilhados(int pagina)
         {
             IList<Compartilhado> recursos = this.recursoRepositorio.BuscaPaginadaRecursoCompartilhados(pagina, quantidadeDeRecursosPorPagina);
             CompartilhadoListagemModel model = new CompartilhadoListagemModel(recursos, pagina, quantidadeDeRecursosPorPagina, this.recursoRepositorio.CompartilhadoCount());
