@@ -62,12 +62,12 @@ namespace ControleCustos.Controllers
 
         private RelatorioModel ConverterEmRelatorioModel(IList<Projeto> projetos)
         {
-            IList<ProjetoParaRelatorioModel> projetosRelatorio = new List<ProjetoParaRelatorioModel>();
+            IList<ProjetoRelatorioModel> projetosRelatorio = new List<ProjetoRelatorioModel>();
             foreach (var projeto in projetos)
             {
                 var custoTotal = calculoServico.CalcularCustoTotalAte(projeto, DateTime.Now);
                 var custoMesCorrente = calculoServico.CalcularCustoMensal(projeto, DateTime.Now.Month, DateTime.Now.Year);
-                projetosRelatorio.Add(new ProjetoParaRelatorioModel(projeto, custoTotal, custoMesCorrente));
+                projetosRelatorio.Add(new ProjetoRelatorioModel(projeto, custoTotal, custoMesCorrente));
             }
             return new RelatorioModel(projetosRelatorio);
         }

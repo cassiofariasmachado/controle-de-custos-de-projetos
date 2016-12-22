@@ -7,7 +7,7 @@ namespace ControleCustos.Models
 {
     public class RelatorioModel
     {
-        public IList<ProjetoParaRelatorioModel> Projetos { get; set; }
+        public IList<ProjetoRelatorioModel> Projetos { get; set; }
 
         public decimal TotalCustosTotais { get; set; }
 
@@ -17,7 +17,7 @@ namespace ControleCustos.Models
 
         public RelatorioModel() { }
 
-        public RelatorioModel(IList<ProjetoParaRelatorioModel> projetos)
+        public RelatorioModel(IList<ProjetoRelatorioModel> projetos)
         {
             this.Projetos = projetos;
             this.TotalCustosTotais = projetos.Sum(p => p.CustoTotal);

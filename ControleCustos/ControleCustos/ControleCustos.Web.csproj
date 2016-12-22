@@ -178,7 +178,7 @@
     <Compile Include="Models\RecursoListagemModel.cs" />
     <Compile Include="Models\ControleRecursoModel.cs" />
     <Compile Include="Models\RecursoModel.cs" />
-    <Compile Include="Models\ProjetoParaRelatorioModel.cs" />
+    <Compile Include="Models\ProjetoRelatorioModel.cs" />
     <Compile Include="Models\RelatorioModel.cs" />
     <Compile Include="Models\ServicoListagemModel.cs" />
     <Compile Include="Models\ServicoModel.cs" />

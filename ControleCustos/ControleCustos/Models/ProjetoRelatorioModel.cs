@@ -7,7 +7,7 @@ using System.Web;
 
 namespace ControleCustos.Models
 {
-    public class ProjetoParaRelatorioModel
+    public class ProjetoRelatorioModel
     {
         public string Cliente { get; set; }
 
@@ -23,9 +23,9 @@ namespace ControleCustos.Models
 
         public SituacaoProjeto Situacao { get; set; }
 
-        public ProjetoParaRelatorioModel() { }
+        public ProjetoRelatorioModel() { }
 
-        public ProjetoParaRelatorioModel(Projeto projeto, decimal custoTotal, decimal custoMesCorrente)
+        public ProjetoRelatorioModel(Projeto projeto, decimal custoTotal, decimal custoMesCorrente)
         {
             this.Cliente = projeto.Cliente;
             this.Projeto = projeto.Nome;
