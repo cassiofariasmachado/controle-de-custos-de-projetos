@@ -21,20 +21,24 @@
                     <span id="id-projeto" data-id-projeto="@Model.Id"></span>
                 </div>
                 <div class="row">
-                    @if (Model.Saude >= Model.LimiteSaudeRegularCritica)
-                    {
-                        <div title="Saúde do projeto: @String.Format("{0:P2}.", @Model.Saude/100)" class="col-md-1 saude-critica span1 pull-right">&#9760;</div>
-                    }
-                    else if (Model.Saude < Model.LimiteSaudeRegularCritica && Model.Saude >= Model.LimiteSaudeBoaRegular)
-                    {
-                        <div title="Saúde do projeto: @String.Format("{0:P2}.", @Model.Saude/100)" class="col-md-1 saude-perigo span3 pull-right">&#9888;</div>
-                    }
-                    else
-                    {
-                        <div title="Saúde do projeto: @String.Format("{0:P2}.", @Model.Saude/100)" class="col-md-1 saude-boa span1 pull-right">&#9786;</div>
-                    }
-                    <h3 class="col-md-8 nome-projeto"><strong>@Model.Nome</strong></h3>
-                    <div class="col-md-pull-2 col-md-offset-9">Saúde do projeto: @String.Format("{0:P2}", @Model.Saude / 100)</div>
+                    <div class="col-xs-8 col-md-10">
+                        <h3 class="nome-projeto"><strong>@Model.Nome</strong></h3>
+                    </div>
+                    <div class="col-xs-4 col-md-2">
+                        @if (Model.Saude >= Model.LimiteSaudeRegularCritica)
+                        {
+                            <div title="Saúde do projeto: @String.Format("{0:P2}.", @Model.Saude/100)" class="text-center saude-critica span1">&#9760;</div>
+                        }
+                        else if (Model.Saude < Model.LimiteSaudeRegularCritica && Model.Saude >= Model.LimiteSaudeBoaRegular)
+                        {
+                            <div title="Saúde do projeto: @String.Format("{0:P2}.", @Model.Saude/100)" class="text-center saude-perigo span3">&#9888;</div>
+                        }
+                        else
+                        {
+                            <div title="Saúde do projeto: @String.Format("{0:P2}.", @Model.Saude/100)" class="text-center saude-boa span1">&#9786;</div>
+                        }
+                        <div class="text-center"><strong>Saúde: @String.Format("{0:P2}", @Model.Saude / 100)</strong></div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
