@@ -59,11 +59,9 @@ namespace ControleCustos.Models
         [DisplayName("Saúde")]
         public decimal Saude { get; set; }
 
-        public decimal LimiteSaudeBoa { get; set; }
+        public decimal LimiteSaudeBoaRegular { get; set; }
 
-        public decimal LimiteSaudeRegular { get; set; }
-
-        public decimal LimiteSaudeCritica { get; set; }
+        public decimal LimiteSaudeRegularCritica { get; set; }
 
         public ProjetoDetalheModel() { }
 
@@ -85,9 +83,25 @@ namespace ControleCustos.Models
             this.TotalCompartilhado = totalCompartilhado;
             this.TotalServico = totalServico;
             this.Saude = saude;
-            this.LimiteSaudeBoa = configuracao.SaudeDoProjetoBoa;
-            this.LimiteSaudeRegular = configuracao.SaudeDoProjetoRegular;
-            this.LimiteSaudeCritica = configuracao.SaudeDoProjetoCritica;
+            this.LimiteSaudeBoaRegular = configuracao.LimiteSaudeBoaRegular;
+            this.LimiteSaudeRegularCritica = configuracao.LimiteSaudeRegularCritica;
+        }
+
+        public ProjetoDetalheModel(Projeto projeto, decimal saude)
+        {
+            this.Id = projeto.Id;
+            this.Nome = projeto.Nome;
+            this.Gerente = projeto.Gerente;
+            this.Cliente = projeto.Cliente;
+            this.Tecnologia = projeto.Tecnologia;
+            this.DataInicio = projeto.DataInicio;
+            this.DataFinalPrevista = projeto.DataFinalPrevista;
+            this.DataFinalRealizada = projeto.DataFinalRealizada;
+            this.FaturamentoPrevisto = projeto.FaturamentoPrevisto;
+            this.FaturamentoRealizado = projeto.FaturamentoRealizado.GetValueOrDefault();
+            this.NumeroProfissionais = projeto.NumeroDeProfissionais;
+            this.Situacao = projeto.Situacao;
+            this.Saude = saude;
         }
     }
 }

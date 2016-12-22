@@ -8,8 +8,9 @@
 <div class="table-responsive">
     <table class="table table-bordered table-striped">
         <thead>
-            
+
             <tr>
+                <th class="text-center col-sm-1">Saúde</th>
                 <th class="text-left col-md-3">Nome</th>
                 <th class="text-left col-md-2">Cliente</th>
                 <th class="text-left col-md-2">Data de Início</th>
@@ -27,9 +28,23 @@
         </thead>
         <tbody>
             @{
-                foreach (ProjetoModel projeto in Model.Projetos)
+                foreach (ProjetoDetalheModel projeto in Model.Projetos)
                 {
                     <tr>
+                        <td class="text-center">
+                            @if (projeto.Saude >= Model.LimiteSaudeRegularCritica)
+                            {
+                                <span title="Saúde do projeto: @String.Format("{0:P2}.", projeto.Saude/100)" class="saude-critica-small">&#9760;</span>
+                            }
+                            else if (projeto.Saude < Model.LimiteSaudeRegularCritica && projeto.Saude >= Model.LimiteSaudeBoaRegular)
+                            {
+                                <div title="Saúde do projeto: @String.Format("{0:P2}.", projeto.Saude/100)" class="saude-perigo-small">&#9888;</div>
+                            }
+                            else
+                            {
+                                <div title="Saúde do projeto: @String.Format("{0:P2}.", projeto.Saude/100)" class="saude-boa-small">&#9786;</div>
+                            }
+                        </td>
                         <td class="text-left">
                             @projeto.Nome
                         </td>

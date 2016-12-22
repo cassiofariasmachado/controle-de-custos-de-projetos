@@ -5,9 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using Vereyon.Web;
-
 <div class="jumbotron">
-
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="clearfix">
@@ -95,13 +93,25 @@
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.Situacao, new { @class = "col-sm-2 control-label" })
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         @Html.EnumDropDownListFor(model => model.Situacao, "Selecione...", new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Cadastrar</button>
+                        @if (Model == null)
+                        {
+                            <button type="submit" class="btn btn-default">
+                                Cadastrar
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-default">
+                                Salvar Mudanças
+                            </button>
+                        }
+
                     </div>
                 </div>
             }

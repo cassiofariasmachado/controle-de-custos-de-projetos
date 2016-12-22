@@ -8,8 +8,7 @@ namespace ControleCustos.Dominio.Configuracao
 {
     public interface IServicoDeConfiguracao
     {
-        decimal SaudeDoProjetoCritica { get; }
-        decimal SaudeDoProjetoRegular { get; }
-        decimal SaudeDoProjetoBoa { get; }
+        decimal LimiteSaudeBoaRegular { get; }
+        decimal LimiteSaudeRegularCritica { get; }
     }
 }
