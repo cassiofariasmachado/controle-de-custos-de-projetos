@@ -18,7 +18,7 @@ namespace ControleCustos.Tests.Dominio
         {
             this.listaControleRecursos = new List<ControleRecurso>();
 
-            Projeto projeto = new Projeto(1, "Coca-cola", new Usuario(), "Coca-cola", "C#", new DateTime(2016, 11, 1), new DateTime(2016, 12, 5), 1000M, 12, SituacaoProjeto.Novo);
+            Projeto projeto = new Projeto(1, "Coca-cola", new Usuario(1, "Cassio Farias Machado", "cassio@cwi.com.br", "446ffac81f08f558556ea6d61a49dc17", Permissao.Gerente), "Coca-cola", "C#", new DateTime(2016, 11, 1), new DateTime(2016, 12, 5), 1000M, 12, SituacaoProjeto.Novo);
             Projeto projeto2 = new Projeto(2, "Sicredi", new Usuario(), "Sicredi", "Java", new DateTime(2016, 11, 1), new DateTime(2016, 12, 5), 1000M, 4, SituacaoProjeto.Novo);
             Projeto projeto3 = new Projeto(3, "Renner", new Usuario(), "Renner", "Java", new DateTime(2016, 11, 1), new DateTime(2016, 12, 5), 0, 5, SituacaoProjeto.EmAndamento);
             Projeto projeto4 = new Projeto(4, "Renner", new Usuario(), "Renner", "Java", new DateTime(2016, 11, 1), new DateTime(2016, 12, 5), 0, 9, SituacaoProjeto.Novo);

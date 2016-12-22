@@ -11,7 +11,7 @@ namespace ControleCustos.Tests.Dominio
             if (email.Equals("usuario@hotmail.com"))
             {
                 //senha = 123
-                Usuario usuario = new Usuario(1, "Usuario", "usuario@hotmail.com", "053523c5278f3bb59e1c56f468d71e2e", Permissao.Administrador);
+                Usuario usuario = new Usuario(1, "Usuario", "cassio@cwi.com.br", "053523c5278f3bb59e1c56f468d71e2e", Permissao.Administrador);
                 return usuario;
             }
             return null;
