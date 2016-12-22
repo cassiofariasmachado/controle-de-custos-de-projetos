@@ -6,9 +6,9 @@
 
 
 <div class="table-responsive">
+
     <table class="table table-bordered table-striped">
         <thead>
-
             <tr>
                 <th class="text-center col-sm-1">Saúde</th>
                 <th class="text-left col-md-3">Nome</th>
@@ -87,7 +87,17 @@
                             </td>
                         }
                     </tr>
+
                 }
+
+            }
+            @if (Model.Projetos.Count == 0)
+            {
+                <tr>
+                    <td colspan="7">
+                        Nenhum projeto foi encontrado!
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
