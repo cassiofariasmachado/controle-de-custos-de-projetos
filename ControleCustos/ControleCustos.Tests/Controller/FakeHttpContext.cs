@@ -1,9 +1,5 @@
-﻿using Moq;
-using System.IO;
-using System.Security.Principal;
+﻿using System.IO;
 using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
 using System.Web.SessionState;
 
 namespace ControleCustos.Tests
