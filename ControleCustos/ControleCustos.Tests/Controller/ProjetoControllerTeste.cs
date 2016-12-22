@@ -4,16 +4,11 @@ using ControleCustos.Dominio.Enum;
 using ControleCustos.Dominio.Interface;
 using ControleCustos.Infraestrutura;
 using ControleCustos.Models;
-using ControleCustos.Tests;
-using ControleCustos.Tests.Dominio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Security.Principal;
 using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
 
 namespace ControleCustos.Tests
 {
@@ -26,14 +21,6 @@ namespace ControleCustos.Tests
         {
             HttpContext.Current = FakeHttpContext.FakeHttp();
             HttpContext.Current.Session["USUARIO_LOGADO_CHAVE"] = new UsuarioModel("cassio@cwi.com.br", Permissao.Gerente);
-            var projetoRepositorio = new Mock<IProjetoRepositorio>();
-            var recursoRepositorio = new Mock<IRecursoRepositorio>();
-            var controleDeRecursoRepositorio = new Mock<IControleRecursoRepositorio>();
-            var usuarioCassio = new Usuario(1, "Cassio Farias Machado", "cassio@cwi.com.br", "446ffac81f08f558556ea6d61a49dc17", Permissao.Gerente);
-            var usuarioGabriel = new Usuario(1, "Gabriel", "gabriel@cwi.com.br", "446ffac81f08f558556ea6d61a49dc17", Permissao.Gerente);
-            var usuarioAdministrador = new Usuario(1, "Administrador", "administrador@cwi.com.br", "446ffac81f08f558556ea6d61a49dc17", Permissao.Administrador);
-
-
         }
 
         [TestMethod]
@@ -393,6 +380,85 @@ namespace ControleCustos.Tests
 
             // Assert
             Assert.AreEqual("_ListaDeRecursosProjeto", result.ViewName);
+        }
+
+        [TestMethod]
+        public void CarregarModalGerenteAcessandoProjetoDeOutroGerenteDeveRetornarModalVazia()
+        {
+            // Arrange
+            var projetoRepositorio = new Mock<IProjetoRepositorio>();
+            var usuarioGabriel = new Usuario(1, "Gabriel", "gabriel@cwi.com.br", "446ffac81f08f558556ea6d61a49dc17", Permissao.Gerente);
+            var projeto = new Projeto(1, "Pepsi", usuarioGabriel, "Pepsi", "C#", new DateTime(), new DateTime(2019, 12, 20), 1000, 2, SituacaoProjeto.Novo);
+            projetoRepositorio.Setup(p => p.Buscar(1)).Returns(projeto);
+            var projetoController = new ProjetoController(projetoRepositorio.Object, null, null, null, null);
+            // Act
+            var result = projetoController.CarregarModal(1, 1);
+            // Assert
+            Assert.AreEqual(null, ((ControleRecursoModel)result.ViewData.Model).NomeProjeto);
+            Assert.AreEqual(0, ((ControleRecursoModel)result.ViewData.Model).IdProjeto);
+            Assert.AreEqual(null, ((ControleRecursoModel)result.ViewData.Model).NomeRecurso);
+            Assert.AreEqual(0, ((ControleRecursoModel)result.ViewData.Model).IdRecurso);
+        }
+
+        [TestMethod]
+        public void CarregarModalGerenteAcessandoProjetoSeuGerenteDeveRetornarModalPopulada()
+        {
+            // Arrange
+            var projetoRepositorio = new Mock<IProjetoRepositorio>();
+            var recursoRepositorio = new Mock<IRecursoRepositorio>();
+            var usuarioCassio = new Usuario(1, "Cassio Farias Machado", "cassio@cwi.com.br", "446ffac81f08f558556ea6d61a49dc17", Permissao.Gerente);
+            var projeto = new Projeto(1, "Pepsi", usuarioCassio, "Pepsi", "C#", new DateTime(), new DateTime(2019, 12, 20), 1000, 2, SituacaoProjeto.Novo);
+            var recurso = new Patrimonio(1, "Teclado", 10, SituacaoRecurso.Indisponivel, true, "NS", "Asus", new DateTime(), 10, 1);
+            recursoRepositorio.Setup(r => r.Buscar(1)).Returns(recurso);
+            projetoRepositorio.Setup(p => p.Buscar(1)).Returns(projeto);
+            var projetoController = new ProjetoController(projetoRepositorio.Object, null, recursoRepositorio.Object, null, null);
+            // Act
+            var result = projetoController.CarregarModal(1, 1);
+            // Assert
+            Assert.AreEqual("Teclado", ((ControleRecursoModel)result.ViewData.Model).NomeRecurso);
+            Assert.AreEqual(1, ((ControleRecursoModel)result.ViewData.Model).IdRecurso);
+            Assert.AreEqual("Pepsi", ((ControleRecursoModel)result.ViewData.Model).NomeProjeto);
+            Assert.AreEqual(1, ((ControleRecursoModel)result.ViewData.Model).IdProjeto);
+        }
+
+        [TestMethod]
+        public void CarregarListaDeServicosDeveRetornarView_ListagemServicoEModelPopulada()
+        {
+            // Arrange
+            var recursoRepositorio = new Mock<IRecursoRepositorio>();
+            var listaServico = new List<Servico>()
+            {
+                new Servico(1, "Git", 100, SituacaoRecurso.Disponivel, false, "GitKraken", TipoServico.Licenca) { },
+                new Servico(2, "Netbeans", 1000, SituacaoRecurso.Disponivel, false, "NeatBeans Java", TipoServico.Servico) { },
+                new Servico(3, "Visual Studio", 10000, SituacaoRecurso.Disponivel, false, "Microsoft", TipoServico.Licenca) { }
+            };
+            recursoRepositorio.Setup(r => r.BuscaPaginadaServicos(1, 5)).Returns(listaServico);
+            var projetoController = new ProjetoController(null, null, recursoRepositorio.Object, null, null);
+            // Act
+            var result = projetoController.CarregarListaDeServicos(1);
+            //Assert
+            Assert.AreEqual("_ListagemServico", result.ViewName);
+            Assert.AreNotEqual(null, result.Model);
+        }
+
+        [TestMethod]
+        public void CarregarListaDePatrimoniosDeveRetornarView_ListagemServicoEModelPopulada()
+        {
+            // Arrange
+            var recursoRepositorio = new Mock<IRecursoRepositorio>();
+            var listaPatrimonio = new List<Patrimonio>()
+            {
+                new Patrimonio(1, "Teclado", 100, SituacaoRecurso.Indisponivel, false, "Asus", "Asus", new DateTime(), 1000, 10) { },
+                new Patrimonio(2, "Notebook", 100, SituacaoRecurso.Indisponivel, false, "Asus", "Asus", new DateTime(), 1000, 10) { },
+                new Patrimonio(0, "Violao", 100, SituacaoRecurso.Disponivel, true, "NS", "D", new DateTime(), 1000, 10) { }
+        };
+            recursoRepositorio.Setup(r => r.BuscaPaginadaPatrimonios(1, 5)).Returns(listaPatrimonio);
+            var projetoController = new ProjetoController(null, null, recursoRepositorio.Object, null, null);
+            // Act
+            var result = projetoController.CarregarListaDePatrimonios(1);
+            //Assert
+            Assert.AreEqual("_ListagemPatrimonio", result.ViewName);
+            Assert.AreNotEqual(null, result.Model);
         }
     }
 }
