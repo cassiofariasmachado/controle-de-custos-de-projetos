@@ -12,6 +12,7 @@ using Vereyon.Web;
 
 namespace ControleCustos.Controllers
 {
+    //TODO: Tem bastante replicação nessa controller, daria pra refatorar mais!
     public class ProjetoController : Controller
     {
         private IProjetoRepositorio projetoRepositorio;
@@ -158,8 +159,8 @@ namespace ControleCustos.Controllers
         [Autorizador(Roles = "Gerente")]
         public PartialViewResult CarregarListaDeRecursosCompartilhados(int pagina)
         {
-            IList<Compartilhado> recursos = this.recursoRepositorio.BuscaPaginadaRecursoCompartilhados(pagina, quantidadeDeRecursosPorPagina);
-            CompartilhadoListagemModel model = new CompartilhadoListagemModel(recursos, pagina, quantidadeDeRecursosPorPagina, this.recursoRepositorio.CompartilhadoCount());
+            IList<Compartilhado> recursos = this.recursoRepositorio.BuscarRecursosPaginados<Compartilhado>(pagina, quantidadeDeRecursosPorPagina);
+            CompartilhadoListagemModel model = new CompartilhadoListagemModel(recursos, pagina, quantidadeDeRecursosPorPagina, this.recursoRepositorio.BuscarQuantidadeRecursos<Compartilhado>());
             return PartialView("_ListagemCompartilhado", model);
         }
 
@@ -167,8 +168,8 @@ namespace ControleCustos.Controllers
         [Autorizador(Roles = "Gerente")]
         public PartialViewResult CarregarListaDePatrimonios(int pagina)
         {
-            IList<Patrimonio> patrimonios = this.recursoRepositorio.BuscaPaginadaPatrimonios(pagina, quantidadeDeRecursosPorPagina);
-            PatrimonioListagemModel model = new PatrimonioListagemModel(patrimonios, pagina, quantidadeDeRecursosPorPagina, this.recursoRepositorio.PatrimonioCount());
+            IList<Patrimonio> patrimonios = this.recursoRepositorio.BuscarRecursosPaginados<Patrimonio>(pagina, quantidadeDeRecursosPorPagina);
+            PatrimonioListagemModel model = new PatrimonioListagemModel(patrimonios, pagina, quantidadeDeRecursosPorPagina, this.recursoRepositorio.BuscarQuantidadeRecursos<Patrimonio>());
             return PartialView("_ListagemPatrimonio", model);
         }
 
@@ -176,8 +177,8 @@ namespace ControleCustos.Controllers
         [Autorizador(Roles = "Gerente")]
         public PartialViewResult CarregarListaDeServicos(int pagina)
         {
-            IList<Servico> servicos = this.recursoRepositorio.BuscaPaginadaServicos(pagina, quantidadeDeRecursosPorPagina);
-            ServicoListagemModel model = new ServicoListagemModel(servicos, pagina, quantidadeDeRecursosPorPagina, this.recursoRepositorio.ServicoCount());
+            IList<Servico> servicos = this.recursoRepositorio.BuscarRecursosPaginados<Servico>(pagina, quantidadeDeRecursosPorPagina);
+            ServicoListagemModel model = new ServicoListagemModel(servicos, pagina, quantidadeDeRecursosPorPagina, this.recursoRepositorio.BuscarQuantidadeRecursos<Servico>());
             return PartialView("_ListagemServico", model);
         }
 
