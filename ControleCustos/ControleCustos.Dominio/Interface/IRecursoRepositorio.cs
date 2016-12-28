@@ -7,11 +7,7 @@ namespace ControleCustos.Dominio.Interface
         Recurso Buscar(int id);
         void Inserir(Recurso recurso);
         void Atualizar(Recurso recurso);
-        IList<Compartilhado> BuscaPaginadaRecursoCompartilhados(int pagina, int quantidade);
-        IList<Patrimonio> BuscaPaginadaPatrimonios(int pagina, int quantidade);
-        IList<Servico> BuscaPaginadaServicos(int pagina, int quantidade);
-        int CompartilhadoCount();
-        int ServicoCount();
-        int PatrimonioCount();
+        IList<T> BuscarRecursosPaginados<T>(int pagina, int quantidade) where T : Recurso;
+        int BuscarQuantidadeRecursos<T>() where T : Recurso;
     }
 }

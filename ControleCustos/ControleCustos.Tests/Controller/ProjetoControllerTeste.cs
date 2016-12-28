@@ -377,7 +377,7 @@ namespace ControleCustos.Tests
                 new Servico(2, "Netbeans", 1000, SituacaoRecurso.Disponivel, false, "NeatBeans Java", TipoServico.Servico) { },
                 new Servico(3, "Visual Studio", 10000, SituacaoRecurso.Disponivel, false, "Microsoft", TipoServico.Licenca) { }
             };
-            recursoRepositorio.Setup(r => r.BuscaPaginadaServicos(1, 5)).Returns(listaServico);
+            recursoRepositorio.Setup(r => r.BuscarRecursosPaginados<Servico>(1, 5)).Returns(listaServico);
             var projetoController = new ProjetoController(null, null, recursoRepositorio.Object, null, null);
             // Act
             var result = projetoController.CarregarListaDeServicos(1);
@@ -396,8 +396,8 @@ namespace ControleCustos.Tests
                 new Patrimonio(1, "Teclado", 100, SituacaoRecurso.Indisponivel, false, "Asus", "Asus", new DateTime(), 1000, 10) { },
                 new Patrimonio(2, "Notebook", 100, SituacaoRecurso.Indisponivel, false, "Asus", "Asus", new DateTime(), 1000, 10) { },
                 new Patrimonio(0, "Violao", 100, SituacaoRecurso.Disponivel, true, "NS", "D", new DateTime(), 1000, 10) { }
-        };
-            recursoRepositorio.Setup(r => r.BuscaPaginadaPatrimonios(1, 5)).Returns(listaPatrimonio);
+            };
+            recursoRepositorio.Setup(r => r.BuscarRecursosPaginados<Patrimonio>(1, 5)).Returns(listaPatrimonio);
             var projetoController = new ProjetoController(null, null, recursoRepositorio.Object, null, null);
             // Act
             var result = projetoController.CarregarListaDePatrimonios(1);
@@ -414,8 +414,8 @@ namespace ControleCustos.Tests
             var listaCompartilhado = new List<Compartilhado>()
             {
                 new Compartilhado(1, "VM", 10000, SituacaoRecurso.Indisponivel,true, "100.1.1.1", true,1000, 100, 10000, true, true, TipoRecurso.Fisico) { }
-        };
-            recursoRepositorio.Setup(r => r.BuscaPaginadaRecursoCompartilhados(1, 5)).Returns(listaCompartilhado);
+            };
+            recursoRepositorio.Setup(r => r.BuscarRecursosPaginados<Compartilhado>(1, 5)).Returns(listaCompartilhado);
             var projetoController = new ProjetoController(null, null, recursoRepositorio.Object, null, null);
             // Act
             var result = projetoController.CarregarListaDeRecursosCompartilhados(1);

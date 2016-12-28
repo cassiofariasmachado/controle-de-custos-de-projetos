@@ -16,56 +16,24 @@ namespace ControleCustos.Repositorio
                 return context.Recurso.Find(id);
             }
         }
-        public IList<Compartilhado> BuscaPaginadaRecursoCompartilhados(int pagina, int quantidade)
-        {
-            using (var context = new DatabaseContext())
-            {
-                IQueryable<Compartilhado> query = from recurso in context.Recurso.OfType<Compartilhado>() select recurso;
-                return query.Where(r => r.Situacao == SituacaoRecurso.Disponivel).OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
-            }
-        }
-        public int CompartilhadoCount()
-        {
-            using (var context = new DatabaseContext())
-            {
-                IQueryable<Recurso> query = from recurso in context.Recurso.OfType<Compartilhado>() select recurso;
-                return query.Where(r => r.Situacao == SituacaoRecurso.Disponivel).Count();
-            }
-        }
 
-        public IList<Servico> BuscaPaginadaServicos(int pagina, int quantidade)
+        public IList<T> BuscarRecursosPaginados<T>(int pagina, int quantidade) where T : Recurso
         {
             using (var context = new DatabaseContext())
             {
-                IQueryable<Servico> query = from recurso in context.Recurso.OfType<Servico>() select recurso;
-                return query.Where(r => r.Situacao == SituacaoRecurso.Disponivel).OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
+                return context.Recurso.OfType<T>()
+                        .Where(recurso => recurso.Situacao == SituacaoRecurso.Disponivel)
+                        .OrderBy(recurso => recurso.Nome)
+                        .Skip((pagina - 1) * quantidade)
+                        .Take(quantidade)
+                        .ToList();                
             }
         }
-
-        public int ServicoCount()
+        public int BuscarQuantidadeRecursos<T>() where T : Recurso
         {
             using (var context = new DatabaseContext())
             {
-                IQueryable<Recurso> query = from recurso in context.Recurso.OfType<Servico>() select recurso;
-                return query.Where(r => r.Situacao == SituacaoRecurso.Disponivel).Count();
-            }
-        }
-
-        public IList<Patrimonio> BuscaPaginadaPatrimonios(int pagina, int quantidade)
-        {
-            using (var context = new DatabaseContext())
-            {
-                IQueryable<Patrimonio> query = from recurso in context.Recurso.OfType<Patrimonio>() select recurso;
-                return query.Where(r => r.Situacao == SituacaoRecurso.Disponivel).OrderBy(r => r.Nome).Skip((pagina - 1) * quantidade).Take(quantidade).ToList();
-            }
-        }
-
-        public int PatrimonioCount()
-        {
-            using (var context = new DatabaseContext())
-            {
-                IQueryable<Recurso> query = from recurso in context.Recurso.OfType<Patrimonio>() select recurso;
-                return query.Where(r => r.Situacao == SituacaoRecurso.Disponivel).Count();
+                return context.Recurso.OfType<T>().Count(r => r.Situacao == SituacaoRecurso.Disponivel);
             }
         }
 
